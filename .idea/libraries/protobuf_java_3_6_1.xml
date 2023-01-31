@@ -3,8 +3,10 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/jar_files/protobuf-java-3.6.1.jar!/" />
       <root url="jar://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/jar_files/mysql-connector-java-8.0.19.jar!/" />
+      <root url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.commons" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.commons" recursive="false" />
   </library>
 </component>
