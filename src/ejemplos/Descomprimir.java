@@ -1,15 +1,14 @@
 package ejemplos;
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.utils.IOUtils;
-
+import java.nio.file.*;
 public class Descomprimir {
     public static void main(String[] args) {
 
 //Obtenim el directori actual
-        Path pathActual = Paths.get(System.getProperty("user.dir"));
+            Path pathActual = Paths.get(System.getProperty("user.dir"));
 
 //Concatenem el directori actual amb un subdirectori "dades" i afegim el fitxer "prova.zip"
         String nomFitxer = "02197706_MESA.zip";

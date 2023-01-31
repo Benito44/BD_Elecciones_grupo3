@@ -7,7 +7,7 @@ public class Insert {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>:3306/rrhh", "usuari", "paraulapas");
+            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>:3306/eleccions2016", "isard", "pirineus");
 
 
             //Preparem el Date
