@@ -11,10 +11,10 @@ public class Llegir_fitxer_pla {
         try {
 
             //Obtenim el directori actual
-            Path pathActual = Paths.get(System.getProperty("user.dir"));
+            Path pathActual = Paths.get(System.getProperty("C:\\M02"));
 
             //Concatenem el directori actual amb un subdirectori "dades" i afegim el fitxer "03021911.DAT"
-            Path pathFitxer = Paths.get(pathActual.toString(), "dades", "03021911.DAT");
+            Path pathFitxer = Paths.get(pathActual.toString(), "02201606_MESA", "03021911.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 

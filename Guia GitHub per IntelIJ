@@ -1,5 +1,6 @@
 1. Crear i entrar al compte de GitHub
   1.1. Acceptar la invitació al repositori que ha compartit en Benito (BD_Elecciones_grupo3)
+  1.2. Descarregar totes les llibreries del projecte als links facilitats i descomprimeixes els arxius
 
 2. Entrar a IntelIJ, al nostre projecte.
 
@@ -13,6 +14,9 @@
  
 5. File > New > Project from Version Control
   A la secció de GitHub triem el repositori compartit pel Benito i clonem.
+
+6. File > Project Structure > +
+    Afegim les llibreries descarregades al projecte
   
 - Després per decarregar l'estat actual del projecte haurem de donar-li Git > Update Project
   Si cal afegir un remote, posarli el nom desitjat i el link del repositori que trobareu al GitHub > al repositori > Code
