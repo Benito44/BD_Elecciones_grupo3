@@ -15,7 +15,7 @@ public class Insert {
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
 
             // the mysql insert statement
-            String query = " INSERT INTO empleats (candidat_id,candidatura_id,persona_id,provincia_id,num_ordre,tipus)"
+            String query = " INSERT INTO candidats (candidat_id,candidatura_id,persona_id,provincia_id,num_ordre,tipus)"
                     + " values (?, ?, ?, ?, ?, ?)";
 
             // create the mysql insert preparedstatement
