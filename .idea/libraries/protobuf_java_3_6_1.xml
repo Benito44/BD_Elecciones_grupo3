@@ -5,6 +5,8 @@
       <root url="jar://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/jar_files/mysql-connector-java-8.0.19.jar!/" />
       <root url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.commons" />
       <root url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.poi" />
+      <root url="file://$PROJECT_DIR$/.idea/libraries" />
+      <root url="jar://$USER_HOME$/Downloads/jar_files/commons-compress-1.22.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
