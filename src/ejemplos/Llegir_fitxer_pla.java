@@ -26,6 +26,9 @@ public class Llegir_fitxer_pla {
 
         } catch (IOException e) {
             e.printStackTrace();
+            /*
+            Aquí pondré la explicación de que es el finally
+             */
         } finally {
             try {
                 if (bfLector != null)
