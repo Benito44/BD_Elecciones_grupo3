@@ -10,93 +10,115 @@ import java.util.List;
 public class LecturaDades {
     public static void main(String[] args) {
 
-        printComunitat();
-        System.out.println("=======================");
+        // printComunitat();
+        // printProvincia();
+        printMunicipi();
 
-        BufferedReader bfLector1 = null;
-        BufferedReader bfLector2 = null;
+    }
 
+    public static void printComunitat() {
+        BufferedReader bfLector = null;
         try {
-            //Concatenem el directori actual amb un subdirectori "dades" i afegim el fitxer "03021911.DAT"
+            // Ruta del nostre arxiu (
             Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "07021606.DAT");
-            Path pathFitxer2 = Paths.get("C:", "M02", "02201606_MESA", "05021606.DAT");
-
-            //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
-
-            bfLector1 = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
-            bfLector2 = Files.newBufferedReader(pathFitxer2, StandardCharsets.ISO_8859_1);
-
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
             String strLinia;
 
-            // Document supramunicipal
-            while ((strLinia = bfLector1.readLine()) != null) {
-                // Cal restar una xifra a la posició del document (recordar que el end del subatring no s'inclou)
-                if (!(strLinia.substring(9,11).equals("99") || strLinia.substring(11,13).equals("99"))) { // Treiem els totals
-                    System.out.println("Codi comunitat:  " + strLinia.substring(9, 11));   // Codigo de comunidad autonoma
-                    System.out.println("INE Provincia:  " + strLinia.substring(11, 13));  // Codigo INE de la provincia
-                    System.out.println("Codi districte:  " + strLinia.substring(13, 14));  // Codigo de districte
-                    System.out.println("Nom provincia:  " + strLinia.substring(14, 64));  // Nombre Provincia
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                if (strLinia.substring(11, 13).equals("99")) { // dels totals
+                    // Extraiem el codi de la CA
+                    //TODO: preguntar si el codi de comunitat és el INE
+                    System.out.println("Codi comunitat:  " + strLinia.substring(9, 11));
+                    // Extraiem el nom de la CA
+                    System.out.println("Nom comunitat:  " + strLinia.substring(14, 64));
+
+                    System.out.println();
                 }
-/*
-        List<String[]> data = new ArrayList<>();
-        String value1 = strLinia.substring(9, 11);
-        String value2 = strLinia.substring(9, 11);
-        String value3 = strLinia.substring(9, 11);
-        data.add(new String[] {value1, value2, value3});
- */
-                System.out.println(strLinia);
             }
-            System.out.println("==============================================================");
-/*
-            // Document de municipis
-            while ((strLinia = bfLector2.readLine()) != null) {
-                // Cal restar una xifra a la posició del document (recordar que el end del substring no s'inclou)
-
-                System.out.println(strLinia.substring(9,11));   // Codigo de comunidad autonoma
-                System.out.println(strLinia.substring(11,13));  // Codigo INE de la provincia
-                System.out.println(strLinia.substring(13,16));  // Codi municipi
-                System.out.println(strLinia);
-            }
-
- */
 
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (bfLector1 != null)
-                    bfLector1.close();
+                if (bfLector != null)
+                    bfLector.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
 
-    public static void printComunitat() {
-        BufferedReader bfLector1 = null;
+    public static void printProvincia() {
+        BufferedReader bfLector = null;
         try {
-            //Concatenem el directori actual amb un subdirectori "dades" i afegim el fitxer "03021911.DAT"
+            // Ruta del nostre arxiu (
             Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "07021606.DAT");
-
-            bfLector1 = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
-
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
             String strLinia;
 
-            // Document supramunicipal
-            while ((strLinia = bfLector1.readLine()) != null) {
-                // Cal restar una xifra a la posició del document (recordar que el end del subatring no s'inclou)
-                if (strLinia.substring(11, 13).equals("99")) { // Treiem els totals
-                    System.out.println(strLinia);
-                    System.out.println("Codi comunitat:  " + strLinia.substring(9, 11));   // Codigo de comunidad autonoma
-                    System.out.println("Nom comunitat:  " + strLinia.substring(14, 64));  // Nombre Provincia
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                // Excloent els totals
+                if (!(strLinia.substring(9,11).equals("99") || strLinia.substring(11,13).equals("99"))) {
+                    // Extraiem el codi de la CA
+                    System.out.println("Codi comunitat de la província:  " + strLinia.substring(9, 11));
+                    // Extraiem el nom de la província
+                    System.out.println("Nom província:  " + strLinia.substring(14, 64));
+                    // Extraiem el codi INE de la província
+                    System.out.println("INE Província:  " + strLinia.substring(11, 13));
+                    // Extraiem el número d'escons
+                    System.out.println("Escons província:  " + strLinia.substring(149, 155));
+
+                    System.out.println();
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (bfLector1 != null)
-                    bfLector1.close();
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void printMunicipi() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "05021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                //TODO: preguntar si quan és un districte cal el nom del municipi o del districte a la taula municipis
+                if (strLinia.substring(16,18).equals("99")) {   // Si Nº districte és 99
+                    // Extrayem nom del MUNICIPI
+                    System.out.println("Nom del municipi: " + strLinia.substring(18, 118));
+                } else {    // Si Nº districte NO és 99
+                    // Extrayem nom del DISTRICTE
+                    System.out.println("Nom del districte: " + strLinia.substring(18, 118));
+                }
+                // Extraiem codi INE del municipi
+                System.out.println("INE municipi: " + strLinia.substring(13, 16));
+                // Extraiem el codi INE de la província
+                System.out.println("INE província del municipi: " + strLinia.substring(11, 13));
+                // Extraiem el número de districte
+                System.out.println("Número districte: " + strLinia.substring(16, 18));  // Si és 99 és municipi
+                System.out.println();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
