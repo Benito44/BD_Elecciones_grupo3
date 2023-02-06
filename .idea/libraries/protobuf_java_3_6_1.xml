@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="protobuf-java-3.6.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/jar_files/protobuf-java-3.6.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/jar_files/mysql-connector-java-8.0.19.jar!/" />
+      <root url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.commons" />
+      <root url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.poi" />
+      <root url="file://$PROJECT_DIR$/.idea/libraries" />
+      <root url="jar://$USER_HOME$/Downloads/jar_files/commons-compress-1.22.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.commons" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Desktop/CLASES/TRABAJO EN EQUIPO/org.apache.poi" recursive="false" />
+  </library>
+</component>
