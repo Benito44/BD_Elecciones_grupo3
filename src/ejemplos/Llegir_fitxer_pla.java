@@ -23,7 +23,9 @@ public class Llegir_fitxer_pla {
         } catch (IOException e) {
             e.printStackTrace();
             /*
-            Aquí pondré la explicación de que es el finally
+            El finally se ejecutará sí o sí, tanto de error como no.
+            Si no hubo errores se ejecutará la parte del try. Si hay errores se ejecutará después del catch.
+            Asegura el cierre de los recursos.Sin esto, aunque haya un error en el try los recursos seguiran activos.
              */
         } finally {
             try {
