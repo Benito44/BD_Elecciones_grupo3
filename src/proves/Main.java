@@ -3,7 +3,6 @@
 import java.util.List;
 
 public class Main {
-
     public static void main(String[] args) throws Exception {
         FileReaderClass reader = new FileReaderClass();
         List<String[]> data = reader.readFile("C:/M02/02201606_MESA/07021606.DAT");
