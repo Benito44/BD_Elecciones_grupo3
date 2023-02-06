@@ -10,7 +10,7 @@ public class Select_Query {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>:3306/eleccions2016", "isard", "pirineus");
+            Connection con = DriverManager.getConnection("jdbc:mysql://:3306/eleccions2016", "isard", "pirineus");
 
             //SENTÈNCIA SELECT
             //Preparem una sentència amb paràmetres.
