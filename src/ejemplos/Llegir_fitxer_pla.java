@@ -10,7 +10,7 @@ public class Llegir_fitxer_pla {
         BufferedReader bfLector = null;
         try {
             //Directori on llegir les dades
-            Path pathFitxer = Paths.get("C:", "02201606_MESA", "03021911.DAT");
+            Path pathFitxer = Paths.get("C:", "02201606_MESA", "07021606.DAT");
 
             //objReader = new BufferedReader(new FileReader(pathFitxer.toString()));
 
