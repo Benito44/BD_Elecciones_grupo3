@@ -19,6 +19,13 @@ public class LecturaDades {
             bfLector = Files.newBufferedReader(pathFitxer, StandardCharsets.ISO_8859_1);
             String strLinia;
             while ((strLinia = bfLector.readLine()) != null) {
+                // Cal restar una xifra a la posició del document (recordar que el end del subatring no s'inclou)
+                System.out.println(strLinia.substring(9,11));   // Codigo de comunidad autonoma
+                System.out.println(strLinia.substring(11,13));  // Codigo INE de la provincia
+                System.out.println(strLinia.substring(13,14));  // Codigo INE de la provincia
+                System.out.println(strLinia.substring(14,64));  // Nombre Provincia
+                System.out.println(strLinia.substring(64,72));  // Població
+
                 System.out.println(strLinia);
             }
 

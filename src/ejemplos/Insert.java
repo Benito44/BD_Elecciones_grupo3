@@ -7,7 +7,7 @@ public class Insert {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.68.44/eleccions2017", "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -21,7 +21,7 @@ public class Insert {
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, 1);
-            preparedStmt.setInt(2, 2);
+            preparedStmt.setInt(2, 1);
             preparedStmt.setInt(3, 3);
             preparedStmt.setInt(4, 4);
             preparedStmt.setInt(5, 5);
