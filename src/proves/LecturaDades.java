@@ -29,10 +29,10 @@ public class LecturaDades {
             while ((strLinia = bfLector1.readLine()) != null) {
                 // Cal restar una xifra a la posició del document (recordar que el end del subatring no s'inclou)
                 if (!(strLinia.substring(9,11).equals("99") || strLinia.substring(11,13).equals("99"))) { // Treiem els totals
-                    System.out.println("Codi comunitat: " + strLinia.substring(9, 11));   // Codigo de comunidad autonoma
-                    System.out.println("INE Provincia: " + strLinia.substring(11, 13));  // Codigo INE de la provincia
-                    System.out.println("Codi districte: " + strLinia.substring(13, 14));  // Codigo de districte
-                    System.out.println("Nom provincia: " + strLinia.substring(14, 64));  // Nombre Provincia
+                    System.out.println("Codi comunitat:  " + strLinia.substring(9, 11));   // Codigo de comunidad autonoma
+                    System.out.println("INE Provincia:  " + strLinia.substring(11, 13));  // Codigo INE de la provincia
+                    System.out.println("Codi districte:  " + strLinia.substring(13, 14));  // Codigo de districte
+                    System.out.println("Nom provincia:  " + strLinia.substring(14, 64));  // Nombre Provincia
                 }
 
                 System.out.println(strLinia);
