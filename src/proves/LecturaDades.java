@@ -77,8 +77,8 @@ public class LecturaDades {
                 // Cal restar una xifra a la posició del document (recordar que el end del subatring no s'inclou)
                 if (strLinia.substring(11, 13).equals("99")) { // Treiem els totals
                     System.out.println(strLinia);
-                    System.out.println("Codi comunitat: " + strLinia.substring(9, 11));   // Codigo de comunidad autonoma
-                    System.out.println("Nom comunitat: " + strLinia.substring(14, 64));  // Nombre Provincia
+                    System.out.println("Codi comunitat:  " + strLinia.substring(9, 11));   // Codigo de comunidad autonoma
+                    System.out.println("Nom comunitat:  " + strLinia.substring(14, 64));  // Nombre Provincia
                 }
             }
         } catch (IOException e) {
