@@ -7,7 +7,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Nom_INEM {
-    public void insertData(int provincia_id, String districte){
+    public static void main(String[] args) {
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -24,8 +25,8 @@ public class Nom_INEM {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-                preparedStmt.setInt(1, provincia_id);
-                preparedStmt.setString(2, districte);
+                preparedStmt.setInt(1, 1);
+                preparedStmt.setString(2, "2");
                 // execute the preparedstatement
                 preparedStmt.execute();
             //Tanquem la connexió
