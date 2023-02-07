@@ -25,8 +25,7 @@ public class InsertarDades {
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             for (int i = 0; i < data.size(); i++) {
-               // String[] values = data.get(i);
-                String[] values = {"1","2","3","4","5"};
+                String[] values = data.get(i);
                 preparedStmt.setString(1, values[0]);
                 preparedStmt.setInt(2, Integer.parseInt(values[1]));
                 preparedStmt.setInt(3, Integer.parseInt(values[2]));
