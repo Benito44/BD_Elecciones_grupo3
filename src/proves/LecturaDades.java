@@ -12,7 +12,8 @@ public class LecturaDades {
 
         // printComunitat();
         // printProvincia();
-        printMunicipi();
+        // printMunicipi();
+        printPersones();
 
     }
 
@@ -28,7 +29,6 @@ public class LecturaDades {
             while ((strLinia = bfLector.readLine()) != null) {
                 if (strLinia.substring(11, 13).equals("99")) { // dels totals
                     // Extraiem el codi de la CA
-                    //TODO: preguntar si el codi de comunitat és el INE
                     System.out.println("Codi comunitat:  " + strLinia.substring(9, 11));
                     // Extraiem el nom de la CA
                     System.out.println("Nom comunitat:  " + strLinia.substring(14, 64));
@@ -96,10 +96,10 @@ public class LecturaDades {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                //TODO: preguntar si quan és un districte cal el nom del municipi o del districte a la taula municipis
                 if (strLinia.substring(16,18).equals("99")) {   // Si Nº districte és 99
                     // Extrayem nom del MUNICIPI
                     System.out.println("Nom del municipi: " + strLinia.substring(18, 118));
+
                 } else {    // Si Nº districte NO és 99
                     // Extrayem nom del DISTRICTE
                     System.out.println("Nom del districte: " + strLinia.substring(18, 118));
@@ -108,9 +108,50 @@ public class LecturaDades {
                 System.out.println("INE municipi: " + strLinia.substring(13, 16));
                 // Extraiem el codi INE de la província
                 System.out.println("INE província del municipi: " + strLinia.substring(11, 13));
+
                 // Extraiem el número de districte
                 System.out.println("Número districte: " + strLinia.substring(16, 18));  // Si és 99 és municipi
                 System.out.println();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    public static void printPersones(){
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "04021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                //Nom del candidat
+                System.out.println("Nom candidat: " + strLinia.substring(25, 50));
+                //Primer cognom del candidat
+                System.out.println("Cognom1: " + strLinia.substring(50, 75));
+                //Segon cognom del candidat
+                System.out.println("Cognom2: " + strLinia.substring(75, 100));
+                    /*
+                    //TODO: Les següents dades no surten al fitxer pero si estàn solicitades a la BD, en l'insert haurem de posarles en null.
+                    //Sexo del candidato
+                    System.out.println("Sexo: " + strLinia.substring(100, 101));
+                    //data de naixament
+                    System.out.println("Data de naixement: " + strLinia.substring(101, 103) + "/" + strLinia.substring(104, 105) + "/" + strLinia.substring(106, 109));
+                    //DNI del candidat
+                    //System.out.println("DNI: " + strLinia.substring(101, 101));
+                     */
+                System.out.println();
+
             }
 
         } catch (IOException e) {
