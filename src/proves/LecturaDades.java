@@ -99,7 +99,6 @@ public class LecturaDades {
                 if (strLinia.substring(16,18).equals("99")) {   // Si Nº districte és 99
                     // Extrayem nom del MUNICIPI
                     System.out.println("Nom del municipi: " + strLinia.substring(18, 118));
-
                 } else {    // Si Nº districte NO és 99
                     // Extrayem nom del DISTRICTE
                     System.out.println("Nom del districte: " + strLinia.substring(18, 118));
