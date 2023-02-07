@@ -9,6 +9,7 @@ public class InsertarDades {
     }
     public void insertData(List<String[]> data){
         try {
+
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
