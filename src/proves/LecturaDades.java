@@ -125,7 +125,6 @@ public class LecturaDades {
             }
         }
     }
-
     public static void printPersones(){
         BufferedReader bfLector = null;
         try {
@@ -136,12 +135,12 @@ public class LecturaDades {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                    //Nom del candidat
-                    System.out.println("Nom candidat: " + strLinia.substring(25, 50));
-                    //Primer cognom del candidat
-                    System.out.println("Cognom1: " + strLinia.substring(50, 75));
-                    //Segon cognom del candidat
-                    System.out.println("Cognom2: " + strLinia.substring(75, 100));
+                //Nom del candidat
+                System.out.println("Nom candidat: " + strLinia.substring(25, 50));
+                //Primer cognom del candidat
+                System.out.println("Cognom1: " + strLinia.substring(50, 75));
+                //Segon cognom del candidat
+                System.out.println("Cognom2: " + strLinia.substring(75, 100));
                     /*
                     //TODO: Les següents dades no surten al fitxer pero si estàn solicitades a la BD, en l'insert haurem de posarles en null.
                     //Sexo del candidato
@@ -151,7 +150,7 @@ public class LecturaDades {
                     //DNI del candidat
                     //System.out.println("DNI: " + strLinia.substring(101, 101));
                      */
-                    System.out.println();
+                System.out.println();
 
             }
 
