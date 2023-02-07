@@ -1,9 +1,13 @@
 package proves;
 import java.sql.*;
 import java.util.Calendar;
+import java.util.List;
 
 public class InsertarDades {
     public static void main(String[] args) {
+
+    }
+    public void insertData(List<String> data){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -20,19 +24,22 @@ public class InsertarDades {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, 1);
-            preparedStmt.setInt(2, 1);
-            preparedStmt.setInt(3, 3);
-            preparedStmt.setInt(4, 4);
-            preparedStmt.setInt(5, 5);
-            preparedStmt.setString(6, "T");
-            //preparedStmt.setDate(6, startDate);
+            for (int i = 0; i < data.size(); i++) {
+               // String[] values = data.get(i);
+                String[] values = {"1","2","3","4","5"};
+                preparedStmt.setString(1, values[0]);
+                preparedStmt.setInt(2, Integer.parseInt(values[1]));
+                preparedStmt.setInt(3, Integer.parseInt(values[2]));
+                preparedStmt.setInt(4, Integer.parseInt(values[3]));
+                preparedStmt.setInt(5, Integer.parseInt(values[4]));
+                preparedStmt.setString(6, "T");
+                //preparedStmt.setDate(6, startDate);
             /*preparedStmt.setString(7, "IT_PROG");
             preparedStmt.setFloat(8, 5000.12f);*/
 
-            // execute the preparedstatement
-            preparedStmt.execute();
-
+                // execute the preparedstatement
+                preparedStmt.execute();
+            }
             //Tanquem la connexió
             con.close();
         } catch (Exception e) {
