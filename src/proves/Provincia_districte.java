@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Provincia_districte {
 
-    public void main(String nom, String codi_ine){
+    public void insertData(String nom, String codi_ine){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
