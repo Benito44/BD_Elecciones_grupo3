@@ -27,11 +27,11 @@ public class InsertarDades {
             for (int i = 0; i < data.size(); i++) {
                // String[] values = data.get(i);
                 String[] values = {"1","2","3","4","5"};
-                preparedStmt.setString(1, values[0]);/*values[0]*/
-                preparedStmt.setInt(2, Integer.parseInt(values[1]));/*values[0]*/
-                preparedStmt.setInt(3, Integer.parseInt(values[2]));/*values[0]*/
-                preparedStmt.setInt(4, Integer.parseInt(values[3]));/*values[0]*/
-                preparedStmt.setInt(5, Integer.parseInt(values[4]));/*values[0]*/
+                preparedStmt.setString(1, values[0]);
+                preparedStmt.setInt(2, Integer.parseInt(values[1]));
+                preparedStmt.setInt(3, Integer.parseInt(values[2]));
+                preparedStmt.setInt(4, Integer.parseInt(values[3]));
+                preparedStmt.setInt(5, Integer.parseInt(values[4]));
                 preparedStmt.setString(6, "T");
                 //preparedStmt.setDate(6, startDate);
             /*preparedStmt.setString(7, "IT_PROG");
