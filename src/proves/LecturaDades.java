@@ -29,7 +29,6 @@ public class LecturaDades {
             while ((strLinia = bfLector.readLine()) != null) {
                 if (strLinia.substring(11, 13).equals("99")) { // dels totals
                     // Extraiem el codi de la CA
-                    //TODO: preguntar si el codi de comunitat és el INE
                     System.out.println("Codi comunitat:  " + strLinia.substring(9, 11));
                     // Extraiem el nom de la CA
                     System.out.println("Nom comunitat:  " + strLinia.substring(14, 64));
@@ -97,10 +96,10 @@ public class LecturaDades {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                //TODO: preguntar si quan és un districte cal el nom del municipi o del districte a la taula municipis
                 if (strLinia.substring(16,18).equals("99")) {   // Si Nº districte és 99
                     // Extrayem nom del MUNICIPI
                     System.out.println("Nom del municipi: " + strLinia.substring(18, 118));
+
                 } else {    // Si Nº districte NO és 99
                     // Extrayem nom del DISTRICTE
                     System.out.println("Nom del districte: " + strLinia.substring(18, 118));
@@ -109,6 +108,7 @@ public class LecturaDades {
                 System.out.println("INE municipi: " + strLinia.substring(13, 16));
                 // Extraiem el codi INE de la província
                 System.out.println("INE província del municipi: " + strLinia.substring(11, 13));
+
                 // Extraiem el número de districte
                 System.out.println("Número districte: " + strLinia.substring(16, 18));  // Si és 99 és municipi
                 System.out.println();
