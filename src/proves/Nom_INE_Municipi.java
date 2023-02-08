@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
-import java.util.List;
 
-public class Nom_INEM {
+public class Nom_INE_Municipi {
     public void insertData(int provincia_id, String districte){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
