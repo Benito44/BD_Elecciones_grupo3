@@ -10,7 +10,7 @@ public class Nom_INE_Municipi {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection("jdbc:<IP>/eleccions2017", "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -19,7 +19,7 @@ public class Nom_INE_Municipi {
 
             // the mysql insert statement
             String query = " INSERT INTO municipis (nom, codi_ine,provincia_id,districte)"
-                    + "SELECT ?, ?, provincia_id, ? " +
+                    + "(SELECT ?, ?, provincia_id, ? " +
                     "   FROM provincies " +
                     "   WHERE codi_ine = ?);";
 
