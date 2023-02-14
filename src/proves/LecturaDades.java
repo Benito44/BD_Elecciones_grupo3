@@ -10,11 +10,12 @@ import java.util.List;
 public class LecturaDades {
     public static void main(String[] args) {
 
-        // printComunitat();
+        //printComunitat();
         // printProvincia();
-         //printMunicipi();
+        //printMunicipi();
         //printPersones();
-        readInsertMunicipi();
+        //readInsertMunicipi();
+        readInsertComunitat();
 
     }
 
@@ -118,7 +119,7 @@ public class LecturaDades {
                 System.out.println("Número districte: " + strLinia.substring(16, 18));  // Si és 99 és municipi
                 districte = Integer.parseInt(strLinia.substring(16, 18));
                 System.out.println();
-                Nom_INE_Municipi.insertData(nom,codi_ine,provincia_id,districte);
+                Nom_INE_Municipi.insertData(nom, codi_ine, provincia_id, districte);
             }
 
         } catch (IOException e) {
@@ -201,8 +202,41 @@ public class LecturaDades {
                 districte = Integer.parseInt(strLinia.substring(16, 18)); // Si és 99 és municipi
 
                 //Insertem dades
-                Nom_INE_Municipi.insertData(nom,codi_ine, ine_provincia,districte);
+                Nom_INE_Municipi.insertData(nom, codi_ine, ine_provincia, districte);
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+    }
+
+    public static void readInsertComunitat() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "07021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                if (strLinia.substring(11, 13).equals("99")) { // dels totals
+                    // Extraiem el codi de la CA
+                    int codi_ine = Integer.parseInt(strLinia.substring(9, 11));
+                    // Extraiem el nom de la CA
+                    String nom = strLinia.substring(14, 64);
+                }
+            }
+
 
         } catch (IOException e) {
             e.printStackTrace();
