@@ -13,7 +13,7 @@ public class LecturaDades {
         // printComunitat();
         // printProvincia();
          //printMunicipi();
-        //printPersones();
+        printPersones();
         //readInsertMunicipi();
         //readInsertComunitat();
         readInsertProvincies();
@@ -111,7 +111,7 @@ public class LecturaDades {
                 }
                 // Extraiem codi INE del municipi
                 System.out.println("INE municipi: " + strLinia.substring(13, 16));
-                codi_ine = strLinia.substring(18, 118);
+                codi_ine = strLinia.substring(13, 16);
                 // Extraiem el codi INE de la província
                 System.out.println("INE província del municipi: " + strLinia.substring(11, 13));
                 provincia_id = strLinia.substring(11, 13);
@@ -231,15 +231,12 @@ public class LecturaDades {
             while ((strLinia = bfLector.readLine()) != null) {
                 if (strLinia.substring(11, 13).equals("99")) { // dels totals
                     // Extraiem el codi de la CA
-                    int codi_ine = Integer.parseInt(strLinia.substring(9, 11));
+                    String codi_ine = strLinia.substring(9, 11);
                     // Extraiem el nom de la CA
                     String nom = strLinia.substring(14, 64);
+                    Inserts_provisionales.insertComunitat(nom, codi_ine);
                 }
             }
-
-            //TODO: pasar variables a INSERT de CAs
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -260,7 +257,8 @@ public class LecturaDades {
             bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
             String strLinia;
 
-            String codi_ine_ca, nom_provincia, codi_ine_prov, num_escons;
+            String codi_ine_ca, nom_provincia, codi_ine_prov;
+            int num_escons;
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 // Excloent els totals
@@ -272,10 +270,12 @@ public class LecturaDades {
                     // Extraiem el codi INE de la província
                     codi_ine_prov = strLinia.substring(11, 13);
                     // Extraiem el número d'escons
-                    num_escons = strLinia.substring(149, 155);
+                    num_escons = Integer.parseInt(strLinia.substring(149, 155));
+
+                    Inserts_provisionales.insertProvincia(codi_ine_ca, nom_provincia, codi_ine_prov, num_escons);
                 }
             }
-            //TODO: pasar variables a INSERT de provincies
+
 
         } catch (IOException e) {
             e.printStackTrace();

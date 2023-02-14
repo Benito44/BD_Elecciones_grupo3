@@ -12,7 +12,7 @@ public class Inserts_provisionales {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2016", "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -35,11 +35,11 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
-    public static void insertProvincia(int comunitat_aut_id, String nom, String codi_ine, int num_escons) {
+    public static void insertProvincia(String codi_ine_ca, String nom, String codi_ine_prov, int num_escons) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2016", "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -48,14 +48,16 @@ public class Inserts_provisionales {
 
             // the mysql insert statement
             String query = " INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons)"
-                    + " values (?, ?, ?, ?)";
+                    + " SELECT comunitat_aut_id, ?, ?, ?" +
+                            " FROM comunitats_autonomes" +
+                        " WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, comunitat_aut_id);
-            preparedStmt.setString(2, nom);
-            preparedStmt.setString(3, codi_ine);
-            preparedStmt.setInt(4, num_escons);
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString(2, codi_ine_prov);
+            preparedStmt.setInt(3, num_escons);
+            preparedStmt.setString(4, codi_ine_ca);
             // execute the preparedstatement
             preparedStmt.execute();
             //Tanquem la connexió
