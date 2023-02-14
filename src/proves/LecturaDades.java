@@ -12,8 +12,8 @@ public class LecturaDades {
 
         // printComunitat();
         // printProvincia();
-        // printMunicipi();
-        printPersones();
+         printMunicipi();
+        //printPersones();
 
     }
 
@@ -60,7 +60,7 @@ public class LecturaDades {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 // Excloent els totals
-                if (!(strLinia.substring(9,11).equals("99") || strLinia.substring(11,13).equals("99"))) {
+                if (!(strLinia.substring(9, 11).equals("99") || strLinia.substring(11, 13).equals("99"))) {
                     // Extraiem el codi de la CA
                     System.out.println("Codi comunitat de la província:  " + strLinia.substring(9, 11));
                     // Extraiem el nom de la província
@@ -94,24 +94,30 @@ public class LecturaDades {
             bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
             String strLinia;
 
+            String nom, codi_ine, provincia_id;
+            int districte;
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                if (strLinia.substring(16,18).equals("99")) {   // Si Nº districte és 99
+                if (strLinia.substring(16, 18).equals("99")) {   // Si Nº districte és 99
                     // Extrayem nom del MUNICIPI
                     System.out.println("Nom del municipi: " + strLinia.substring(18, 118));
-
+                    nom = strLinia.substring(18, 118);
                 } else {    // Si Nº districte NO és 99
                     // Extrayem nom del DISTRICTE
                     System.out.println("Nom del districte: " + strLinia.substring(18, 118));
+                    nom = strLinia.substring(18, 118);
                 }
                 // Extraiem codi INE del municipi
                 System.out.println("INE municipi: " + strLinia.substring(13, 16));
+                codi_ine = strLinia.substring(18, 118);
                 // Extraiem el codi INE de la província
                 System.out.println("INE província del municipi: " + strLinia.substring(11, 13));
-
+                provincia_id = strLinia.substring(11, 13);
                 // Extraiem el número de districte
                 System.out.println("Número districte: " + strLinia.substring(16, 18));  // Si és 99 és municipi
+                districte = Integer.parseInt(strLinia.substring(16, 18));
                 System.out.println();
+                Nom_INE_Municipi.insertData(nom,codi_ine,provincia_id,districte);
             }
 
         } catch (IOException e) {
@@ -125,7 +131,8 @@ public class LecturaDades {
             }
         }
     }
-    public static void printPersones(){
+
+    public static void printPersones() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
