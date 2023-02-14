@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
 
-public class pepito {
+public class Inserts_provisionales {
 
     public static void insertComunitat(String nom, String codi_ine) {
         try {
