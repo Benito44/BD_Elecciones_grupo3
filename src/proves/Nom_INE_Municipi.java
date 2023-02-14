@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.util.Calendar;
 
 public class Nom_INE_Municipi {
-    public void insertData(int provincia_id, String districte){
+    public static void insertData(String nom, String codi_ine, String provincia_id, int districte) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -16,17 +16,20 @@ public class Nom_INE_Municipi {
             //Preparem el Date
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-
+            // TODO: 09/02/2023 Hace falta poner el campo autoincremental???
             // the mysql insert statement
-            String query = " INSERT INTO municipis (provincia_id,districte)"
-                    + " values (?, ?)";
+            String query = " INSERT INTO municipis (nom, codi_ine,provincia_id,districte)"
+                    + " values (?, ?, ?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-                preparedStmt.setInt(1, provincia_id);
-                preparedStmt.setString(2, districte);
-                // execute the preparedstatement
-                preparedStmt.execute();
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString(2, codi_ine);
+            // TODO: 09/02/2023 REVISAR QUE SEAN STRINGS O INTS EN LA BASE DE DADES
+            preparedStmt.setString(3, provincia_id);
+            preparedStmt.setInt(4, districte);
+            // execute the preparedstatement
+            preparedStmt.execute();
             //Tanquem la connexió
             con.close();
         } catch (Exception e) {
