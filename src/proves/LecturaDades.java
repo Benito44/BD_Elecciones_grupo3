@@ -11,11 +11,12 @@ public class LecturaDades {
     public static void main(String[] args) {
 
         // printComunitat();
-        //printProvincia();
+        // printProvincia();
          //printMunicipi();
         //printPersones();
         //readInsertMunicipi();
-
+        //readInsertComunitat();
+        readInsertProvincies();
     }
 
     public static void printComunitat() {
@@ -110,7 +111,7 @@ public class LecturaDades {
                 }
                 // Extraiem codi INE del municipi
                 System.out.println("INE municipi: " + strLinia.substring(13, 16));
-                codi_ine = strLinia.substring(13, 16);
+                codi_ine = strLinia.substring(18, 118);
                 // Extraiem el codi INE de la província
                 System.out.println("INE província del municipi: " + strLinia.substring(11, 13));
                 provincia_id = strLinia.substring(11, 13);
@@ -203,6 +204,78 @@ public class LecturaDades {
                 //Insertem dades
                 Nom_INE_Municipi.insertData(nom,codi_ine, ine_provincia,districte);
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+    }
+
+    public static void readInsertComunitat() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "07021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                if (strLinia.substring(11, 13).equals("99")) { // dels totals
+                    // Extraiem el codi de la CA
+                    int codi_ine = Integer.parseInt(strLinia.substring(9, 11));
+                    // Extraiem el nom de la CA
+                    String nom = strLinia.substring(14, 64);
+                }
+            }
+
+            //TODO: pasar variables a INSERT de CAs
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void readInsertProvincies() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "07021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            String codi_ine_ca, nom_provincia, codi_ine_prov, num_escons;
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                // Excloent els totals
+                if (!(strLinia.substring(9, 11).equals("99") || strLinia.substring(11, 13).equals("99"))) {
+                    // Extraiem el codi de la CA
+                    codi_ine_ca = strLinia.substring(9, 11);
+                    // Extraiem el nom de la província
+                    nom_provincia = strLinia.substring(14, 64);
+                    // Extraiem el codi INE de la província
+                    codi_ine_prov = strLinia.substring(11, 13);
+                    // Extraiem el número d'escons
+                    num_escons = strLinia.substring(149, 155);
+                }
+            }
+            //TODO: pasar variables a INSERT de provincies
 
         } catch (IOException e) {
             e.printStackTrace();
