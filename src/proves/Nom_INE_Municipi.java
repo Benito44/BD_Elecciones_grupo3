@@ -16,6 +16,7 @@ public class Nom_INE_Municipi {
             //Preparem el Date
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
             // the mysql insert statement
             String query = " INSERT INTO municipis (nom, codi_ine,provincia_id,districte)"
                     + " values (?, ?, ?, ?)";
