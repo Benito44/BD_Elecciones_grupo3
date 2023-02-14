@@ -23,10 +23,14 @@ public class LecturaVotsProvincialsAutonomics {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 if (!(strLinia.substring(11, 13).equals("99"))) {
-                    System.out.println("Codi I.N.E provincial: " + Integer.parseInt(strLinia.substring(11,13)));
-                    System.out.println("Codi de la candidatura:  " + Integer.parseInt(strLinia.substring(14,20)));
-                    System.out.println("Vots obtinguts:  " + Integer.parseInt(strLinia.substring(20,28)));
-                    System.out.println("Candidats obtinguts:  " + Integer.parseInt(strLinia.substring(28,33)));
+                    int ine = Integer.parseInt(strLinia.substring(11,13));
+                    System.out.println("Codi I.N.E provincial: " + ine);
+                    int codiCandidatura = Integer.parseInt(strLinia.substring(14,20));
+                    System.out.println("Codi de la candidatura:  " + codiCandidatura);
+                    int votsObtinguts = Integer.parseInt(strLinia.substring(20,28));
+                    System.out.println("Vots obtinguts:  " + votsObtinguts);
+                    int candidatsObt = Integer.parseInt(strLinia.substring(28,33));
+                    System.out.println("Candidats obtinguts:  " + candidatsObt);
                     System.out.println();
                 }
 
@@ -55,10 +59,14 @@ public class LecturaVotsProvincialsAutonomics {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 if (strLinia.substring(11, 13).equals("99")) {
-                    System.out.println("Codi I.N.E provincial: " + Integer.parseInt(strLinia.substring(11,13)));
-                    System.out.println("Codi de la candidatura:  " + Integer.parseInt(strLinia.substring(14,20)));
-                    System.out.println("Vots obtinguts:  " + Integer.parseInt(strLinia.substring(20,28)));
-                    System.out.println("Candidats obtinguts:  " + Integer.parseInt(strLinia.substring(28,33)));
+                    int ine = Integer.parseInt(strLinia.substring(11,13));
+                    System.out.println("Codi I.N.E provincial: " + ine);
+                    int codiCandidatura = Integer.parseInt(strLinia.substring(14,20));
+                    System.out.println("Codi de la candidatura:  " + codiCandidatura);
+                    int votsObtinguts = Integer.parseInt(strLinia.substring(20,28));
+                    System.out.println("Vots obtinguts:  " + votsObtinguts);
+                    int candidatsObt = Integer.parseInt(strLinia.substring(28,33));
+                    System.out.println("Candidats obtinguts:  " + candidatsObt);
                     System.out.println();
                 }
 
