@@ -12,8 +12,8 @@ public class LecturaDades {
 
         // printComunitat();
         // printProvincia();
-        // printMunicipi();
-        printPersones();
+         printMunicipi();
+        //printPersones();
 
     }
 
