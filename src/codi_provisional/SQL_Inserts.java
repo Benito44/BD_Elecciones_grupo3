@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.util.Calendar;
 
 public class SQL_Inserts {
-    static String urlAlberto = "";
+    static String urlAlberto = "jdbc:mysql://10.2.120.240/eleccions2017";
     static String urlBenito = "";
     static String urlDavid = "";
     static String urlMarc = "";
