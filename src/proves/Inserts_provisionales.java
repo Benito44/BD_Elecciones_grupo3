@@ -12,7 +12,7 @@ public class Inserts_provisionales {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2017", "perepi", "pastanaga");
 
 
             //Preparem el Date
