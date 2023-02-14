@@ -13,7 +13,7 @@ public class LecturaDades {
         // printComunitat();
         // printProvincia();
          //printMunicipi();
-        //printPersones();
+        printPersones();
         //readInsertMunicipi();
         //readInsertComunitat();
         readInsertProvincies();
@@ -111,7 +111,7 @@ public class LecturaDades {
                 }
                 // Extraiem codi INE del municipi
                 System.out.println("INE municipi: " + strLinia.substring(13, 16));
-                codi_ine = strLinia.substring(18, 118);
+                codi_ine = strLinia.substring(13, 16);
                 // Extraiem el codi INE de la província
                 System.out.println("INE província del municipi: " + strLinia.substring(11, 13));
                 provincia_id = strLinia.substring(11, 13);
