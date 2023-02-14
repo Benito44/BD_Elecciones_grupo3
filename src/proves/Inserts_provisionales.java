@@ -12,7 +12,7 @@ public class Inserts_provisionales {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2017", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2016", "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -39,7 +39,7 @@ public class Inserts_provisionales {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2016", "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -49,7 +49,7 @@ public class Inserts_provisionales {
             // the mysql insert statement
             String query = " INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons)"
                     + " SELECT comunitat_aut_id, ?, ?, ?" +
-                            " FROM comnitats_autonomes" +
+                            " FROM comunitats_autonomes" +
                         " WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
