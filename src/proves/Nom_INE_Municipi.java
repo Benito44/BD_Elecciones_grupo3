@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.util.Calendar;
 
 public class Nom_INE_Municipi {
+
     public static void insertData(String nom, String codi_ine, String provincia_id, int districte) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

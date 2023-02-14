@@ -1,18 +1,23 @@
-package proves;
+package codi_provisional;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
-import java.util.Date;
 
-public class Inserts_provisionales {
+public class SQL_Inserts {
+    static String urlAlberto = "jdbc:mysql://10.2.120.240/eleccions2017";
+    static String urlBenito = "";
+    static String urlDavid = "";
+    static String urlMarc = "";
+    static String urlVictor = "\"jdbc:mysql://10.2.93.209/eleccions2017\"";
 
-    public static void insertComunitat(String nom, String codi_ine) {
+    static final String url = urlVictor;
+    public static void insertIntoComunitat(String nom, String codi_ine) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2016", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection(url, "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -35,11 +40,12 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
-    public static void insertProvincia(String codi_ine_ca, String nom, String codi_ine_prov, int num_escons) {
+
+    public static void insertIntoProvincies(String codi_ine_ca, String nom, String codi_ine_prov, int num_escons) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.211.106/eleccions2016", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection(url, "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -49,8 +55,8 @@ public class Inserts_provisionales {
             // the mysql insert statement
             String query = " INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons)"
                     + " SELECT comunitat_aut_id, ?, ?, ?" +
-                            " FROM comunitats_autonomes" +
-                        " WHERE codi_ine = ?";
+                    " FROM comnitats_autonomes" +
+                    " WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -66,11 +72,12 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
-    public static void insertPersones(String nom, String cog1, String cog2) {
+
+    public static void insertIntoMunicipis(String nom, String codi_ine, String provincia_id, int districte) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2016", "perepi", "pastanaga");
+            Connection con = DriverManager.getConnection(url, "perepi", "pastanaga");
 
 
             //Preparem el Date
@@ -78,14 +85,17 @@ public class Inserts_provisionales {
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
 
             // the mysql insert statement
-            String query = " INSERT INTO persones (nom,cog1,cog2)"
-                    + " values (?, ?, ?)";
+            String query = " INSERT INTO municipis (nom, codi_ine,provincia_id,districte)"
+                    + "SELECT ?, ?, provincia_id, ? " +
+                    "   FROM provincies " +
+                    "   WHERE codi_ine = ?);";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, nom);
-            preparedStmt.setString(2, cog1);
-            preparedStmt.setString(3, cog2);
+            preparedStmt.setString(2, codi_ine);
+            preparedStmt.setString(3, String.valueOf(districte));
+            preparedStmt.setInt(4, Integer.parseInt(provincia_id));
             // execute the preparedstatement
             preparedStmt.execute();
             //Tanquem la connexió
