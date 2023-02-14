@@ -16,7 +16,6 @@ public class Nom_INE_Municipi {
             //Preparem el Date
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-            // TODO: 09/02/2023 Hace falta poner el campo autoincremental???
             // the mysql insert statement
             String query = " INSERT INTO municipis (nom, codi_ine,provincia_id,districte)"
                     + " values (?, ?, ?, ?)";
@@ -25,9 +24,8 @@ public class Nom_INE_Municipi {
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, nom);
             preparedStmt.setString(2, codi_ine);
-            // TODO: 09/02/2023 REVISAR QUE SEAN STRINGS O INTS EN LA BASE DE DADES
-            preparedStmt.setString(3, provincia_id);
-            preparedStmt.setInt(4, districte);
+            preparedStmt.setInt(3, Integer.parseInt(provincia_id));
+            preparedStmt.setString(4, String.valueOf(districte));
             // execute the preparedstatement
             preparedStmt.execute();
             //Tanquem la connexió
