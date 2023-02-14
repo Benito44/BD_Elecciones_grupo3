@@ -231,16 +231,12 @@ public class LecturaDades {
             while ((strLinia = bfLector.readLine()) != null) {
                 if (strLinia.substring(11, 13).equals("99")) { // dels totals
                     // Extraiem el codi de la CA
-                    int codi_ine = Integer.parseInt(strLinia.substring(9, 11));
+                    String codi_ine = strLinia.substring(9, 11);
                     // Extraiem el nom de la CA
                     String nom = strLinia.substring(14, 64);
-
+                    Inserts_provisionales.insertComunitat(nom, codi_ine);
                 }
             }
-
-            //TODO: pasar variables a INSERT de CAs
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
