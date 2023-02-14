@@ -6,5 +6,6 @@ public class Importacio_Municipis {
         //LecturaDades.readInsertComunitat();
         //LecturaDades.readInsertProvincies();
 
+        //LecturaDades.printPersones();
     }
 }
