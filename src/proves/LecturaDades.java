@@ -12,8 +12,9 @@ public class LecturaDades {
 
         // printComunitat();
         // printProvincia();
-         printMunicipi();
+         //printMunicipi();
         //printPersones();
+        readInsertMunicipi();
 
     }
 
@@ -159,6 +160,48 @@ public class LecturaDades {
                      */
                 System.out.println();
 
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void readInsertMunicipi() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "05021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            String nom, codi_ine, ine_provincia;
+            int districte;
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                if (strLinia.substring(16, 18).equals("99")) {   // Si Nº districte és 99
+                    // Extrayem nom del MUNICIPI
+                    nom = strLinia.substring(18, 118);
+                } else {    // Si Nº districte NO és 99
+                    // Extrayem nom del DISTRICTE
+                    nom = strLinia.substring(18, 118);
+                }
+                // Extraiem codi INE del municipi
+                codi_ine = strLinia.substring(13, 16);
+                // Extraiem el codi INE de la província
+                ine_provincia = strLinia.substring(11, 13);
+                // Extraiem el número de districte
+                districte = Integer.parseInt(strLinia.substring(16, 18)); // Si és 99 és municipi
+
+                //Insertem dades
+                Nom_INE_Municipi.insertData(nom,codi_ine, ine_provincia,districte);
             }
 
         } catch (IOException e) {
