@@ -14,9 +14,9 @@ public class LecturaDades {
         // printProvincia();
          //printMunicipi();
         //printPersones();
-        readInsertMunicipi();
+        //readInsertMunicipi();
+        //readInsertComunitat();
         readInsertProvincies();
-
     }
 
     public static void printComunitat() {
@@ -215,6 +215,41 @@ public class LecturaDades {
                 ex.printStackTrace();
             }
         }
+
+
+    }
+
+    public static void readInsertComunitat() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "07021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                if (strLinia.substring(11, 13).equals("99")) { // dels totals
+                    // Extraiem el codi de la CA
+                    int codi_ine = Integer.parseInt(strLinia.substring(9, 11));
+                    // Extraiem el nom de la CA
+                    String nom = strLinia.substring(14, 64);
+                }
+            }
+
+            //TODO: pasar variables a INSERT de CAs
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     public static void readInsertProvincies() {
@@ -240,7 +275,7 @@ public class LecturaDades {
                     num_escons = strLinia.substring(149, 155);
                 }
             }
-            //TODO: pasar variables a INSERT de provincias
+            //TODO: pasar variables a INSERT de provincies
 
         } catch (IOException e) {
             e.printStackTrace();
