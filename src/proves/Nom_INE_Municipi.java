@@ -19,14 +19,16 @@ public class Nom_INE_Municipi {
 
             // the mysql insert statement
             String query = " INSERT INTO municipis (nom, codi_ine,provincia_id,districte)"
-                    + " values (?, ?, ?, ?)";
+                    + "SELECT ?, ?, provincia_id, ? " +
+                    "   FROM provincies " +
+                    "   WHERE codi_ine = ?);";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, nom);
             preparedStmt.setString(2, codi_ine);
-            preparedStmt.setInt(3, Integer.parseInt(provincia_id));
-            preparedStmt.setString(4, String.valueOf(districte));
+            preparedStmt.setString(3, String.valueOf(districte));
+            preparedStmt.setInt(4, Integer.parseInt(provincia_id));
             // execute the preparedstatement
             preparedStmt.execute();
             //Tanquem la connexió
