@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class SQL_Inserts {
     static String urlAlberto = "jdbc:mysql://10.2.120.240/eleccions2017";
     static String urlBenito = "";
-    static String urlDavid = "";
+    static String urlDavid = "\"jdbc:mysql://10.2.211.106/eleccions2017\"";
     static String urlMarc = "";
     static String urlVictor = "\"jdbc:mysql://10.2.93.209/eleccions2017\"";
 
