@@ -32,7 +32,7 @@ public class LecturaVotsProvincialsAutonomics {
                     int candidats_obtinguts = Integer.parseInt(strLinia.substring(28,33));
                     System.out.println("Candidats obtinguts:  " + candidats_obtinguts);
                     System.out.println();
-                    Inserts_provisionales.insertVotsMunicipals(provincia_id,candidatura_id,vots,candidats_obtinguts);
+                    Inserts_provisionales.insertVotsProvincials(provincia_id,candidatura_id,vots,candidats_obtinguts);
 
                 }
 

@@ -94,7 +94,7 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
-    public static void insertVotsMunicipals(int provincia_id, int canditatura_id, int vots,int candidats_obtinguts) {
+    public static void insertVotsProvincials(int provincia_id, int canditatura_id, int vots,int candidats_obtinguts) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
