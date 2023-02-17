@@ -14,6 +14,7 @@ public class InsertInDB {
         // 4. Insertem dades a la taula PERSONES
         ReadDataToInsert.readInsertPersones();
 
+        // TODO: 17/02/2023 Falta probar i insertar los vots (Inserts_provisionals) 
 
     }
 }
