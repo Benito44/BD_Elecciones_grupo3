@@ -9,7 +9,7 @@ public class SQL_Inserts {
     static String urlAlberto = "jdbc:mysql://10.2.120.240/eleccions2017";
     static String urlBenito = "jdbc:mysql://10.2.68.44/eleccions2017";
     static String urlDavid = "\"jdbc:mysql://10.2.211.106/eleccions2017\"";
-    static String urlMarc = "";
+    static String urlMarc = "\"jdbc:mysql://10.2.106.42/eleccions2017\"";
     static String urlVictor = "\"jdbc:mysql://10.2.93.209/eleccions2017\"";
 
     static final String url = urlVictor;
@@ -96,6 +96,35 @@ public class SQL_Inserts {
             preparedStmt.setString(2, codi_ine);
             preparedStmt.setString(3, String.valueOf(districte));
             preparedStmt.setInt(4, Integer.parseInt(provincia_id));
+            // execute the preparedstatement
+            preparedStmt.execute();
+            //Tanquem la connexió
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void insertIntoPersones(String nom, String cog1, String cog2) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2016", "perepi", "pastanaga");
+
+
+            //Preparem el Date
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
+            // the mysql insert statement
+            String query = " INSERT INTO persones (nom,cog1,cog2)"
+                    + " values (?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString(2, cog1);
+            preparedStmt.setString(3, cog2);
             // execute the preparedstatement
             preparedStmt.execute();
             //Tanquem la connexió

@@ -11,6 +11,9 @@ public class InsertInDB {
         // 3. Insertem dades a la taula MUNICIPIS
         ReadDataToInsert.readInsertMunicipi();
 
+        // 4. Insertem dades a la taula PERSONES
+        ReadDataToInsert.readInsertPersones();
+
 
     }
 }

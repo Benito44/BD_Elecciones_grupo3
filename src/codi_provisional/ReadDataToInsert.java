@@ -1,5 +1,7 @@
 package codi_provisional;
 
+import proves.Inserts_provisionales;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -105,6 +107,51 @@ public class ReadDataToInsert {
 
                 //Insertem dades
                 SQL_Inserts.insertIntoMunicipis(nom,codi_ine, ine_provincia,districte);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
+    public static void readInsertPersones() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "04021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                //Nom del candidat
+                System.out.println("Nom candidat: " + strLinia.substring(25, 50));
+                String nom = strLinia.substring(25, 50);
+                //Primer cognom del candidat
+                System.out.println("Cognom1: " + strLinia.substring(50, 75));
+                String cognom1 = strLinia.substring(50, 75);
+                //Segon cognom del candidat
+                System.out.println("Cognom2: " + strLinia.substring(75, 100));
+                String cognom2 = strLinia.substring(75, 100);
+                    /*
+                    //TODO: Les següents dades no surten al fitxer pero si estàn solicitades a la BD, en l'insert haurem de posarles en null.
+                    //Sexo del candidato
+                    System.out.println("Sexo: " + strLinia.substring(100, 101));
+                    //data de naixament
+                    System.out.println("Data de naixement: " + strLinia.substring(101, 103) + "/" + strLinia.substring(104, 105) + "/" + strLinia.substring(106, 109));
+                    //DNI del candidat
+                    //System.out.println("DNI: " + strLinia.substring(101, 101));
+                     */
+                System.out.println();
+                SQL_Inserts.insertIntoPersones(nom, cognom1, cognom2);
             }
 
         } catch (IOException e) {
