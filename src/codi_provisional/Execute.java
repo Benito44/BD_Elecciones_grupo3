@@ -2,20 +2,20 @@ package codi_provisional;
 
 import java.sql.SQLException;
 
-public class InsertInDB {
+public class Execute {
     public static void main(String[] args) {
         try {
             // 1. Inserim dades a la taula COMUNITATS
-            ReadDataToInsert.readInsertComunitat();
+            Import.importarComunitatsAutonomes();
 
             // 2. Inserim dades a la taula PROVINCIES
-            ReadDataToInsert.readInsertProvincies();
+            Import.importarProvincies();
 
             // 3. Inserim dades a la taula MUNICIPIS
-            ReadDataToInsert.readInsertMunicipi();
+            Import.importarMunicipis();
 
             // 4. Inserim dades a la taula PERSONES
-            ReadDataToInsert.readInsertPersones();
+            Import.importarPersones();
             // TODO: 17/02/2023 Falta probar i insertar los vots (Inserts_provisionals)
 
             // Tanquem connexió

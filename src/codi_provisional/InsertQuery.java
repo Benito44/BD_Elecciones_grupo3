@@ -1,11 +1,10 @@
 package codi_provisional;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
 
-public class SQL_Inserts {
+public class InsertQuery {
     public static void insertIntoComunitat(String nom, String codi_ine) {
         try {
             //Establim connexió si no s'ha establert
