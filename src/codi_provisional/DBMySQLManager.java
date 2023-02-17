@@ -2,15 +2,21 @@ package codi_provisional;
 import java.sql.*;
 
 public class DBMySQLManager {
+    //Conexions
+    static String ipAlberto = "10.2.120.240";
+    static String ipBenito = "";
+    static String ipDavid = "10.2.211.106";
+    static String ipMarc = "";
+    static String ipVictor = "10.2.93.209";
 
     // Propietats
     private static Connection conn = null;
     private String driver = "com.mysql.cj.jdbc.Driver"; //com.mysql.jdbc.Driver
     private String url;
-    private String usuari ="USUARI";
-    private String contrasenya = "PARAULA DE PAS";
-    private String host = "IP / HOST";
-    private String base_dades = "NOM BASE DE DADES";
+    private String usuari ="isard";
+    private String contrasenya = "pirineus";
+    private String host = ipVictor;
+    private String base_dades = "eleccions_2017";
 
     // Constructors
     private DBMySQLManager(){
