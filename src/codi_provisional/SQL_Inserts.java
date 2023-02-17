@@ -85,4 +85,25 @@ public class SQL_Inserts {
             System.out.println(e);
         }
     }
+
+    public static void insertIntoPersones(String nom, String cog1, String cog2) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query = " INSERT INTO persones (nom,cog1,cog2)"
+                    + " values (?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString(2, cog1);
+            preparedStmt.setString(3, cog2);
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
