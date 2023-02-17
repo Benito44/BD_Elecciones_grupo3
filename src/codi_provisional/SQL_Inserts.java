@@ -17,7 +17,7 @@ public class SQL_Inserts {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection(url, "perepi", "pastanaga");
+            Connection con = DBMySQLManager.getConnection();
 
 
             //Preparem el Date
@@ -34,8 +34,6 @@ public class SQL_Inserts {
             preparedStmt.setString(2, codi_ine);
             // execute the preparedstatement
             preparedStmt.execute();
-            //Tanquem la connexió
-            con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -45,7 +43,7 @@ public class SQL_Inserts {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection(url, "perepi", "pastanaga");
+            Connection con = DBMySQLManager.getConnection();
 
 
             //Preparem el Date
@@ -66,8 +64,6 @@ public class SQL_Inserts {
             preparedStmt.setString(4, codi_ine_ca);
             // execute the preparedstatement
             preparedStmt.execute();
-            //Tanquem la connexió
-            con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -77,7 +73,7 @@ public class SQL_Inserts {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection(url, "perepi", "pastanaga");
+            Connection con = DBMySQLManager.getConnection();
 
 
             //Preparem el Date
@@ -98,8 +94,6 @@ public class SQL_Inserts {
             preparedStmt.setInt(4, Integer.parseInt(provincia_id));
             // execute the preparedstatement
             preparedStmt.execute();
-            //Tanquem la connexió
-            con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
