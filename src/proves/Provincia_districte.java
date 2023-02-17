@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Provincia_districte {
 
-    public void insertData(String nom, String codi_ine){
+    public void insertData(String nom, String codi_ine) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -25,14 +25,46 @@ public class Provincia_districte {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-                preparedStmt.setString(1,nom);
-                preparedStmt.setString(2,codi_ine);
-                //preparedStmt.setDate(6, startDate);
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString(2, codi_ine);
+            //preparedStmt.setDate(6, startDate);
                 /*preparedStmt.setString(7, "IT_PROG");
                 preparedStmt.setFloat(8, 5000.12f);*/
 
-                // execute the preparedstatement
-                preparedStmt.execute();
+            // execute the preparedstatement
+            preparedStmt.execute();
+            //Tanquem la connexió
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+
+    public void insertVotsCandidaturesMunicipis(int eleccio_id, int candidatura_id, int municipi_id, int vots) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection("jdbc:mysql://<IP>/eleccions2017", "perepi", "pastanaga");
+
+
+            //Preparem el Date
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
+            // the mysql insert statement
+            String query = " INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)"
+                    + " values (?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, vots);
+            //preparedStmt.setDate(6, startDate);
+                /*preparedStmt.setString(7, "IT_PROG");
+                preparedStmt.setFloat(8, 5000.12f);*/
+
+            // execute the preparedstatement
+            preparedStmt.execute();
             //Tanquem la connexió
             con.close();
         } catch (Exception e) {
@@ -40,4 +72,5 @@ public class Provincia_districte {
         }
     }
 }
+
 
