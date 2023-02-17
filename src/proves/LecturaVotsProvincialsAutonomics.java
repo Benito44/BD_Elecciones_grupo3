@@ -23,15 +23,17 @@ public class LecturaVotsProvincialsAutonomics {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 if (!(strLinia.substring(11, 13).equals("99"))) {
-                    int ine = Integer.parseInt(strLinia.substring(11,13));
-                    System.out.println("Codi I.N.E provincial: " + ine);
-                    int codiCandidatura = Integer.parseInt(strLinia.substring(14,20));
-                    System.out.println("Codi de la candidatura:  " + codiCandidatura);
-                    int votsObtinguts = Integer.parseInt(strLinia.substring(20,28));
-                    System.out.println("Vots obtinguts:  " + votsObtinguts);
-                    int candidatsObt = Integer.parseInt(strLinia.substring(28,33));
-                    System.out.println("Candidats obtinguts:  " + candidatsObt);
+                    int provincia_id = Integer.parseInt(strLinia.substring(11,13));
+                    System.out.println("Codi I.N.E provincial: " + provincia_id);
+                    int candidatura_id = Integer.parseInt(strLinia.substring(14,20));
+                    System.out.println("Codi de la candidatura:  " + candidatura_id);
+                    int vots = Integer.parseInt(strLinia.substring(20,28));
+                    System.out.println("Vots obtinguts:  " + vots);
+                    int candidats_obtinguts = Integer.parseInt(strLinia.substring(28,33));
+                    System.out.println("Candidats obtinguts:  " + candidats_obtinguts);
                     System.out.println();
+                    Inserts_provisionales.insertVotsMunicipals(provincia_id,candidatura_id,vots,candidats_obtinguts);
+
                 }
 
             }
