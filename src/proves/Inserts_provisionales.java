@@ -94,4 +94,61 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
+    public static void insertVotsProvincials(int provincia_id, int canditatura_id, int vots,int candidats_obtinguts) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2016", "perepi", "pastanaga");
+
+
+            //Preparem el Date
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
+            // the mysql insert statement
+            String query = " INSERT INTO vots_candidatures_prov (provincia_id,canditatura_id,vots,candidats_obtinguts)"
+                    + " values (?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, provincia_id);
+            preparedStmt.setInt(2, canditatura_id);
+            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(4, candidats_obtinguts);
+            // execute the preparedstatement
+            preparedStmt.execute();
+            //Tanquem la connexió
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public static void insertVotsComunitatAutonoma(int comunitat_autonoma_id, int candidatura_id, int vots) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2016", "perepi", "pastanaga");
+
+
+            //Preparem el Date
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
+            // the mysql insert statement
+            String query = " INSERT INTO vots_candidatures_ca (comunitat_autonoma_id,canditatura_id,vots)"
+                    + " values (?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, comunitat_autonoma_id);
+            preparedStmt.setInt(2, candidatura_id);
+            preparedStmt.setInt(3, vots);
+            // execute the preparedstatement
+            preparedStmt.execute();
+            //Tanquem la connexió
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

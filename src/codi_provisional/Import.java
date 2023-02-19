@@ -1,7 +1,5 @@
 package codi_provisional;
 
-import proves.Inserts_provisionales;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -9,8 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ReadDataToInsert {
-    public static void readInsertComunitat() {
+public class Import {
+    public static void importarComunitatsAutonomes() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
@@ -25,7 +23,7 @@ public class ReadDataToInsert {
                     String codi_ine = strLinia.substring(9, 11);
                     // Extraiem el nom de la CA
                     String nom = strLinia.substring(14, 64);
-                    SQL_Inserts.insertIntoComunitat(nom, codi_ine);
+                    InsertQuery.insertIntoComunitat(nom, codi_ine);
                 }
             }
         } catch (IOException e) {
@@ -40,7 +38,7 @@ public class ReadDataToInsert {
         }
     }
 
-    public static void readInsertProvincies() {
+    public static void importarProvincies() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
@@ -63,7 +61,7 @@ public class ReadDataToInsert {
                     // Extraiem el número d'escons
                     num_escons = Integer.parseInt(strLinia.substring(149, 155));
 
-                    SQL_Inserts.insertIntoProvincies(codi_ine_ca, nom_provincia, codi_ine_prov, num_escons);
+                    InsertQuery.insertIntoProvincies(codi_ine_ca, nom_provincia, codi_ine_prov, num_escons);
                 }
             }
 
@@ -79,7 +77,7 @@ public class ReadDataToInsert {
         }
     }
 
-    public static void readInsertMunicipi() {
+    public static void importarMunicipis() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
@@ -106,7 +104,7 @@ public class ReadDataToInsert {
                 districte = Integer.parseInt(strLinia.substring(16, 18)); // Si és 99 és municipi
 
                 //Insertem dades
-                SQL_Inserts.insertIntoMunicipis(nom,codi_ine, ine_provincia,districte);
+                InsertQuery.insertIntoMunicipis(nom,codi_ine, ine_provincia,districte);
             }
 
         } catch (IOException e) {
@@ -122,7 +120,7 @@ public class ReadDataToInsert {
     }
 
 
-    public static void readInsertPersones() {
+    public static void importarPersones() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
@@ -151,7 +149,7 @@ public class ReadDataToInsert {
                     //System.out.println("DNI: " + strLinia.substring(101, 101));
                      */
                 System.out.println();
-                SQL_Inserts.insertIntoPersones(nom, cognom1, cognom2);
+                InsertQuery.insertIntoPersones(nom, cognom1, cognom2);
             }
 
         } catch (IOException e) {
