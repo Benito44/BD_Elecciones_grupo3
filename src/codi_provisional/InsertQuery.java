@@ -105,4 +105,28 @@ public class InsertQuery {
             System.out.println(e);
         }
     }
+
+    public static void insertIntoCandidatures(String codi_candidatura, String nom_curt, String nom_llarg, String codi_acu_provincia, String codi_acu_ca, String codi_acu_nacional) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query = " INSERT INTO candidatures (eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional)"
+                    + " values (1, ?, ?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, codi_candidatura);
+            preparedStmt.setString(2, nom_curt);
+            preparedStmt.setString(3, nom_llarg);
+            preparedStmt.setString(4, codi_acu_provincia);
+            preparedStmt.setString(5, codi_acu_ca);
+            preparedStmt.setString(6, codi_acu_nacional);
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
