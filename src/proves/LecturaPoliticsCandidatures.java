@@ -25,7 +25,7 @@ public class LecturaPoliticsCandidatures {
             while ((strLinia = bfLector.readLine()) != null) {
                 System.out.println("Codi de la candidatura: " + Integer.parseInt(strLinia.substring(8,14)));
                 System.out.println("Nom curt: " + strLinia.substring(14,64));
-                System.out.println("Nom llarg: " + strLinia.substring(63,214));
+                System.out.println("Nom llarg: " + strLinia.substring(64,214));
                 System.out.println("Codi de candidatura capçalera d'acumulació a nivell provincial: " + Integer.parseInt(strLinia.substring(214,220)));
                 System.out.println("Codi de candidatura capçalera d'acumulació a nivell autonòmic: " + Integer.parseInt(strLinia.substring(220,226)));
                 System.out.println("Codi de candidatura capçalera d'acumulació a nivell nacional: " + Integer.parseInt(strLinia.substring(226,232)));
