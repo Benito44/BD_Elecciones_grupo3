@@ -23,6 +23,10 @@ public class Execute {
             // 6. Inserim dades a la taula CANDIDATS
             Import.importarCandidats();
 
+
+            // ?. Inserim dades a la taula VOTS_PROVINCIALS
+            Import.importVotsProvincials();
+
             //TODO: ajuntar persones i candidats en el mateix insert
 
 
