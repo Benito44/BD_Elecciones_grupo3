@@ -18,6 +18,9 @@ public class Execute {
             Import.importarPersones();
             // TODO: 17/02/2023 Falta probar i insertar los vots (Inserts_provisionals)
 
+            // 5. Inserim dades a la taula CANDIDATS
+            Import.importarCandidats();
+
             // Tanquem connexió
             DBMySQLManager.closeConnection();
 
