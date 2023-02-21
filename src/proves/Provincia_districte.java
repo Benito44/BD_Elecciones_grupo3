@@ -58,7 +58,11 @@ public class Provincia_districte {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, vots);
+            preparedStmt.setInt(1, eleccio_id);
+            preparedStmt.setInt(2, municipi_id);
+            preparedStmt.setInt(3, candidatura_id);
+            preparedStmt.setInt(4, vots);
+
             //preparedStmt.setDate(6, startDate);
                 /*preparedStmt.setString(7, "IT_PROG");
                 preparedStmt.setFloat(8, 5000.12f);*/
