@@ -72,7 +72,6 @@ public class Inserts_provisionales {
 
             Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2016", "perepi", "pastanaga");
 
-
             //Preparem el Date
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());

@@ -151,6 +151,40 @@ public class Import {
                 System.out.println();
                 InsertQuery.insertIntoPersones(nom, cognom1, cognom2);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void importarCandidatures() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "03021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            String codi_candidatura, nom_curt, nom_llarg, codi_acu_provincia, codi_acu_ca, codi_acu_nacional;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                codi_candidatura = strLinia.substring(8,14);
+                nom_curt = strLinia.substring(14,64);
+                nom_llarg = strLinia.substring(63,214);
+                codi_acu_provincia = strLinia.substring(214,220);
+                codi_acu_ca = strLinia.substring(220,226);
+                codi_acu_nacional = strLinia.substring(226,232);
+
+                //Insertem dades
+                InsertQuery.insertIntoCandidatures(codi_candidatura, nom_curt, nom_llarg, codi_acu_provincia, codi_acu_ca, codi_acu_nacional);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
