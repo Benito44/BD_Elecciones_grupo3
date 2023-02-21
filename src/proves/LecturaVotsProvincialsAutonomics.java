@@ -66,7 +66,7 @@ public class LecturaVotsProvincialsAutonomics {
                 System.out.println("Codi de la candidatura:  " + candidatura_id);
                 int vots = Integer.parseInt(strLinia.substring(20, 28));
                 System.out.println("Vots obtinguts:  " + vots);
-                // Inserts_provisionales.insertVotsComunitatAutonoma(comunitat_autonoma_id,candidatura_id,vots);
+                Inserts_provisionales.insertVotsComunitatAutonoma(comunitat_autonoma_id,candidatura_id,vots);
                 System.out.println();
 
             }

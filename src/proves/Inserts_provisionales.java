@@ -35,6 +35,7 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
+
     public static void insertProvincia(String codi_ine_ca, String nom, String codi_ine_prov, int num_escons) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -49,8 +50,8 @@ public class Inserts_provisionales {
             // the mysql insert statement
             String query = " INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons)"
                     + " SELECT comunitat_aut_id, ?, ?, ?" +
-                            " FROM comunitats_autonomes" +
-                        " WHERE codi_ine = ?";
+                    " FROM comunitats_autonomes" +
+                    " WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -66,6 +67,7 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
+
     public static void insertPersones(String nom, String cog1, String cog2) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -93,7 +95,8 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
-    public static void insertVotsProvincials(int codi_ine, int canditatura_id, int vots,int candidats_obtinguts) {
+
+    public static void insertVotsProvincials(int codi_ine, int canditatura_id, int vots, int candidats_obtinguts) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -105,8 +108,14 @@ public class Inserts_provisionales {
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
 
             // the mysql insert statement
-            String query = " INSERT INTO vots_candidatures_prov (codi_ine,canditatura_id,vots,candidats_obtinguts)"
-                    + " values (?, ?, ?, ?)";
+            String query = "INSERT INTO vots_candidatures_prov (provincia_id, candidatura_id, vots, candidats_obtinguts)" +
+            "VALUES ((SELECT provincia_id" +
+                    "FROM provincies" +
+                    "WHERE codi_ine = ?)," +
+            "(SELECT candidatura_id" +
+            "FROM candidaturesç" +
+            "WHERE codi_candidatura = ? AND eleccio_id = 1), " +
+            "?,?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -122,6 +131,7 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
+
     public static void insertVotsComunitatAutonoma(int comunitat_autonoma_id, int candidatura_id, int vots) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
