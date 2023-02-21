@@ -55,18 +55,18 @@ public class Provincia_districte {
             String query = " INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)"
                     +"VALUES ("
                     + "(SELECT eleccio_id" +
-                    "   FROM eleccions_municipis" +
-                    "   WHERE candidatura_id = ?)," +
+                    "   FROM eleccions" +
+                    "   WHERE eleccio_id = 1)," +
                     "  (SELECT municipi_id" +
-                    "   FROM eleccions_municipis" +
-                    "   WHERE candidatura_id = ?)," +
+                    "   FROM municipis" +
+                    "   WHERE codi_ine = ?)," +
                     "   (SELECT candidatura_id" +
                     "       FROM candidatures" +
                     "       WHERE candidatura_id = ? AND eleccio_id = 1), ?" +
                     " )";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, eleccio_id);
+            preparedStmt.setInt(1, 1);
             preparedStmt.setInt(2, municipi_id);
             preparedStmt.setInt(3, candidatura_id);
             preparedStmt.setInt(4, vots);
