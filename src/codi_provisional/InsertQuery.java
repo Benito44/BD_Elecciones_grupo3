@@ -159,7 +159,7 @@ public class InsertQuery {
             System.out.println(e);
         }
     }
-    public static void insertVotsProvincials(int codi_ine, int canditatura_id, int vots, int candidats_obtinguts) {
+    public static void insertIntoVotsProvincials(int codi_ine, int canditatura_id, int vots, int candidats_obtinguts) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
