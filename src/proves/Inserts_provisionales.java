@@ -135,11 +135,13 @@ public class Inserts_provisionales {
 
             // the mysql insert statement
             String query = " INSERT INTO vots_candidatures_ca (comunitat_autonoma_id,canditatura_id,vots)"
-                    + "SELECT candidatura_id, (SELECT comunitat_autonoma_id" +
-                    "                            FROM comunitats_autonomes" +
-                    "                            WHERE codi_ine = ?), ? " +
-                    "   FROM candidatures " +
-                    "   WHERE candidatura_id = ? and eleccio_id = 1);";
+                    + "(SELECT candidatura_id" +
+                    "    FROM candidatures" +
+                    "     WHERE candidatura_id = ? and eleccio_id = 1 )," +
+                    " (SELECT comunitat_autonoma_id" +
+                    "  FROM comunitats_autonomes" +
+                    "   WHERE codi_ine = ?), " +
+                    "   ? ";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
