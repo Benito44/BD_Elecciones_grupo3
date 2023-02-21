@@ -135,7 +135,9 @@ public class Inserts_provisionales {
 
             // the mysql insert statement
             String query = " INSERT INTO vots_candidatures_ca (comunitat_autonoma_id,canditatura_id,vots)"
-                    + " values (?, ?, ?)";
+                    + "SELECT candidatura_id, ?, provincia_id, ? " +
+                    "   FROM candidatures " +
+                    "   WHERE codi_ine = ?);";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
