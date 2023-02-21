@@ -124,10 +124,10 @@ public class InsertQuery {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString(1, nom);
-            preparedStmt.setString(2, codi_ine);
-            preparedStmt.setString(3, String.valueOf(districte));
-            preparedStmt.setInt(4, Integer.parseInt(provincia_id));
+            //preparedStmt.setString(1, nom);
+            //preparedStmt.setString(2, codi_ine);
+            //preparedStmt.setString(3, String.valueOf(districte));
+            //preparedStmt.setInt(4, Integer.parseInt(provincia_id));
             // execute the preparedstatement
             preparedStmt.execute();
         } catch (Exception e) {
