@@ -104,7 +104,7 @@ public class Import {
                 districte = Integer.parseInt(strLinia.substring(16, 18)); // Si és 99 és municipi
 
                 //Insertem dades
-                InsertQuery.insertIntoMunicipis(nom,codi_ine, ine_provincia,districte);
+                InsertQuery.insertIntoMunicipis(nom, codi_ine, ine_provincia, districte);
             }
 
         } catch (IOException e) {
@@ -139,6 +139,10 @@ public class Import {
                 //Segon cognom del candidat
                 System.out.println("Cognom2: " + strLinia.substring(75, 100));
                 String cognom2 = strLinia.substring(75, 100);
+                System.out.println("DNI: " + Integer.parseInt(strLinia.substring(15, 24)));
+                int dni = Integer.parseInt(strLinia.substring(15, 24));
+
+
                     /*
                     //TODO: Les següents dades no surten al fitxer pero si estàn solicitades a la BD, en l'insert haurem de posarles en null.
                     //Sexo del candidato
@@ -149,7 +153,39 @@ public class Import {
                     //System.out.println("DNI: " + strLinia.substring(101, 101));
                      */
                 System.out.println();
-                InsertQuery.insertIntoPersones(nom, cognom1, cognom2);
+                InsertQuery.insertIntoPersones(nom, cognom1, cognom2, dni);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void importarCandidats() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "04021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                // Excloent els totals
+
+                // Extraiem el num de ordre
+                int num_ordre = Integer.parseInt(strLinia.substring(21, 24));
+                // Extraiem el nom de la província
+                String tipo_candidato = strLinia.substring(24, 25);
+
+                InsertQuery.insertIntoCandidats(num_ordre, tipo_candidato);
             }
         } catch (IOException e) {
             e.printStackTrace();
