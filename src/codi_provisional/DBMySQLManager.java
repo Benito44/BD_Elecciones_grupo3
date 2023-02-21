@@ -4,7 +4,7 @@ import java.sql.*;
 public class DBMySQLManager {
     //Conexions
     static String ipAlberto = "10.2.120.240";
-    static String ipBenito = "";
+    static String ipBenito = "10.2.68.44";
     static String ipDavid = "10.2.211.106";
     static String ipMarc = "";
     static String ipVictor = "10.2.93.209";
@@ -15,7 +15,7 @@ public class DBMySQLManager {
     private String url;
     private String usuari ="isard";
     private String contrasenya = "pirineus";
-    private String host = ipVictor;
+    private String host = ipVictor; //IP de qui executi el programa
     private String base_dades = "eleccions_2017";
 
     // Constructors

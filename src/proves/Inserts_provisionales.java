@@ -72,7 +72,6 @@ public class Inserts_provisionales {
 
             Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2016", "perepi", "pastanaga");
 
-
             //Preparem el Date
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
@@ -94,7 +93,7 @@ public class Inserts_provisionales {
             System.out.println(e);
         }
     }
-    public static void insertVotsProvincials(int provincia_id, int canditatura_id, int vots,int candidats_obtinguts) {
+    public static void insertVotsProvincials(int codi_ine, int canditatura_id, int vots,int candidats_obtinguts) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -106,12 +105,12 @@ public class Inserts_provisionales {
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
 
             // the mysql insert statement
-            String query = " INSERT INTO vots_candidatures_prov (provincia_id,canditatura_id,vots,candidats_obtinguts)"
+            String query = " INSERT INTO vots_candidatures_prov (codi_ine,canditatura_id,vots,candidats_obtinguts)"
                     + " values (?, ?, ?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, provincia_id);
+            preparedStmt.setInt(1, codi_ine);
             preparedStmt.setInt(2, canditatura_id);
             preparedStmt.setInt(3, vots);
             preparedStmt.setInt(4, candidats_obtinguts);
@@ -136,13 +135,17 @@ public class Inserts_provisionales {
 
             // the mysql insert statement
             String query = " INSERT INTO vots_candidatures_ca (comunitat_autonoma_id,canditatura_id,vots)"
-                    + " values (?, ?, ?)";
+                    + "SELECT candidatura_id, (SELECT comunitat_autonoma_id" +
+                    "                            FROM comunitats_autonomes" +
+                    "                            WHERE codi_ine = ?), ? " +
+                    "   FROM candidatures " +
+                    "   WHERE candidatura_id = ? and eleccio_id = 1);";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, comunitat_autonoma_id);
-            preparedStmt.setInt(2, candidatura_id);
-            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(2, vots);
+            preparedStmt.setInt(3, candidatura_id);
             // execute the preparedstatement
             preparedStmt.execute();
             //Tanquem la connexió
