@@ -7,7 +7,7 @@ import java.nio.file.*;
 
 public class LecturaVotsProvincialsAutonomics {
     public static void main(String[] args) {
-        printVotsProvincials();
+        //printVotsProvincials();
         printVotsAutonomics();
 
     }
@@ -23,16 +23,16 @@ public class LecturaVotsProvincialsAutonomics {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 if (!(strLinia.substring(11, 13).equals("99"))) {
-                    int provincia_id = Integer.parseInt(strLinia.substring(11,13));
-                    System.out.println("Codi I.N.E provincial: " + provincia_id);
-                    int candidatura_id = Integer.parseInt(strLinia.substring(14,20));
+                    int codi_ine = Integer.parseInt(strLinia.substring(11, 13));
+                    System.out.println("Codi I.N.E provincial: " + codi_ine);
+                    int candidatura_id = Integer.parseInt(strLinia.substring(14, 20));
                     System.out.println("Codi de la candidatura:  " + candidatura_id);
-                    int vots = Integer.parseInt(strLinia.substring(20,28));
+                    int vots = Integer.parseInt(strLinia.substring(20, 28));
                     System.out.println("Vots obtinguts:  " + vots);
-                    int candidats_obtinguts = Integer.parseInt(strLinia.substring(28,33));
+                    int candidats_obtinguts = Integer.parseInt(strLinia.substring(28, 33));
                     System.out.println("Candidats obtinguts:  " + candidats_obtinguts);
                     System.out.println();
-                    Inserts_provisionales.insertVotsProvincials(provincia_id,candidatura_id,vots,candidats_obtinguts);
+                    Inserts_provisionales.insertVotsProvincials(codi_ine,candidatura_id,vots,candidats_obtinguts);
 
                 }
 
@@ -60,19 +60,17 @@ public class LecturaVotsProvincialsAutonomics {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                if (strLinia.substring(11, 13).equals("99")) {
-                    int comunitat_autonoma_id = Integer.parseInt(strLinia.substring(11,13));
-                    System.out.println("Codi I.N.E provincial: " + comunitat_autonoma_id);
-                    int candidatura_id = Integer.parseInt(strLinia.substring(14,20));
-                    System.out.println("Codi de la candidatura:  " + candidatura_id);
-                    int vots = Integer.parseInt(strLinia.substring(20,28));
-                    System.out.println("Vots obtinguts:  " + vots);
-                    Inserts_provisionales.insertVotsComunitatAutonoma(comunitat_autonoma_id,candidatura_id,vots);
-                    System.out.println();
-
-                }
+                int comunitat_autonoma_id = Integer.parseInt(strLinia.substring(9, 11));
+                System.out.println("Codi I.N.E provincial: " + comunitat_autonoma_id);
+                int candidatura_id = Integer.parseInt(strLinia.substring(14, 20));
+                System.out.println("Codi de la candidatura:  " + candidatura_id);
+                int vots = Integer.parseInt(strLinia.substring(20, 28));
+                System.out.println("Vots obtinguts:  " + vots);
+                Inserts_provisionales.insertVotsComunitatAutonoma(comunitat_autonoma_id,candidatura_id,vots);
+                System.out.println();
 
             }
+
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -14,13 +14,20 @@ public class Execute {
             // 3. Inserim dades a la taula MUNICIPIS
             Import.importarMunicipis();
 
-            // 4. Inserim dades a la taula PERSONES
-            Import.importarPersones();
-            // TODO: 17/02/2023 Falta probar i insertar los vots (Inserts_provisionals)
-
-            // 5. Inserim dades a la taula CANDIDATURES
+            // 4. Inserim dades a la taula CANDIDATURES
             Import.importarCandidatures();
 
+            // 5. Inserim dades a la taula PERSONES
+            Import.importarPersones();
+
+            // 6. Inserim dades a la taula CANDIDATS
+            Import.importarCandidats();
+
+
+            // ?. Inserim dades a la taula VOTS_PROVINCIALS
+            Import.importVotsProvincials();
+
+            //TODO: ajuntar persones i candidats en el mateix insert
 
 
             // Tanquem connexió

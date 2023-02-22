@@ -1,6 +1,7 @@
 package codi_provisional;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
 
@@ -76,20 +77,45 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoPersones(String nom, String cog1, String cog2) {
+    public static void insertIntoPersones(String nom, String cog1, String cog2, int dni) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
 
             // the mysql insert statement
-            String query =  "INSERT INTO persones (nom,cog1,cog2) " +
-                            "VALUES (?, ?, ?)";
+            String query =  "INSERT INTO persones (nom,cog1,cog2, dni) " +
+                            "VALUES (?, ?, ?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, nom);
             preparedStmt.setString(2, cog1);
             preparedStmt.setString(3, cog2);
+            preparedStmt.setInt(4, dni);
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void insertIntoCandidats(int num_ordre, String tipo_candidato) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query =  "INSERT INTO candidats (nom, codi_ine,provincia_id,districte) " +
+                            "SELECT ?, ?, provincia_id, ? " +
+                            "   FROM provincies " +
+                            "WHERE codi_ine = ?);";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            //preparedStmt.setString(1, nom);
+            //preparedStmt.setString(2, codi_ine);
+            //preparedStmt.setString(3, String.valueOf(districte));
+            //preparedStmt.setInt(4, Integer.parseInt(provincia_id));
             // execute the preparedstatement
             preparedStmt.execute();
         } catch (Exception e) {
@@ -114,6 +140,36 @@ public class InsertQuery {
             preparedStmt.setString(4, codi_acu_provincia);
             preparedStmt.setString(5, codi_acu_ca);
             preparedStmt.setString(6, codi_acu_nacional);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void insertIntoVotsProvincials(int codi_ine, int canditatura_id, int vots, int candidats_obtinguts) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query =  "INSERT INTO vots_candidatures_prov (provincia_id, candidatura_id, vots, candidats_obtinguts) " +
+                            "VALUES ((SELECT provincia_id " +
+                            "           FROM provincies " +
+                            "        WHERE codi_ine = ?), " +
+                            "       (SELECT candidatura_id " +
+                            "           FROM candidatures " +
+                            "        WHERE codi_candidatura = ? AND eleccio_id = 1), " +
+                            "       ?,?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, codi_ine);
+            preparedStmt.setInt(2, canditatura_id);
+            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(4, candidats_obtinguts);
+
             // execute the preparedstatement
             preparedStmt.execute();
         } catch (Exception e) {
