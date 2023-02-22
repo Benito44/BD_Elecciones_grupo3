@@ -146,8 +146,8 @@ public class Inserts_provisionales {
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, comunitat_autonoma_id);
-            preparedStmt.setInt(2, vots);
-            preparedStmt.setInt(3, candidatura_id);
+            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(2, candidatura_id);
             // execute the preparedstatement
             preparedStmt.execute();
             //Tanquem la connexió
