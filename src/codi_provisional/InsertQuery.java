@@ -10,18 +10,15 @@ public class InsertQuery {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
 
-            //Preparem el Date
-            Calendar calendar = Calendar.getInstance();
-            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-
             // the mysql insert statement
-            String query = " INSERT INTO comunitats_autonomes (nom,codi_ine)"
-                    + " values (?, ?)";
+            String query =  "INSERT INTO comunitats_autonomes (nom,codi_ine) " +
+                            "VALUES (?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, nom);
             preparedStmt.setString(2, codi_ine);
+
             // execute the preparedstatement
             preparedStmt.execute();
         } catch (Exception e) {
@@ -34,15 +31,11 @@ public class InsertQuery {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
 
-            //Preparem el Date
-            Calendar calendar = Calendar.getInstance();
-            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-
             // the mysql insert statement
-            String query = " INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons)"
-                    + " SELECT comunitat_aut_id, ?, ?, ?" +
-                    " FROM comnitats_autonomes" +
-                    " WHERE codi_ine = ?";
+            String query = "INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons) " +
+                                "SELECT comunitat_aut_id, ?, ?, ? " +
+                                "   FROM comnitats_autonomes " +
+                                "WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -50,6 +43,7 @@ public class InsertQuery {
             preparedStmt.setString(2, codi_ine_prov);
             preparedStmt.setInt(3, num_escons);
             preparedStmt.setString(4, codi_ine_ca);
+
             // execute the preparedstatement
             preparedStmt.execute();
         } catch (Exception e) {
@@ -62,15 +56,11 @@ public class InsertQuery {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
 
-            //Preparem el Date
-            Calendar calendar = Calendar.getInstance();
-            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-
             // the mysql insert statement
-            String query = " INSERT INTO municipis (nom, codi_ine,provincia_id,districte)"
-                    + "SELECT ?, ?, provincia_id, ? " +
-                    "   FROM provincies " +
-                    "   WHERE codi_ine = ?);";
+            String query = "INSERT INTO municipis (nom, codi_ine,provincia_id,districte) " +
+                                "SELECT ?, ?, provincia_id, ? " +
+                                "   FROM provincies " +
+                                "WHERE codi_ine = ?);";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -78,6 +68,7 @@ public class InsertQuery {
             preparedStmt.setString(2, codi_ine);
             preparedStmt.setString(3, String.valueOf(districte));
             preparedStmt.setInt(4, Integer.parseInt(provincia_id));
+
             // execute the preparedstatement
             preparedStmt.execute();
         } catch (Exception e) {
@@ -91,8 +82,8 @@ public class InsertQuery {
             Connection con = DBMySQLManager.getConnection();
 
             // the mysql insert statement
-            String query = " INSERT INTO persones (nom,cog1,cog2)"
-                    + " values (?, ?, ?)";
+            String query =  "INSERT INTO persones (nom,cog1,cog2) " +
+                            "VALUES (?, ?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -112,8 +103,8 @@ public class InsertQuery {
             Connection con = DBMySQLManager.getConnection();
 
             // the mysql insert statement
-            String query = " INSERT INTO candidatures (eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional)"
-                    + " values (1, ?, ?, ?, ?, ?, ?)";
+            String query =  "INSERT INTO candidatures (eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional) " +
+                            "VALUES (1, ?, ?, ?, ?, ?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
