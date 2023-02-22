@@ -220,7 +220,7 @@ public class Import {
                 codi_acu_ca = strLinia.substring(220,226);
                 codi_acu_nacional = strLinia.substring(226,232);
 
-                //Insertem dades
+                //Inserim dades
                 InsertQuery.insertIntoCandidatures(codi_candidatura, nom_curt, nom_llarg, codi_acu_provincia, codi_acu_ca, codi_acu_nacional);
             }
 
@@ -255,7 +255,7 @@ public class Import {
                     int candidats_obtinguts = Integer.parseInt(strLinia.substring(28, 33));
                     System.out.println("Candidats obtinguts:  " + candidats_obtinguts);
                     System.out.println();
-                    Inserts_provisionales.insertVotsProvincials(codi_ine,candidatura_id,vots,candidats_obtinguts);
+                    InsertQuery.insertIntoVotsProvincials(codi_ine,candidatura_id,vots,candidats_obtinguts);
                 }
             }
         } catch (IOException e) {
