@@ -6,7 +6,7 @@ public class DBMySQLManager {
     static String ipAlberto = "10.2.120.240";
     static String ipBenito = "10.2.68.44";
     static String ipDavid = "10.2.211.106";
-    static String ipMarc = "";
+    static String ipMarc = "10.2.106.42";
     static String ipVictor = "10.2.93.209";
 
     // Propietats
