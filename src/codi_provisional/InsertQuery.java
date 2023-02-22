@@ -1,6 +1,7 @@
 package codi_provisional;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
 
@@ -154,6 +155,41 @@ public class InsertQuery {
             preparedStmt.setString(6, codi_acu_nacional);
             // execute the preparedstatement
             preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public static void insertIntoVotsProvincials(int codi_ine, int canditatura_id, int vots, int candidats_obtinguts) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2016", "perepi", "pastanaga");
+
+
+            //Preparem el Date
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
+            // the mysql insert statement
+            String query = "INSERT INTO vots_candidatures_prov (provincia_id, candidatura_id, vots, candidats_obtinguts)" +
+                    "VALUES ((SELECT provincia_id" +
+                    "FROM provincies" +
+                    "WHERE codi_ine = ?)," +
+                    "(SELECT candidatura_id" +
+                    "FROM candidaturesç" +
+                    "WHERE codi_candidatura = ? AND eleccio_id = 1), " +
+                    "?,?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, codi_ine);
+            preparedStmt.setInt(2, canditatura_id);
+            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(4, candidats_obtinguts);
+            // execute the preparedstatement
+            preparedStmt.execute();
+            //Tanquem la connexió
+            con.close();
         } catch (Exception e) {
             System.out.println(e);
         }

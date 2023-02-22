@@ -51,18 +51,25 @@ public class Provincia_districte {
             //Preparem el Date
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-
             // the mysql insert statement
             String query = " INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)"
-                    + " values (?, ?, ?, ?)";
-
+                    +"VALUES ("
+                    + "(SELECT eleccio_id" +
+                    "   FROM eleccions_municipis" +
+                    "   WHERE candidatura_id = ?)," +
+                    "  (SELECT municipi_id" +
+                    "   FROM eleccions_municipis" +
+                    "   WHERE candidatura_id = ?)," +
+                    "   (SELECT candidatura_id" +
+                    "       FROM candidatures" +
+                    "       WHERE candidatura_id = ? AND eleccio_id = 1), ?" +
+                    " )";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, eleccio_id);
             preparedStmt.setInt(2, municipi_id);
             preparedStmt.setInt(3, candidatura_id);
             preparedStmt.setInt(4, vots);
-
             //preparedStmt.setDate(6, startDate);
                 /*preparedStmt.setString(7, "IT_PROG");
                 preparedStmt.setFloat(8, 5000.12f);*/
