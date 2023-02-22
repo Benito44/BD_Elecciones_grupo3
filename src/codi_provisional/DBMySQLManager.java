@@ -6,26 +6,28 @@ public class DBMySQLManager {
     static String ipAlberto = "10.2.120.240";
     static String ipBenito = "10.2.68.44";
     static String ipDavid = "10.2.211.106";
-    static String ipMarc = "";
+    static String ipMarc = "10.2.106.42";
     static String ipVictor = "10.2.93.209";
 
     // Propietats
     private static Connection conn = null;
     private String driver = "com.mysql.cj.jdbc.Driver"; //com.mysql.jdbc.Driver
     private String url;
-    private String usuari ="isard";
-    private String contrasenya = "pirineus";
-    private String host = ipVictor; //IP de qui executi el programa
-    private String base_dades = "eleccions_2017";
+    private String usuari ="perepi";
+    private String contrasenya = "pastanaga";
+    private String host = ipMarc; //IP de qui executi el programa
+    private String base_dades = "eleccions2017";
 
     // Constructors
     private DBMySQLManager(){
 
-        this.url = "jdbc:mysql://" + host + ":3306/" + base_dades;
+        this.url = "jdbc:mysql://" + host + "/" + base_dades;
 
         try{
             Class.forName(driver);
-            conn = DriverManager.getConnection(url, usuari, contrasenya);
+
+            conn = DriverManager.getConnection(this.url, this.usuari, this.contrasenya);
+
         }
         catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();
