@@ -36,7 +36,7 @@ public class Execute {
 
 
             // ?. Inserim dades a la taula VOTS_PROVINCIALS
-            Import.importVotsProvincials();
+           // Import.importVotsProvincials();
 
             //TODO: ajuntar persones i candidats en el mateix insert
 
