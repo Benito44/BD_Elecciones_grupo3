@@ -220,7 +220,7 @@ public class Import {
                 codi_acu_ca = strLinia.substring(220,226);
                 codi_acu_nacional = strLinia.substring(226,232);
 
-                //Insertem dades
+                //Inserim dades
                 InsertQuery.insertIntoCandidatures(codi_candidatura, nom_curt, nom_llarg, codi_acu_provincia, codi_acu_ca, codi_acu_nacional);
             }
 
