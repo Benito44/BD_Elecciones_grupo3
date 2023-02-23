@@ -213,12 +213,12 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                codi_candidatura = strLinia.substring(8,14);
-                nom_curt = strLinia.substring(14,64);
-                nom_llarg = strLinia.substring(63,214);
-                codi_acu_provincia = strLinia.substring(214,220);
-                codi_acu_ca = strLinia.substring(220,226);
-                codi_acu_nacional = strLinia.substring(226,232);
+                codi_candidatura = strLinia.substring(8, 14);
+                nom_curt = strLinia.substring(14, 64);
+                nom_llarg = strLinia.substring(63, 214);
+                codi_acu_provincia = strLinia.substring(214, 220);
+                codi_acu_ca = strLinia.substring(220, 226);
+                codi_acu_nacional = strLinia.substring(226, 232);
 
                 //Inserim dades
                 InsertQuery.insertIntoCandidatures(codi_candidatura, nom_curt, nom_llarg, codi_acu_provincia, codi_acu_ca, codi_acu_nacional);
@@ -235,6 +235,7 @@ public class Import {
             }
         }
     }
+
     public static void importVotsProvincials() {
         BufferedReader bfLector = null;
         try {
@@ -255,9 +256,43 @@ public class Import {
                     int candidats_obtinguts = Integer.parseInt(strLinia.substring(28, 33));
                     System.out.println("Candidats obtinguts:  " + candidats_obtinguts);
                     System.out.println();
-                    InsertQuery.insertIntoVotsProvincials(codi_ine,candidatura_id,vots,candidats_obtinguts);
+                    InsertQuery.insertIntoVotsProvincials(codi_ine, candidatura_id, vots, candidats_obtinguts);
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void importVotsAutonomics() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "08021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                int comunitat_autonoma_id = Integer.parseInt(strLinia.substring(9, 11));
+                System.out.println("Codi I.N.E provincial: " + comunitat_autonoma_id);
+                int candidatura_id = Integer.parseInt(strLinia.substring(14, 20));
+                System.out.println("Codi de la candidatura:  " + candidatura_id);
+                int vots = Integer.parseInt(strLinia.substring(20, 28));
+                System.out.println("Vots obtinguts:  " + vots);
+                InsertQuery.insertVotsComunitatAutonoma(comunitat_autonoma_id,candidatura_id,vots);
+                System.out.println();
+
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

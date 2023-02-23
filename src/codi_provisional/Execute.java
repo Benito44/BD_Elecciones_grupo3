@@ -34,6 +34,9 @@ public class Execute {
             // 6. Inserim dades a la taula CANDIDATS
             //Import.importarCandidats();
 
+            // Inserim dades a la taula VOTS_Comunitat_Autonoma
+            // Import.importVotsAutonomics();
+
 
             // ?. Inserim dades a la taula VOTS_PROVINCIALS
            // Import.importVotsProvincials();

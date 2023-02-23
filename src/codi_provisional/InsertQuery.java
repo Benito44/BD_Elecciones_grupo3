@@ -176,4 +176,31 @@ public class InsertQuery {
             System.out.println(e);
         }
     }
+    public static void insertVotsComunitatAutonoma(int comunitat_autonoma_id, int candidatura_id, int vots) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query = " INSERT INTO vots_candidatures_ca (comunitat_autonoma_id,canditatura_id,vots)"
+                    + "VALUES ((SELECT candidatura_id" +
+                    "    FROM candidatures" +
+                    "     WHERE candidatura_id = ? and eleccio_id = 1 )," +
+                    " (SELECT comunitat_autonoma_id" +
+                    "  FROM comunitats_autonomes" +
+                    "   WHERE codi_ine = ?), " +
+                    "   ? )";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, comunitat_autonoma_id);
+            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(2, candidatura_id);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
