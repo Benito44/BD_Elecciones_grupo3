@@ -203,4 +203,38 @@ public class InsertQuery {
             System.out.println(e);
         }
     }
+    public static void insertVotsMunicipis(int eleccio_id, int candidatura_id, int municipi_id, int vots) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query = " INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)"
+                    +"VALUES ("
+                    + "(SELECT eleccio_id" +
+                    "   FROM eleccions_municipis" +
+                    "   WHERE candidatura_id = ?)," +
+                    "  (SELECT municipi_id" +
+                    "   FROM eleccions_municipis" +
+                    "   WHERE candidatura_id = ?)," +
+                    "   (SELECT candidatura_id" +
+                    "       FROM candidatures" +
+                    "       WHERE candidatura_id = ? AND eleccio_id = 1), ?" +
+                    " )";
+
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, eleccio_id);
+            preparedStmt.setInt(2, municipi_id);
+            preparedStmt.setInt(3, candidatura_id);
+            preparedStmt.setInt(4, vots);
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
