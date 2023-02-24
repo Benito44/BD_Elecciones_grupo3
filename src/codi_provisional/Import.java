@@ -290,18 +290,17 @@ public class Import {
             bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
             String strLinia;
 
+            // Dades que recollim de l'arxiu
+            String codi_ine_municipi, codi_candidatura;
+            int vots;
+
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
+                codi_ine_municipi = strLinia.substring(11, 14);
+                codi_candidatura = strLinia.substring(16, 22);
+                vots = Integer.parseInt(strLinia.substring(22, 30));
 
-                int municipi_id = Integer.parseInt(strLinia.substring(11, 14));
-                System.out.println("Codi I.N.E del municipi : " + municipi_id);
-                int candidatura_id = Integer.parseInt(strLinia.substring(16, 22));
-                System.out.println("Codi de la candidatura o del Senador: " + candidatura_id);
-                int vots = Integer.parseInt(strLinia.substring(22, 30));
-                System.out.println("Vots obtinguts per la candidatura: " + vots);
-                System.out.println();
-                InsertQuery.insertVotsMunicipis(candidatura_id,municipi_id,vots);
-
+                InsertQuery.insertVotsMunicipis(codi_ine_municipi, codi_candidatura, vots);
             }
 
         } catch (IOException e) {
