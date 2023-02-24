@@ -122,7 +122,7 @@ public class Import {
     }
 
 
-    public static void importarPersones() {
+    public static void importarPersonesAndCandidats() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
@@ -133,16 +133,22 @@ public class Import {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 //Nom del candidat
-                System.out.println("Nom candidat: " + strLinia.substring(25, 50));
                 String nom = strLinia.substring(25, 50);
                 //Primer cognom del candidat
-                System.out.println("Cognom1: " + strLinia.substring(50, 75));
                 String cognom1 = strLinia.substring(50, 75);
                 //Segon cognom del candidat
-                System.out.println("Cognom2: " + strLinia.substring(75, 100));
                 String cognom2 = strLinia.substring(75, 100);
-                System.out.println("DNI: " + Integer.parseInt(strLinia.substring(15, 24)));
-                int dni = Integer.parseInt(strLinia.substring(15, 24));
+                //dni generat amb l'unic codi diferencial de cada persona
+                String dni = strLinia.substring(15, 24);
+                //num de ordre dels candidats
+                int num_ordre = Integer.parseInt(strLinia.substring(21, 24));
+                //tipo de candidat que sera un enum
+                String tipo_candidato = strLinia.substring(24, 25);
+                //codigo ine provincia
+                String codi_ine_provincia = strLinia.substring(9, 11);
+                //codi cancidatura
+                int codi_candidatura = Integer.parseInt(strLinia.substring(15, 21));
+
 
 
                     /*
@@ -154,8 +160,9 @@ public class Import {
                     //DNI del candidat
                     //System.out.println("DNI: " + strLinia.substring(101, 101));
                      */
-                System.out.println();
+
                 InsertQuery.insertIntoPersones(nom, cognom1, cognom2, dni);
+                InsertQuery.insertIntoCandidats(num_ordre, tipo_candidato, dni, codi_ine_provincia, codi_candidatura);
             }
 
         } catch (IOException e) {
@@ -170,36 +177,7 @@ public class Import {
         }
     }
 
-    public static void importarCandidats() {
-        BufferedReader bfLector = null;
-        try {
-            // Ruta del nostre arxiu (
-            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "04021606.DAT");
-            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
-            String strLinia;
 
-            // Recorregut de cada línia de l'arxiu
-            while ((strLinia = bfLector.readLine()) != null) {
-                // Excloent els totals
-
-                // Extraiem el num de ordre
-                int num_ordre = Integer.parseInt(strLinia.substring(21, 24));
-                // Extraiem el nom de la província
-                String tipo_candidato = strLinia.substring(24, 25);
-
-                InsertQuery.insertIntoCandidats(num_ordre, tipo_candidato);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bfLector != null)
-                    bfLector.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
 
     public static void importarCandidatures() {
         BufferedReader bfLector = null;
@@ -213,12 +191,12 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                codi_candidatura = strLinia.substring(8,14);
-                nom_curt = strLinia.substring(14,64);
-                nom_llarg = strLinia.substring(63,214);
-                codi_acu_provincia = strLinia.substring(214,220);
-                codi_acu_ca = strLinia.substring(220,226);
-                codi_acu_nacional = strLinia.substring(226,232);
+                codi_candidatura = strLinia.substring(8, 14);
+                nom_curt = strLinia.substring(14, 64);
+                nom_llarg = strLinia.substring(63, 214);
+                codi_acu_provincia = strLinia.substring(214, 220);
+                codi_acu_ca = strLinia.substring(220, 226);
+                codi_acu_nacional = strLinia.substring(226, 232);
 
                 //Inserim dades
                 InsertQuery.insertIntoCandidatures(codi_candidatura, nom_curt, nom_llarg, codi_acu_provincia, codi_acu_ca, codi_acu_nacional);
@@ -235,6 +213,7 @@ public class Import {
             }
         }
     }
+
     public static void importVotsProvincials() {
         BufferedReader bfLector = null;
         try {
@@ -255,9 +234,76 @@ public class Import {
                     int candidats_obtinguts = Integer.parseInt(strLinia.substring(28, 33));
                     System.out.println("Candidats obtinguts:  " + candidats_obtinguts);
                     System.out.println();
-                    InsertQuery.insertIntoVotsProvincials(codi_ine,candidatura_id,vots,candidats_obtinguts);
+                    InsertQuery.insertIntoVotsProvincials(codi_ine, candidatura_id, vots, candidats_obtinguts);
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void importVotsAutonomics() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "08021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                int comunitat_autonoma_id = Integer.parseInt(strLinia.substring(9, 11));
+                System.out.println("Codi I.N.E provincial: " + comunitat_autonoma_id);
+                int candidatura_id = Integer.parseInt(strLinia.substring(14, 20));
+                System.out.println("Codi de la candidatura:  " + candidatura_id);
+                int vots = Integer.parseInt(strLinia.substring(20, 28));
+                System.out.println("Vots obtinguts:  " + vots);
+                InsertQuery.insertVotsComunitatAutonoma(comunitat_autonoma_id,candidatura_id,vots);
+                System.out.println();
+
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    public static void importVotsMunicipis() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "06021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+
+                int municipi_id = Integer.parseInt(strLinia.substring(11, 14));
+                System.out.println("Codi I.N.E del municipi : " + municipi_id);
+                int candidatura_id = Integer.parseInt(strLinia.substring(16, 22));
+                System.out.println("Codi de la candidatura o del Senador: " + candidatura_id);
+                int vots = Integer.parseInt(strLinia.substring(22, 30));
+                System.out.println("Vots obtinguts per la candidatura: " + vots);
+                System.out.println();
+                InsertQuery.insertVotsMunicipis(candidatura_id,municipi_id,vots);
+
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -35,7 +35,7 @@ public class InsertQuery {
             // the mysql insert statement
             String query = "INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons) " +
                                 "SELECT comunitat_aut_id, ?, ?, ? " +
-                                "   FROM comnitats_autonomes " +
+                                "   FROM comunitats_autonomes " +
                                 "WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
@@ -61,7 +61,7 @@ public class InsertQuery {
             String query = "INSERT INTO municipis (nom, codi_ine,provincia_id,districte) " +
                                 "SELECT ?, ?, provincia_id, ? " +
                                 "   FROM provincies " +
-                                "WHERE codi_ine = ?);";
+                                "WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -77,7 +77,7 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoPersones(String nom, String cog1, String cog2, int dni) {
+    public static void insertIntoPersones(String nom, String cog1, String cog2, String dni) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
@@ -91,7 +91,7 @@ public class InsertQuery {
             preparedStmt.setString(1, nom);
             preparedStmt.setString(2, cog1);
             preparedStmt.setString(3, cog2);
-            preparedStmt.setInt(4, dni);
+            preparedStmt.setString(4, dni);
             // execute the preparedstatement
             preparedStmt.execute();
         } catch (Exception e) {
@@ -99,24 +99,32 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoCandidats(int num_ordre, String tipo_candidato) {
+    public static void insertIntoCandidats(int num_ordre, String tipo_candidato, String dni, String codigo_ine_provincia, int codi_candidatura) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
 
             // the mysql insert statement
-            String query =  "INSERT INTO candidats (nom, codi_ine,provincia_id,districte) " +
-                            "SELECT ?, ?, provincia_id, ? " +
-                            "   FROM provincies " +
-                            "WHERE codi_ine = ?);";
+            String query =  "INSERT INTO candidats (candidatura_id, persona_id, provincia_id, num_ordre, tipus) " +
+                            "VALUES ((SELECT candidatura_id " +
+                            "           FROM candidatures " +
+                            "           WHERE codi_candidatura = ? AND eleccio_id = 1)," +
+                            "       (SELECT persona_id" +
+                            "            FROM persones" +
+                            "        WHERE dni = ?), " +
+                            "         (SELECT provincia_id" +
+                            "            FROM provincies" +
+                            "        WHERE codi_ine = ?)" +
+                            "            , ? , ?)";
+
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            //preparedStmt.setString(1, nom);
-            //preparedStmt.setString(2, codi_ine);
-            //preparedStmt.setString(3, String.valueOf(districte));
-            //preparedStmt.setInt(4, Integer.parseInt(provincia_id));
-            // execute the preparedstatement
+            preparedStmt.setInt(1, codi_candidatura);
+            preparedStmt.setString(2, dni);
+            preparedStmt.setString(3, codigo_ine_provincia);
+            preparedStmt.setInt(4, num_ordre);
+            preparedStmt.setString(5, tipo_candidato);
             preparedStmt.execute();
         } catch (Exception e) {
             System.out.println(e);
@@ -169,6 +177,67 @@ public class InsertQuery {
             preparedStmt.setInt(2, canditatura_id);
             preparedStmt.setInt(3, vots);
             preparedStmt.setInt(4, candidats_obtinguts);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public static void insertVotsComunitatAutonoma(int comunitat_autonoma_id, int candidatura_id, int vots) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query = " INSERT INTO vots_candidatures_ca (comunitat_autonoma_id,canditatura_id,vots)"
+                    + "VALUES ((SELECT candidatura_id" +
+                    "    FROM candidatures" +
+                    "     WHERE candidatura_id = ? and eleccio_id = 1 )," +
+                    " (SELECT comunitat_autonoma_id" +
+                    "  FROM comunitats_autonomes" +
+                    "   WHERE codi_ine = ?), " +
+                    "   ? )";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, comunitat_autonoma_id);
+            preparedStmt.setInt(3, vots);
+            preparedStmt.setInt(2, candidatura_id);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public static void insertVotsMunicipis(int candidatura_id, int municipi_id, int vots) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query = " INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)"
+                    +"VALUES ("
+                    + "(SELECT eleccio_id" +
+                    "   FROM eleccions_municipis" +
+                    "   WHERE candidatura_id = ?)," +
+                    "  (SELECT municipi_id" +
+                    "   FROM eleccions_municipis" +
+                    "   WHERE candidatura_id = ?)," +
+                    "   (SELECT candidatura_id" +
+                    "       FROM candidatures" +
+                    "       WHERE candidatura_id = ? AND eleccio_id = 1), ?" +
+                    " )";
+
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, 1);
+            preparedStmt.setInt(2, municipi_id);
+            preparedStmt.setInt(3, candidatura_id);
+            preparedStmt.setInt(4, vots);
+
 
             // execute the preparedstatement
             preparedStmt.execute();

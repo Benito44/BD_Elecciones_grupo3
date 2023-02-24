@@ -8,14 +8,6 @@ import java.sql.SQLException;
 public class Execute {
     public static void main(String[] args) {
         try {
-            Connection con = DBMySQLManager.getConnection();
-
-            //Class.forName("com.mysql.cj.jdbc.Driver");
-
-           //Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2017", "perepi", "pastanaga");
-
-
-
             // 1. Inserim dades a la taula COMUNITATS
             //Import.importarComunitatsAutonomes();
 
@@ -28,17 +20,17 @@ public class Execute {
             // 4. Inserim dades a la taula CANDIDATURES
             //Import.importarCandidatures();
 
-            // 5. Inserim dades a la taula PERSONES
-            //Import.importarPersones();
+            // 5. Inserim dades a la taula PERSONES i CANDIDATS
+            Import.importarPersonesAndCandidats();
 
-            // 6. Inserim dades a la taula CANDIDATS
-            //Import.importarCandidats();
+            // 6. Inserim dades a la taula VOTS_CANDIDATURES_MUN
+            //Import.importVotsMunicipis();
 
+            // 7. Inserim dades a la taula VOTS_CANDIDATURES_PROV
+            //Import.importVotsProvincials();
 
-            // ?. Inserim dades a la taula VOTS_PROVINCIALS
-            Import.importVotsProvincials();
-
-            //TODO: ajuntar persones i candidats en el mateix insert
+            // 8. Inserim dades a la taula VOTS_CANDIDATURES_CA
+            // Import.importVotsAutonomics();
 
             // Tanquem connexió
             DBMySQLManager.closeConnection();

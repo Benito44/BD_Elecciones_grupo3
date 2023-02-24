@@ -24,12 +24,12 @@ public class LecturaVotsMunicipis {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
 
-                int ine = Integer.parseInt(strLinia.substring(11, 14));
-                System.out.println("Codi I.N.E del municipi : " + ine);
-                int codiCandidatura = Integer.parseInt(strLinia.substring(16, 22));
-                System.out.println("Codi de la candidatura o del Senador: " + codiCandidatura);
-                int votsObtinguts = Integer.parseInt(strLinia.substring(22, 30));
-                System.out.println("Vots obtinguts per la candidatura: " + votsObtinguts);
+                int municipi_id = Integer.parseInt(strLinia.substring(11, 14));
+                System.out.println("Codi I.N.E del municipi : " + municipi_id);
+                int candidatura_id = Integer.parseInt(strLinia.substring(16, 22));
+                System.out.println("Codi de la candidatura o del Senador: " + candidatura_id);
+                int vots = Integer.parseInt(strLinia.substring(22, 30));
+                System.out.println("Vots obtinguts per la candidatura: " + vots);
                 System.out.println();
 
             }
