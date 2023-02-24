@@ -35,6 +35,9 @@ public class Execute {
             // 9. Inserim dades a la taula VOTS_CANDIDATURES_CA
             // Import.importVotsAutonomics();
 
+            //10. Inserim dades a la taula VOTS_CANDIDATURES_MU
+            Import.importVotsMunicipis();
+
             // Tanquem connexió
             DBMySQLManager.closeConnection();
 

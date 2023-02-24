@@ -203,7 +203,7 @@ public class InsertQuery {
             System.out.println(e);
         }
     }
-    public static void insertVotsMunicipis(int eleccio_id, int candidatura_id, int municipi_id, int vots) {
+    public static void insertVotsMunicipis(int candidatura_id, int municipi_id, int vots) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
@@ -225,7 +225,7 @@ public class InsertQuery {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, eleccio_id);
+            preparedStmt.setInt(1, 1);
             preparedStmt.setInt(2, municipi_id);
             preparedStmt.setInt(3, candidatura_id);
             preparedStmt.setInt(4, vots);
