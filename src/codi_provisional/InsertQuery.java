@@ -99,7 +99,7 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoCandidats(int num_ordre, String tipo_candidato) {
+    public static void insertIntoCandidats(int num_ordre, String tipo_candidato, int dni, int codigo_ine_provincia) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();

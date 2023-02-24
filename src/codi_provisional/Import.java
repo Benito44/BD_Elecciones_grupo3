@@ -122,7 +122,7 @@ public class Import {
     }
 
 
-    public static void importarPersones() {
+    public static void importarPersonesAndCandidats() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
@@ -133,16 +133,20 @@ public class Import {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 //Nom del candidat
-                System.out.println("Nom candidat: " + strLinia.substring(25, 50));
                 String nom = strLinia.substring(25, 50);
                 //Primer cognom del candidat
-                System.out.println("Cognom1: " + strLinia.substring(50, 75));
                 String cognom1 = strLinia.substring(50, 75);
                 //Segon cognom del candidat
-                System.out.println("Cognom2: " + strLinia.substring(75, 100));
                 String cognom2 = strLinia.substring(75, 100);
-                System.out.println("DNI: " + Integer.parseInt(strLinia.substring(15, 24)));
+                //dni generat amb l'unic codi diferencial de cada persona
                 int dni = Integer.parseInt(strLinia.substring(15, 24));
+                //num de ordre dels candidats
+                int num_ordre = Integer.parseInt(strLinia.substring(21, 24));
+                //tipo de candidat que sera un enum
+                String tipo_candidato = strLinia.substring(24, 25);
+                //codigo ine provincia
+                int codigo_ine_provincia = Integer.parseInt(strLinia.substring(9, 11));
+
 
 
                     /*
@@ -154,8 +158,9 @@ public class Import {
                     //DNI del candidat
                     //System.out.println("DNI: " + strLinia.substring(101, 101));
                      */
-                System.out.println();
+
                 InsertQuery.insertIntoPersones(nom, cognom1, cognom2, dni);
+                InsertQuery.insertIntoCandidats(num_ordre, tipo_candidato, dni, codigo_ine_provincia);
             }
 
         } catch (IOException e) {
@@ -186,8 +191,9 @@ public class Import {
                 int num_ordre = Integer.parseInt(strLinia.substring(21, 24));
                 // Extraiem el nom de la província
                 String tipo_candidato = strLinia.substring(24, 25);
+                int dni = Integer.parseInt(strLinia.substring(15, 24));
 
-                InsertQuery.insertIntoCandidats(num_ordre, tipo_candidato);
+                //InsertQuery.insertIntoCandidats(num_ordre, tipo_candidato, dni);
             }
         } catch (IOException e) {
             e.printStackTrace();
