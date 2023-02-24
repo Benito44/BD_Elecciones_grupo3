@@ -9,13 +9,6 @@ public class Execute {
     public static void main(String[] args) {
         try {
             Connection con = DBMySQLManager.getConnection();
-
-            //Class.forName("com.mysql.cj.jdbc.Driver");
-
-           //Connection con = DriverManager.getConnection("jdbc:mysql://10.2.106.42/eleccions2017", "perepi", "pastanaga");
-
-
-
             // 1. Inserim dades a la taula COMUNITATS
             //Import.importarComunitatsAutonomes();
 
@@ -33,15 +26,15 @@ public class Execute {
 
             // 6. Inserim dades a la taula CANDIDATS
             //Import.importarCandidats();
-
-            // Inserim dades a la taula VOTS_Comunitat_Autonoma
-            // Import.importVotsAutonomics();
-
-
-            // ?. Inserim dades a la taula VOTS_PROVINCIALS
-            // Import.importVotsProvincials();
-
             //TODO: adjuntar persones i candidats en el mateix insert
+
+            // 7. Inserim dades a la taula VOTS_CANDIDATURES_MUN
+
+            // 8. Inserim dades a la taula VOTS_CANDIDATURES_PROV
+            //Import.importVotsProvincials();
+
+            // 9. Inserim dades a la taula VOTS_CANDIDATURES_CA
+            // Import.importVotsAutonomics();
 
             // Tanquem connexió
             DBMySQLManager.closeConnection();
