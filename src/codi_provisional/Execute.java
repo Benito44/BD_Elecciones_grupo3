@@ -20,20 +20,16 @@ public class Execute {
             // 4. Inserim dades a la taula CANDIDATURES
             //Import.importarCandidatures();
 
-            // 5. Inserim dades a la taula PERSONES
-            //Import.importarPersones();
+            // 5. Inserim dades a la taula PERSONES i CANDIDATS
+            Import.importarPersonesAndCandidats();
 
-            // 6. Inserim dades a la taula CANDIDATS
-            //Import.importarCandidats();
-            //TODO: adjuntar persones i candidats en el mateix insert
-
-            // 7. Inserim dades a la taula VOTS_CANDIDATURES_MUN
+            // 6. Inserim dades a la taula VOTS_CANDIDATURES_MUN
             //Import.importVotsMunicipis();
 
-            // 8. Inserim dades a la taula VOTS_CANDIDATURES_PROV
+            // 7. Inserim dades a la taula VOTS_CANDIDATURES_PROV
             //Import.importVotsProvincials();
 
-            // 9. Inserim dades a la taula VOTS_CANDIDATURES_CA
+            // 8. Inserim dades a la taula VOTS_CANDIDATURES_CA
             // Import.importVotsAutonomics();
 
             // Tanquem connexió
