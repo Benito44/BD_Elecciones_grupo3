@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class Execute {
     public static void main(String[] args) {
         try {
-            Connection con = DBMySQLManager.getConnection();
             // 1. Inserim dades a la taula COMUNITATS
             //Import.importarComunitatsAutonomes();
 
