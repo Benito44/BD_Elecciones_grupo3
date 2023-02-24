@@ -28,6 +28,7 @@ public class Import {
                     InsertQuery.insertIntoComunitat(nom, codi_ine);
                 }
             }
+            System.out.println("Comunitats autonomes importades correctament");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -66,6 +67,7 @@ public class Import {
                     InsertQuery.insertIntoProvincies(codi_ine_ca, nom_provincia, codi_ine_prov, num_escons);
                 }
             }
+            System.out.println("Provincies importades correctament");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,6 +110,7 @@ public class Import {
                 //Inserim dades
                 InsertQuery.insertIntoMunicipis(nom, codi_ine, ine_provincia, districte);
             }
+            System.out.println("Municipis importats correctament");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,7 +142,7 @@ public class Import {
                 //Segon cognom del candidat
                 String cognom2 = strLinia.substring(75, 100);
                 //dni generat amb l'unic codi diferencial de cada persona
-                String dni = strLinia.substring(15, 24);
+                String dni = strLinia.substring(8, 11) + strLinia.substring(19, 24);
                 //num de ordre dels candidats
                 int num_ordre = Integer.parseInt(strLinia.substring(21, 24));
                 //tipo de candidat que sera un enum
@@ -164,6 +167,7 @@ public class Import {
                 InsertQuery.insertIntoPersones(nom, cognom1, cognom2, dni);
                 InsertQuery.insertIntoCandidats(num_ordre, tipo_candidato, dni, codi_ine_provincia, codi_candidatura);
             }
+            System.out.println("Importació de persones i candidats finalitzada");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -176,7 +180,6 @@ public class Import {
             }
         }
     }
-
 
 
     public static void importarCandidatures() {
@@ -201,6 +204,7 @@ public class Import {
                 //Inserim dades
                 InsertQuery.insertIntoCandidatures(codi_candidatura, nom_curt, nom_llarg, codi_acu_provincia, codi_acu_ca, codi_acu_nacional);
             }
+            System.out.println("Candidatures importades correctament");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -237,6 +241,7 @@ public class Import {
                     InsertQuery.insertIntoVotsProvincials(codi_ine, candidatura_id, vots, candidats_obtinguts);
                 }
             }
+            System.out.println("Vots provincials importats correctament");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -265,10 +270,11 @@ public class Import {
                 System.out.println("Codi de la candidatura:  " + candidatura_id);
                 int vots = Integer.parseInt(strLinia.substring(20, 28));
                 System.out.println("Vots obtinguts:  " + vots);
-                InsertQuery.insertVotsComunitatAutonoma(comunitat_autonoma_id,candidatura_id,vots);
+                InsertQuery.insertVotsComunitatAutonoma(comunitat_autonoma_id, candidatura_id, vots);
                 System.out.println();
 
             }
+            System.out.println("Vots comunitat autonoma importats correctament");
 
 
         } catch (IOException e) {
@@ -282,6 +288,7 @@ public class Import {
             }
         }
     }
+
     public static void importVotsMunicipis() {
         BufferedReader bfLector = null;
         try {
@@ -302,6 +309,7 @@ public class Import {
 
                 InsertQuery.insertVotsMunicipis(codi_ine_municipi, codi_candidatura, vots);
             }
+            System.out.println("Vots municipis importats correctament");
 
         } catch (IOException e) {
             e.printStackTrace();
