@@ -92,10 +92,10 @@ public class Import {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 if (strLinia.substring(16, 18).equals("99")) {   // Si Nº districte és 99
-                    // Extrayem nom del MUNICIPI
+                    // Extraiem nom del MUNICIPI
                     nom = strLinia.substring(18, 118);
                 } else {    // Si Nº districte NO és 99
-                    // Extrayem nom del DISTRICTE
+                    // Extraiem nom del DISTRICTE
                     nom = strLinia.substring(18, 118);
                 }
                 // Extraiem codi INE del municipi
@@ -105,7 +105,7 @@ public class Import {
                 // Extraiem el número de districte
                 districte = Integer.parseInt(strLinia.substring(16, 18)); // Si és 99 és municipi
 
-                //Insertem dades
+                //Inserim dades
                 InsertQuery.insertIntoMunicipis(nom, codi_ine, ine_provincia, districte);
             }
 
@@ -145,7 +145,7 @@ public class Import {
                 //tipo de candidat que sera un enum
                 String tipo_candidato = strLinia.substring(24, 25);
                 //codigo ine provincia
-                String codi_ine_provincia = strLinia.substring(9, 11);
+                int codi_ine_provincia = Integer.parseInt(strLinia.substring(9, 11));
                 //codi cancidatura
                 int codi_candidatura = Integer.parseInt(strLinia.substring(15, 21));
 

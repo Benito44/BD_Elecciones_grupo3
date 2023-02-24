@@ -99,7 +99,7 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoCandidats(int num_ordre, String tipo_candidato, String dni, String codigo_ine_provincia, int codi_candidatura) {
+    public static void insertIntoCandidats(int num_ordre, String tipo_candidato, String dni, int codigo_ine_provincia, int codi_candidatura) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
@@ -122,7 +122,7 @@ public class InsertQuery {
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, codi_candidatura);
             preparedStmt.setString(2, dni);
-            preparedStmt.setString(3, codigo_ine_provincia);
+            preparedStmt.setInt(3, codigo_ine_provincia);
             preparedStmt.setInt(4, num_ordre);
             preparedStmt.setString(5, tipo_candidato);
             preparedStmt.execute();
