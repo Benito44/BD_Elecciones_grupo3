@@ -6,6 +6,24 @@ import java.sql.PreparedStatement;
 import java.util.Calendar;
 
 public class InsertQuery {
+    public static void insertIntoEleccions() {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query =  "INSERT INTO eleccions (eleccio_i, nom, data) " +
+                    "VALUES (1, 'Eleccions 2016', '2016-06-02')";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     public static void insertIntoComunitat(String nom, String codi_ine) {
         try {
             //Establim connexió si no s'ha establert
