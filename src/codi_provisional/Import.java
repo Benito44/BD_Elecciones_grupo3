@@ -92,10 +92,10 @@ public class Import {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 if (strLinia.substring(16, 18).equals("99")) {   // Si Nº districte és 99
-                    // Extrayem nom del MUNICIPI
+                    // Extraiem nom del MUNICIPI
                     nom = strLinia.substring(18, 118);
                 } else {    // Si Nº districte NO és 99
-                    // Extrayem nom del DISTRICTE
+                    // Extraiem nom del DISTRICTE
                     nom = strLinia.substring(18, 118);
                 }
                 // Extraiem codi INE del municipi
@@ -105,7 +105,7 @@ public class Import {
                 // Extraiem el número de districte
                 districte = Integer.parseInt(strLinia.substring(16, 18)); // Si és 99 és municipi
 
-                //Insertem dades
+                //Inserim dades
                 InsertQuery.insertIntoMunicipis(nom, codi_ine, ine_provincia, districte);
             }
 
@@ -145,7 +145,7 @@ public class Import {
                 //tipo de candidat que sera un enum
                 String tipo_candidato = strLinia.substring(24, 25);
                 //codigo ine provincia
-                String codi_ine_provincia = strLinia.substring(9, 11);
+                int codi_ine_provincia = Integer.parseInt(strLinia.substring(9, 11));
                 //codi cancidatura
                 int codi_candidatura = Integer.parseInt(strLinia.substring(15, 21));
 
@@ -290,18 +290,17 @@ public class Import {
             bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
             String strLinia;
 
+            // Dades que recollim de l'arxiu
+            String codi_ine_municipi, codi_candidatura;
+            int vots;
+
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
+                codi_ine_municipi = strLinia.substring(11, 14);
+                codi_candidatura = strLinia.substring(16, 22);
+                vots = Integer.parseInt(strLinia.substring(22, 30));
 
-                int municipi_id = Integer.parseInt(strLinia.substring(11, 14));
-                System.out.println("Codi I.N.E del municipi : " + municipi_id);
-                int candidatura_id = Integer.parseInt(strLinia.substring(16, 22));
-                System.out.println("Codi de la candidatura o del Senador: " + candidatura_id);
-                int vots = Integer.parseInt(strLinia.substring(22, 30));
-                System.out.println("Vots obtinguts per la candidatura: " + vots);
-                System.out.println();
-                InsertQuery.insertVotsMunicipis(candidatura_id,municipi_id,vots);
-
+                InsertQuery.insertVotsMunicipis(codi_ine_municipi, codi_candidatura, vots);
             }
 
         } catch (IOException e) {
