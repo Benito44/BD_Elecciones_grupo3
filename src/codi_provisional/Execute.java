@@ -28,15 +28,13 @@ public class Execute {
             //TODO: adjuntar persones i candidats en el mateix insert
 
             // 7. Inserim dades a la taula VOTS_CANDIDATURES_MUN
+            //Import.importVotsMunicipis();
 
             // 8. Inserim dades a la taula VOTS_CANDIDATURES_PROV
             //Import.importVotsProvincials();
 
             // 9. Inserim dades a la taula VOTS_CANDIDATURES_CA
             // Import.importVotsAutonomics();
-
-            //10. Inserim dades a la taula VOTS_CANDIDATURES_MU
-            Import.importVotsMunicipis();
 
             // Tanquem connexió
             DBMySQLManager.closeConnection();
