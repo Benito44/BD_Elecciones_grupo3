@@ -18,10 +18,10 @@ public class Execute {
             //Import.importarMunicipis();
 
             // 4. Inserim dades a la taula CANDIDATURES
-            //Import.importarCandidatures();
+            Import.importarCandidatures();
 
             // 5. Inserim dades a la taula PERSONES i CANDIDATS
-            Import.importarPersonesAndCandidats();
+            //Import.importarPersonesAndCandidats();
 
             // 6. Inserim dades a la taula VOTS_CANDIDATURES_MUN
             //Import.importVotsMunicipis();
