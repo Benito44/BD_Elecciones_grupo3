@@ -11,7 +11,7 @@ INSERT INTO eleccions (eleccio_id, nom, data)
  
     ALTER TABLE persones
 DROP INDEX uk_persones_dni,
-MODIFY COLUMN dni CHAR(16) NOT NULL,
+MODIFY COLUMN dni CHAR(8) NOT NULL,
 DROP COLUMN sexe,
 DROP COLUMN data_naixement,
 ADD CONSTRAINT uk_persones_dni UNIQUE(dni);
