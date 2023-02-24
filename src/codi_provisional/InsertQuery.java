@@ -35,7 +35,7 @@ public class InsertQuery {
             // the mysql insert statement
             String query = "INSERT INTO provincies (comunitat_aut_id,nom,codi_ine,num_escons) " +
                                 "SELECT comunitat_aut_id, ?, ?, ? " +
-                                "   FROM comnitats_autonomes " +
+                                "   FROM comunitats_autonomes " +
                                 "WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
@@ -61,7 +61,7 @@ public class InsertQuery {
             String query = "INSERT INTO municipis (nom, codi_ine,provincia_id,districte) " +
                                 "SELECT ?, ?, provincia_id, ? " +
                                 "   FROM provincies " +
-                                "WHERE codi_ine = ?);";
+                                "WHERE codi_ine = ?";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
