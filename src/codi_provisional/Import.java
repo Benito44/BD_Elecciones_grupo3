@@ -1,7 +1,5 @@
 package codi_provisional;
 
-import proves.Inserts_provisionales;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -218,6 +216,40 @@ public class Import {
         }
     }
 
+    public static void importVotsMunicipals() {
+        BufferedReader bfLector = null;
+        try {
+            // Ruta del nostre arxiu (
+            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "06021606.DAT");
+            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
+            String strLinia;
+
+            // Dades que recollim de l'arxiu
+            String codi_ine_municipi, codi_candidatura;
+            int vots;
+
+            // Recorregut de cada línia de l'arxiu
+            while ((strLinia = bfLector.readLine()) != null) {
+                codi_ine_municipi = strLinia.substring(11, 14);
+                codi_candidatura = strLinia.substring(16, 22);
+                vots = Integer.parseInt(strLinia.substring(22, 30));
+
+                InsertQuery.insertVotsMunicipis(codi_ine_municipi, codi_candidatura, vots);
+            }
+            System.out.println("Vots municipis importats correctament");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bfLector != null)
+                    bfLector.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     public static void importVotsProvincials() {
         BufferedReader bfLector = null;
         try {
@@ -254,7 +286,7 @@ public class Import {
         }
     }
 
-    public static void importVotsAutonomics() {
+    public static void importVotsAutonomiques() {
         BufferedReader bfLector = null;
         try {
             // Ruta del nostre arxiu (
@@ -276,40 +308,6 @@ public class Import {
             }
             System.out.println("Vots comunitat autonoma importats correctament");
 
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bfLector != null)
-                    bfLector.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-
-    public static void importVotsMunicipis() {
-        BufferedReader bfLector = null;
-        try {
-            // Ruta del nostre arxiu (
-            Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "06021606.DAT");
-            bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
-            String strLinia;
-
-            // Dades que recollim de l'arxiu
-            String codi_ine_municipi, codi_candidatura;
-            int vots;
-
-            // Recorregut de cada línia de l'arxiu
-            while ((strLinia = bfLector.readLine()) != null) {
-                codi_ine_municipi = strLinia.substring(11, 14);
-                codi_candidatura = strLinia.substring(16, 22);
-                vots = Integer.parseInt(strLinia.substring(22, 30));
-
-                InsertQuery.insertVotsMunicipis(codi_ine_municipi, codi_candidatura, vots);
-            }
-            System.out.println("Vots municipis importats correctament");
 
         } catch (IOException e) {
             e.printStackTrace();
