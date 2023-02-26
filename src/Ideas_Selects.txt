@@ -1,0 +1,68 @@
+1.  Una select que mostri de la taula municipis si és un municipi o un districte
+    i en cas de ser un districte: quants districtes hi ha del municipi al qual pertany el districte;
+    i si és un municipi: quants municipis hi ha a la província on pertany el municipi.
+
+SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
+		nom,
+        IF(districte = 99, (SELECT COUNT(*)
+								FROM municipis m1
+							WHERE m1.provincia_id = m.provincia_id AND districte = 99),
+						   (SELECT COUNT(*)
+								FROM municipis m2
+							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
+	FROM municipis m;
+
+
+2.  Mostra'm els parells de municipis que tinguin el mateix ratio de participació
+
+WITH participacio (ratio) AS (SELECT nom, vots_emesos / cens AS ratio
+								FROM eleccions_municipis e1
+							  WHERE districte = 99)
+SELECT p.nom, p1.nom
+	FROM participacio p
+    INNER JOIN participacio p1 USING (ratio)
+WHERE p.nom != p1.nom;
+
+
+3.  Volem un codi ine únic de cada municipi, com el codi INE del municipi es
+    pot repetir per municipis de diferents provincies i es podria donar el mateix cas amb
+    les províncies de diferents CAs, cal sumar el codi INE de la CA, la provincia
+    i el municipi de cada municipi.
+
+SELECT CONCAT(ca.codi_ine,p.codi_ine,m.codi_ine), m.nom AS municipi
+	FROM municipis m
+    INNER JOIN provincies p USING (provincia_id)
+    INNER JOIN comunitats_autonomes  ca USING (comunitat_aut_id);
+
+
+4.  Genera del partit de VOX dues llistes separades per sexe.
+    Volem que totes les llistes siguin de fins a 10 candidats. Si una llista no arriba a 10
+    mostrarem '-' pel nom del candidat.
+
+WITH RECURSIVE ranking(n) AS
+(SELECT 1
+UNION
+SELECT n + 1
+	FROM ranking)
+WITH candidatM AS
+(SELECT n, p.nom
+	FROM persones p
+    INNER JOIN candidats c USING (candidat_id)
+    INNER JOIN ranking
+WHERE p.sexe = 'M' AND c.nom_curt = 'VOX')
+WITH candidatF AS
+(SELECT n, p.nom
+	FROM persones p
+    INNER JOIN candidats c USING (candidat_id)
+    INNER JOIN ranking
+WHERE p.sexe = 'F' AND c.nom_curt = 'VOX')
+SELECT n, m.nom AS candidats_masculins, f.nom AS candidats_femenins
+	FROM candidatsM m
+    INNER JOIN candidatsF f USING (n);
+
+5.  Quina diferència hi ha entre la quantitat de candidats masculins i femenins?
+
+SELECT COUNT(*)
+	FROM candidats
+	INNER JOIN persones p USING (persona_id))
+GROUP BY p.sexe;
