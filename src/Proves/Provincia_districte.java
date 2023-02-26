@@ -1,10 +1,9 @@
-package proves;
+package Proves;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
-import java.util.List;
 
 public class Provincia_districte {
 

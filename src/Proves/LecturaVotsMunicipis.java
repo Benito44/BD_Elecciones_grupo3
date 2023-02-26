@@ -1,11 +1,9 @@
-package proves;
+package Proves;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LecturaVotsMunicipis {
     public static void main(String[] args) {

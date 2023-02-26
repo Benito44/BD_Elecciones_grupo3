@@ -1,4 +1,4 @@
-package codi_provisional;
+package Exercicis.Importacio;
 
 import java.io.BufferedReader;
 import java.io.IOException;
