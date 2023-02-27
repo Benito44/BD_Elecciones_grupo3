@@ -180,11 +180,11 @@ public class InsertQuery {
             String query =  "INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)" +
                     "VALUES (1," +
                     "       (SELECT municipi_id" +
-                    "          FROM eleccions_municipis" +
-                    "        WHERE candidatura_id = ?)," +
+                    "          FROM municipis"+
+                    "        WHERE codi_ine = ?)," +
                     "       (SELECT candidatura_id" +
                     "          FROM candidatures" +
-                    "        WHERE candidatura_id = ? AND eleccio_id = 1)," +
+                    "        WHERE codi_candidatura = ? AND eleccio_id = 1)," +
                     "       ?)";
 
             // create the mysql insert preparedstatement
