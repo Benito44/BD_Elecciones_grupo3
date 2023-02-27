@@ -178,16 +178,16 @@ public class InsertQuery {
 
             // the mysql insert statement
             String query =  "INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)" +
-                    "VALUES (1," +
-                    "       (SELECT municipi_id" +
-                    "          FROM municipis"+
-                    "        WHERE codi_ine = ? AND provincia_id = (SELECT provincia_id" +
-                    "                                                   FROM provincies" +
-                    "                                               WHERE codi_ine = ?)," +
-                    "       (SELECT candidatura_id" +
-                    "          FROM candidatures" +
-                    "        WHERE codi_candidatura = ? AND eleccio_id = 1)," +
-                    "       ?)";
+                            "VALUES (1," +
+                            "       (SELECT e.municipi_id" +
+                            "           FROM eleccions_municipis e" +
+                            "           INNER JOIN municipis m USING (municipi_id)" +
+                            "           INNER JOIN provincies p USING (provincia_id)" +
+                            "        WHERE m.codi_ine = ? AND p.codi_ine = ?)," +
+                            "       (SELECT candidatura_id" +
+                            "           FROM candidatures" +
+                            "        WHERE codi_candidatura = ? AND eleccio_id = 1)," +
+                            "        ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);

@@ -211,13 +211,14 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                codi_ine_prov = strLinia.substring(9, 11);
-                codi_ine_municipi = strLinia.substring(11, 14);
-                codi_candidatura = strLinia.substring(16, 22);
-                vots = Integer.parseInt(strLinia.substring(22, 30));
-
-                //Inserim dades
-                InsertQuery.insertIntoVotsMunicipals(codi_ine_municipi, codi_ine_prov, codi_candidatura, vots);
+                if(strLinia.substring(0, 2).equals("04")) { // Filtrem només eleccions municipals
+                    codi_ine_prov = strLinia.substring(9, 11);
+                    codi_ine_municipi = strLinia.substring(11, 14);
+                    codi_candidatura = strLinia.substring(16, 22);
+                    vots = Integer.parseInt(strLinia.substring(22, 30));
+                    //Inserim dades
+                    InsertQuery.insertIntoVotsMunicipals(codi_ine_municipi, codi_ine_prov, codi_candidatura, vots);
+                }
             }
             System.out.println("Vots municipis importats correctament");
 
