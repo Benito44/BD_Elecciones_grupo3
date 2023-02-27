@@ -1,13 +1,14 @@
-package codi_provisional;
+package Exercicis.Importacio;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
 public class Execute {
     public static void main(String[] args) {
         try {
+            // 0. Inserim manualment el registre de la taula ELECCIONS
+            //InsertQuery.insertIntoEleccions();
+
             // 1. Inserim dades a la taula COMUNITATS
             //Import.importarComunitatsAutonomes();
 
