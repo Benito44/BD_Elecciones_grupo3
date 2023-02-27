@@ -181,7 +181,7 @@ public class InsertQuery {
                     "VALUES (1," +
                     "       (SELECT municipi_id" +
                     "          FROM municipis"+
-                    "        WHERE candidatura_id = ?)," +
+                    "        WHERE codi_ine = ?)," +
                     "       (SELECT candidatura_id" +
                     "          FROM candidatures" +
                     "        WHERE codi_candidatura = ? AND eleccio_id = 1)," +
