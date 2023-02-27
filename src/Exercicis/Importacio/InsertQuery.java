@@ -237,19 +237,19 @@ public class InsertQuery {
             Connection con = DBMySQLManager.getConnection();
 
             // the mysql insert statement
-            String query =  "INSERT INTO vots_candidatures_ca (comunitat_autonoma_id,canditatura_id,vots)" +
+            String query =  "INSERT INTO vots_candidatures_ca (candidatura_id, comunitat_autonoma_id,vots)" +
                             "VALUES ((SELECT candidatura_id" +
                             "           FROM candidatures" +
                             "         WHERE candidatura_id = ? and eleccio_id = 1)," +
-                            "        (SELECT comunitat_autonoma_id" +
+                            "        (SELECT comunitat_aut_id" +
                             "           FROM comunitats_autonomes" +
                             "         WHERE codi_ine = ?)," +
                             "        ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString(1, comunitat_autonoma_id);
-            preparedStmt.setString(2, candidatura_id);
+            preparedStmt.setString(2, comunitat_autonoma_id);
+            preparedStmt.setString(1, candidatura_id);
             preparedStmt.setInt(3, vots);
 
             // execute the preparedstatement
