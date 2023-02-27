@@ -10,7 +10,7 @@ public class InsertQuery {
             Connection con = DBMySQLManager.getConnection();
 
             // the mysql insert statement
-            String query =  "INSERT INTO eleccions (eleccio_i, nom, data) " +
+            String query =  "INSERT INTO eleccions (eleccio_id, nom, data) " +
                             "VALUES (1, 'Eleccions 2016', '2016-06-02')";
 
             // create the mysql insert preparedstatement
