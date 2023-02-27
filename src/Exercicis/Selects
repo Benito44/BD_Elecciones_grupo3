@@ -7,8 +7,7 @@ CATEGORIA 1
 SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 		nom,
         IF(districte = 99, (SELECT COUNT(*)
-								FROM municipis m1
-							WHERE m1.provincia_id = m.provincia_id AND districte = 99),
+								FROM municipis WHERE m1.provincia_id = m.provincia_id AND districte = 99),
 						   (SELECT COUNT(*)
 								FROM municipis m2
 							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
