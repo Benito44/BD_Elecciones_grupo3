@@ -25,7 +25,7 @@ public class Execute {
             //Import.importarPersonesAndCandidats();
 
             // 6. Inserim dades a la taula VOTS_CANDIDATURES_MUN
-            //Import.importVotsMunicipis();
+            Import.importVotsMunicipals();
 
             // 7. Inserim dades a la taula VOTS_CANDIDATURES_PROV
             //Import.importVotsProvincials();
