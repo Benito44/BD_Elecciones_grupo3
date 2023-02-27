@@ -69,6 +69,7 @@ CATEGORIA 3:
 
 
 1.  Quin o quins són el nom més repetit entre totes les persones?
+
 SELECT nom, COUNT(*) as vegades_repetit
 	FROM persones
 GROUP BY nom
@@ -77,7 +78,12 @@ LIMIT 1;
 
 2. Quin o quins son els municipis amb el major número de votants?
 
-SELECT m.nom
+SELECT m.municipi_id, m.nom
+	FROM municipis m
+    INNER JOIN vots_candidatures_mun v ON v.municipi_id = m.municipi_id
+WHERE vots = (SELECT MAX(vots)
+					FROM vots_candidatures_mun)
+GROUP BY m.municipi_id;
 
 
 
