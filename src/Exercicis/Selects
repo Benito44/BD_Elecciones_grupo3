@@ -14,6 +14,26 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
 	FROM municipis m;
 
+2.  Digues quants candidats titulas (‘T`) I quants candidats suplents (‘S’) existeixen per a cada candidatura.
+    Agrupa la resposta per candidatura.
+
+SELECT candidatura_id, SUM(IF(tipus = 'T', 1, 0)) AS titulars,  SUM(IF(tipus = 'S', 1, 0)) AS suplents
+    FROM candidats
+GROUP BY candidatura_id;
+
+
+3.  Volem saber el nom i cognom de totes les persones el nom de les quals comenci per ‘J’. Mostra-ho per ordre alfabètic.
+
+SELECT nom, cog1
+    FROM persones
+WHERE nom LIKE 'J%'
+ORDER BY nom ASC;
+
+4.  Quina és la mitjana de vots per província a cada comunitat autònoma?
+
+SELECT comunitat_id, AVG(vots)
+	FROM provincies
+GROUP BY comunitat_id;
 
 CATEGORIA 2
 
