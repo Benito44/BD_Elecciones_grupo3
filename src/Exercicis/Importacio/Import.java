@@ -211,7 +211,7 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                if(strLinia.substring(0, 2).equals("04")) {
+                if(strLinia.substring(0, 2).equals("04")) { // Filtrem només eleccions municipals
                     codi_ine_prov = strLinia.substring(9, 11);
                     codi_ine_municipi = strLinia.substring(11, 14);
                     codi_candidatura = strLinia.substring(16, 22);
