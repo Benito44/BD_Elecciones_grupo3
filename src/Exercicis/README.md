@@ -56,4 +56,6 @@ Afegim els vots municipals on
 
 **-- VOTS AUTONOMICS --**
 
-Afegim els vots municipals on 
+Afegim els vots autonomics on hem de treure la candidatura_id de la taula candidatures on el seu codi sigui igual al valor
+extret i que la seva elecció sigui 1 i on hem de treure la comunitat_autonoma_id de la taula comunitats_autonomes on el seu codi sigui igual al valor
+extret.
