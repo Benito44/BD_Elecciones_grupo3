@@ -288,6 +288,7 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
+
                 codi_ine = strLinia.substring(9, 11);
                 codi_candidatura = strLinia.substring(14, 20);
                 vots = Integer.parseInt(strLinia.substring(20, 28));
