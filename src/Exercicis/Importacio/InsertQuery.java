@@ -183,7 +183,7 @@ public class InsertQuery {
                     "          FROM municipis"+
                     "        WHERE codi_ine = ? AND provincia_id = (SELECT provincia_id" +
                     "                                                   FROM provincies" +
-                    "                                               WHERE codi_ine = ?)," +
+                    "                                               WHERE codi_ine = ?))," +
                     "       (SELECT candidatura_id" +
                     "          FROM candidatures" +
                     "        WHERE codi_candidatura = ? AND eleccio_id = 1)," +
