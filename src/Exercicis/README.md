@@ -24,17 +24,25 @@ Trobarem el codi_ine i el nom dels quals siguin 99 per treure el nivell total.
 Importarem les províncies excloent el total nacional i la comunitat. On la ID de la comunitat autonoma 
 la saquem on el codi_ine de la taula de la comunitat autonoma.
 
-
 **-- MUNICIPIS --**
 
-A la de municipis extraurem el nom del municipi si el número del districte municipal es 99 o el nom de la província si aquest no es 99.També hem canviat la clau unica del codi_ine perque aquesta es refereixi al districte i a la provincia també.
-A continuació afeguim la taula de candidatures (FK)
+A la de municipis extraurem el nom del municipi si el número del districte municipal es 99 o el nom de la província si aquest no es 99.També hem canviat la clau unica del codi_ine perque 
+aquesta es refereixi al districte i a la provincia també.
+On la ID de la provincia la saquem on el codi_ine de la taula de la provincies.
 
-**-- PERSONES1 --**
+**-- CANDIDATURES --**
 
-Tant a la taula de persones com candidats guardem les seves dades alhora, ja que s'extreuen del mateix fitxer
+Les taules com candidats necessiten aquesta taula.
 
-**-- VOTS MUNICIPIS, PROVINCIONALS I AUTONOMICS --**
+**-- PERSONES I CANDIDATS--**
+
+Tant a la taula de persones com candidats guardem les seves dades alhora, ja que s'extreuen del mateix fitxer.
+
+Dintre de candidats hem de treure la candidatura_id de la taula candidatures on el seu codi que sigui igual al valor
+extret i que la seva elecció sigui 1.
+
+
+**-- VOTS MUNICIPALS, PROVINCIONALS I AUTONOMICS --**
 
 I per últim afeguim les tres taules de vots municipals, provincials, i autonomics amb (una sequencia sql) perquè les tres 
 necessiten d'un () per guardar les seves dades().
