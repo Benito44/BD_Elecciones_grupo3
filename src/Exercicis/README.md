@@ -48,10 +48,12 @@ extret.
 
 **-- VOTS MUNICIPALS --**
 
-I per últim afeguim les tres taules de vots municipals, provincials, i autonomics amb (una sequencia sql) perquè les tres 
-necessiten d'un () per guardar les seves dades().
+Afegim els vots municipals on 
 
 **-- VOTS PROVINCIONALS  --**
 
+Afegim els vots municipals on
 
 **-- VOTS AUTONOMICS --**
+
+Afegim els vots municipals on 
