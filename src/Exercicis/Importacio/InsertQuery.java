@@ -184,7 +184,7 @@ public class InsertQuery {
                     "        WHERE candidatura_id = ?)," +
                     "       (SELECT candidatura_id" +
                     "          FROM candidatures" +
-                    "        WHERE candidatura_id = ? AND eleccio_id = 1)," +
+                    "        WHERE codi_candidatura = ? AND eleccio_id = 1)," +
                     "       ?)";
 
             // create the mysql insert preparedstatement
