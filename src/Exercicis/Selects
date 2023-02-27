@@ -1,3 +1,5 @@
+CATEGORIA 1
+
 1.  Una select que mostri de la taula municipis si és un municipi o un districte
     i en cas de ser un districte: quants districtes hi ha del municipi al qual pertany el districte;
     i si és un municipi: quants municipis hi ha a la província on pertany el municipi.
@@ -5,15 +7,36 @@
 SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 		nom,
         IF(districte = 99, (SELECT COUNT(*)
-								FROM municipis m1
-							WHERE m1.provincia_id = m.provincia_id AND districte = 99),
+								FROM municipis WHERE m1.provincia_id = m.provincia_id AND districte = 99),
 						   (SELECT COUNT(*)
 								FROM municipis m2
 							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
 	FROM municipis m;
 
+2.  Digues quants candidats titulas (‘T`) I quants candidats suplents (‘S’) existeixen per a cada candidatura.
+    Agrupa la resposta per candidatura.
 
-2.  Mostra'm els parells de municipis que tinguin el mateix ratio de participació
+SELECT candidatura_id, SUM(IF(tipus = 'T', 1, 0)) AS titulars,  SUM(IF(tipus = 'S', 1, 0)) AS suplents
+    FROM candidats
+GROUP BY candidatura_id;
+
+
+3.  Volem saber el nom i cognom de totes les persones el nom de les quals comenci per ‘J’. Mostra-ho per ordre alfabètic.
+
+SELECT nom, cog1
+    FROM persones
+WHERE nom LIKE 'J%'
+ORDER BY nom ASC;
+
+4.  Quina és la mitjana de vots per província a cada comunitat autònoma?
+
+SELECT comunitat_id, AVG(vots)
+	FROM provincies
+GROUP BY comunitat_id;
+
+CATEGORIA 2
+
+1.  Mostra'm els parells de municipis que tinguin el mateix ratio de participació
 
 WITH participacio (ratio) AS (SELECT nom, vots_emesos / cens AS ratio
 								FROM eleccions_municipis e1
@@ -24,18 +47,43 @@ SELECT p.nom, p1.nom
 WHERE p.nom != p1.nom;
 
 
-3.  Volem un codi ine únic de cada municipi, com el codi INE del municipi es
+2.  Volem un codi ine únic de cada municipi, com el codi INE del municipi es
     pot repetir per municipis de diferents provincies i es podria donar el mateix cas amb
     les províncies de diferents CAs, cal sumar el codi INE de la CA, la provincia
-    i el municipi de cada municipi.
+    i el codi de cada municipi.
 
-SELECT CONCAT(ca.codi_ine,p.codi_ine,m.codi_ine), m.nom AS municipi
+SELECT CONCAT(ca.codi_ine,p.codi_ine,m.codi_ine) AS codi_ine_uk, m.nom AS municipi
 	FROM municipis m
     INNER JOIN provincies p USING (provincia_id)
     INNER JOIN comunitats_autonomes  ca USING (comunitat_aut_id);
 
+3.  Quina diferència hi ha entre la quantitat de candidats masculins i femenins?
 
-4.  Genera del partit de VOX dues llistes separades per sexe.
+SELECT COUNT(*)
+	FROM candidats
+	INNER JOIN persones p USING (persona_id))
+GROUP BY p.sexe;
+
+
+CATEGORIA 3:
+
+
+1.  Quin o quins són el nom més repetit entre totes les persones?
+SELECT nom, COUNT(*) as vegades_repetit
+	FROM persones
+GROUP BY nom
+ORDER BY vegades_repetit DESC
+LIMIT 1;
+
+2. Quin o quins son els municipis amb el major número de votants?
+
+SELECT m.nom
+
+
+
+CATEGORIA 4:
+
+1.  Genera del partit de VOX dues llistes separades per sexe.
     Volem que totes les llistes siguin de fins a 10 candidats. Si una llista no arriba a 10
     mostrarem '-' pel nom del candidat.
 
@@ -59,10 +107,3 @@ WHERE p.sexe = 'F' AND c.nom_curt = 'VOX')
 SELECT n, m.nom AS candidats_masculins, f.nom AS candidats_femenins
 	FROM candidatsM m
     INNER JOIN candidatsF f USING (n);
-
-5.  Quina diferència hi ha entre la quantitat de candidats masculins i femenins?
-
-SELECT COUNT(*)
-	FROM candidats
-	INNER JOIN persones p USING (persona_id))
-GROUP BY p.sexe;

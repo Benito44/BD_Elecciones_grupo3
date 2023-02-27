@@ -206,17 +206,18 @@ public class Import {
             String strLinia;
 
             // Dades que recollim de l'arxiu
-            String codi_ine_municipi, codi_candidatura;
+            String codi_ine_prov, codi_ine_municipi, codi_candidatura;
             int vots;
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
+                codi_ine_prov = strLinia.substring(9, 11);
                 codi_ine_municipi = strLinia.substring(11, 14);
                 codi_candidatura = strLinia.substring(16, 22);
                 vots = Integer.parseInt(strLinia.substring(22, 30));
 
                 //Inserim dades
-                InsertQuery.insertIntoVotsMunicipals(codi_ine_municipi, codi_candidatura, vots);
+                InsertQuery.insertIntoVotsMunicipals(codi_ine_municipi, codi_ine_prov, codi_candidatura, vots);
             }
             System.out.println("Vots municipis importats correctament");
 
