@@ -38,8 +38,12 @@ Les taules com candidats necessiten aquesta taula.
 
 Tant a la taula de persones com candidats guardem les seves dades alhora, ja que s'extreuen del mateix fitxer.
 
-Dintre de candidats hem de treure la candidatura_id de la taula candidatures on el seu codi que sigui igual al valor
+Dintre de candidats hem de treure la candidatura_id de la taula candidatures on el seu codi sigui igual al valor
 extret i que la seva elecció sigui 1.
+La persona_id de la taula persones on el seu dni sigui igual al valor
+extret.
+La provincia_id de la taula provincies on el seu codi sigui igual al valor
+extret.
 
 
 **-- VOTS MUNICIPALS, PROVINCIONALS I AUTONOMICS --**
