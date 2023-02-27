@@ -13,6 +13,7 @@ Quan executem la classe principal Export,
 la primera taula que s'importa és la d'eleccions i 
 s'importa manualment, ja que nomès tenim un tipus d'eleccions i 
 aquesta és la de 2016.
+
 La seguent taula a importar és la de comunitats_autonomes on trobarem el codi_ine i el nom dels quals siguin 99 per treure el nivell total.
 A la taula de provincies importarem les províncies excloent //el nivell total.
 A la de municipis extraurem el nom del municipi si el número del districte municipal es 99 o el nom de la província si aquest no es 99.També hem canviat la clau unica del codi_ine perque aquesta es refereixi al districte i a la provincia també.
