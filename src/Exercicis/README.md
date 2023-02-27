@@ -46,8 +46,12 @@ La provincia_id de la taula provincies on el seu codi sigui igual al valor
 extret.
 
 
-**-- VOTS MUNICIPALS, PROVINCIONALS I AUTONOMICS --**
+**-- VOTS MUNICIPALS --**
 
 I per últim afeguim les tres taules de vots municipals, provincials, i autonomics amb (una sequencia sql) perquè les tres 
 necessiten d'un () per guardar les seves dades().
 
+**-- VOTS PROVINCIONALS  --**
+
+
+**-- VOTS AUTONOMICS --**
