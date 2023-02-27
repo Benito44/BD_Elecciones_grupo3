@@ -180,7 +180,7 @@ public class InsertQuery {
             String query =  "INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)" +
                     "VALUES (1," +
                     "       (SELECT municipi_id" +
-                    "          FROM eleccions_municipis" +
+                    "          FROM municipis"+
                     "        WHERE candidatura_id = ?)," +
                     "       (SELECT candidatura_id" +
                     "          FROM candidatures" +

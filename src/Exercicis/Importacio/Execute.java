@@ -7,7 +7,7 @@ public class Execute {
     public static void main(String[] args) {
         try {
             // 0. Inserim manualment el registre de la taula ELECCIONS
-            InsertQuery.insertIntoEleccions();
+            //InsertQuery.insertIntoEleccions();
 
             // 1. Inserim dades a la taula COMUNITATS
             //Import.importarComunitatsAutonomes();
@@ -25,7 +25,7 @@ public class Execute {
             //Import.importarPersonesAndCandidats();
 
             // 6. Inserim dades a la taula VOTS_CANDIDATURES_MUN
-            //Import.importVotsMunicipis();
+            Import.importVotsMunicipals();
 
             // 7. Inserim dades a la taula VOTS_CANDIDATURES_PROV
             //Import.importVotsProvincials();
