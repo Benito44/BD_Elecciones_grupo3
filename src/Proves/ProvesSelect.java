@@ -1,7 +1,6 @@
-package proves;
+package Proves;
 
 import java.sql.*;
-import java.util.Calendar;
 
 public class ProvesSelect {
     public static void main(String[] args) {

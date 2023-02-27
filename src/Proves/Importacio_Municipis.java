@@ -1,4 +1,4 @@
-package proves;
+package Proves;
 
 public class Importacio_Municipis {
     public static void main(String[] args) {

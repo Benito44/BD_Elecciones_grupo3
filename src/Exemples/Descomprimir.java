@@ -1,4 +1,4 @@
-package ejemplos;
+package Exemples;
 import java.io.*;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;

@@ -1,4 +1,4 @@
-package proves;
+package Proves;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.List;

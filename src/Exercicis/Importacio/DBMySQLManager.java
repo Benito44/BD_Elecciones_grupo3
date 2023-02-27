@@ -1,4 +1,4 @@
-package codi_provisional;
+package Exercicis.Importacio;
 import java.sql.*;
 
 public class DBMySQLManager {
@@ -15,7 +15,7 @@ public class DBMySQLManager {
     private String url;
     private String usuari ="perepi";
     private String contrasenya = "pastanaga";
-    private String host = ipDavid; //IP de qui executi el programa
+    private String host = ipMarc; //IP de qui executi el programa
     private String base_dades = "eleccions2017"; // PROVA: eleccions2017, BONA: eleccions2016
 
     // Constructors
