@@ -52,7 +52,8 @@ Afegim els vots municipals on
 
 **-- VOTS PROVINCIONALS  --**
 
-Afegim els vots municipals on
+Afegim els vots provincionals on la ID de la provincia la saquem on el codi_ine de la taula de la provincies.
+I on la ID de la candidatura la saquem de la taula candidatures.
 
 **-- VOTS AUTONOMICS --**
 
