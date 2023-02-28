@@ -45,6 +45,12 @@ SELECT p.nom, p1.nom
     INNER JOIN participacio p1 USING (ratio)
 WHERE p.nom != p1.nom;
 
+2. Digam el nom dels municipis que pertanyen a la província de Girona.
+SELECT m.nom
+FROM municipis m
+INNER JOIN provincies pr ON pr.provincia_id = m.provincia_id
+WHERE pr.nom LIKE '%Girona%'
+
 
 4. Quantes num_meses té cada municipi i ordenar-la per quantes quantitats té.
 
