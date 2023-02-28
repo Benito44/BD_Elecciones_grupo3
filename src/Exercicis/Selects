@@ -45,7 +45,7 @@ SELECT p.nom, p1.nom
     INNER JOIN participacio p1 USING (ratio)
 WHERE p.nom != p1.nom;
 
-2. Digam el nom dels municipis que pertanyen a la província de Girona.
+2. Diguem el nom dels municipis que pertanyen a la província de Girona.
 SELECT m.nom
 FROM municipis m
 INNER JOIN provincies pr ON pr.provincia_id = m.provincia_id
@@ -72,7 +72,7 @@ WHERE pr.nom LIKE '%Madrid%';
 CATEGORIA 3:
 
 
-1. Quin o quins son els municipis amb el major número de votants?
+1. Quin o quins són els municipis amb el major número de votants?
 
 SELECT m.municipi_id, m.nom
 	FROM municipis m
@@ -82,7 +82,7 @@ WHERE vots = (SELECT MAX(vots)
 GROUP BY m.municipi_id;
 
 
-1.  Una select que mostri de la taula municipis si és un municipi o un districte
+2.  Una select que mostri de la taula municipis si és un municipi o un districte
     i en cas de ser un districte: quants districtes hi ha del municipi al qual pertany el districte;
     i si és un municipi: quants municipis hi ha a la província on pertany el municipi.
 
