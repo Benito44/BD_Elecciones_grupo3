@@ -152,7 +152,7 @@ public class LecturaDades {
                 System.out.println("Cognom2: " + strLinia.substring(75, 100));
                 String cognom2 = strLinia.substring(75, 100);
                     /*
-                    //TODO: Les següents dades no surten al fitxer pero si estàn solicitades a la BD, en l'insert haurem de posarles en null.
+                    //Les següents dades no surten al fitxer pero si estàn solicitades a la BD, en l'insert haurem de posarles en null.
                     //Sexo del candidato
                     System.out.println("Sexo: " + strLinia.substring(100, 101));
                     //data de naixament
