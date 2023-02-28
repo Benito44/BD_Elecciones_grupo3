@@ -13,7 +13,7 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
 	FROM municipis m;
 
-2.  Digues quants candidats titulars (‘T`) I quants candidats suplents (‘S’) existeixen per a cada candidatura.
+2.  Digues quants candidats titulars (‘T') I quants candidats suplents (‘S’) existeixen per a cada candidatura.
     Agrupa la resposta per candidatura.
 
 SELECT candidatura_id, SUM(IF(tipus = 'T', 1, 0)) AS titulars,  SUM(IF(tipus = 'S', 1, 0)) AS suplents
@@ -33,6 +33,16 @@ ORDER BY nom ASC;
 SELECT comunitat_id, AVG(vots)
 	FROM provincies
 GROUP BY comunitat_id;
+
+
+5.  Quin o quins són el nom més repetit entre totes les persones?
+
+SELECT nom, COUNT(*) as vegades_repetit
+	FROM persones
+GROUP BY nom
+ORDER BY vegades_repetit DESC
+LIMIT 1;
+
 
 CATEGORIA 2
 
@@ -68,15 +78,7 @@ GROUP BY p.sexe;
 CATEGORIA 3:
 
 
-1.  Quin o quins són el nom més repetit entre totes les persones?
-
-SELECT nom, COUNT(*) as vegades_repetit
-	FROM persones
-GROUP BY nom
-ORDER BY vegades_repetit DESC
-LIMIT 1;
-
-2. Quin o quins son els municipis amb el major número de votants?
+1. Quin o quins son els municipis amb el major número de votants?
 
 SELECT m.municipi_id, m.nom
 	FROM municipis m
