@@ -1,9 +1,4 @@
-Entrar en isard, con la cuenta: daw-m2-g3 y la contraseña sapa98765
-Activar maquina y poner root patata dentro de la maquina virtual
-cerrar la cuenta y entrar en cuenta personal
-
-
-MarkDOWN
+**-- MarkDown --**
 
 L'importació de dades d'un fitxer DAT a la base de dades s'ha dut a terme amb funcions cridant a cadascuna de les taules.
 Dintre de cada funció, primer s'ubica el fitxer DAT en una carpeta comuna per cada un dels membres de l'equip, aleshores es busca amb un substring la posició exacta de l'informació i es guarda en la seva variable corresponent.
@@ -22,13 +17,20 @@ Trobarem el codi_ine i el nom dels quals siguin 99 per treure el nivell total.
 **-- PROVINCIES --**
 
 Importarem les províncies excloent el total nacional i la comunitat. On la ID de la comunitat autonoma 
-la saquem on el codi_ine de la taula de la comunitat autonoma.
+la saquem on el codi_ine de la taula de la comunitat autònoma.
 
-**-- MUNICIPIS --**
+**-- MUNICIPIS I ELECCIONS MUNICIPIS--**
 
 A la de municipis extraurem el nom del municipi si el número del districte municipal es 99 o el nom de la província si aquest no es 99.També hem canviat la clau unica del codi_ine perque 
 aquesta es refereixi al districte i a la provincia també.
 On la ID de la provincia la saquem on el codi_ine de la taula de la provincies.
+
+Dintre d'eleccions municipis 
+vots_can_mun--> municipi_id
+1. MUNICIPIS I CANDIDATURES
+2. RELLENAR ELECCIONS
+foreign i primary
+
 
 **-- CANDIDATURES --**
 
@@ -59,3 +61,7 @@ I on la ID de la candidatura la saquem de la taula candidatures.
 Afegim els vots autonomics on hem de treure la candidatura_id de la taula candidatures on el seu codi sigui igual al valor
 extret i que la seva elecció sigui 1 i on hem de treure la comunitat_autonoma_id de la taula comunitats_autonomes on el seu codi sigui igual al valor
 extret.
+
+filtrar 99
+
+**-- PROBLEMES --**
