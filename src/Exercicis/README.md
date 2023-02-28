@@ -44,9 +44,9 @@ extret.
 
 Afegim els vots municipals on 
 
-**-- VOTS PROVINCIONALS  --**
+**-- VOTS PROVICIONALS  --**
 
-Afegim els vots provincionals on la ID de la provincia la saquem on el codi_ine de la taula de la provincies.
+Afegim els vots provicionals on la ID de la provincia la saquem on el codi_ine de la taula de la provincies.
 I on la ID de la candidatura la saquem de la taula candidatures.
 
 **-- VOTS AUTONOMICS --**
@@ -59,9 +59,8 @@ filtrar 99
 
 **-- PROBLEMES --**
 
+Per la taula vots_candidats_municipis necessitàvem importar el seu municipi_id des de la taula eleccions_municipis 
 
-Dintre d'eleccions municipis
-vots_can_mun--> municipi_id
 MUNICIPIS I CANDIDATURES
 RELLENAR ELECCIONS
    foreign i primary
