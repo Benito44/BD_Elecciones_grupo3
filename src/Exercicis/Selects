@@ -83,6 +83,7 @@ ORDER BY num_meses DESC;
 
 
 5. Quins candidats es presenten a Madrid?
+
 SELECT p.nom, p.cog1, p.cog2
     FROM persones p
     INNER JOIN candidats c ON c.persona_id = p.persona_id
