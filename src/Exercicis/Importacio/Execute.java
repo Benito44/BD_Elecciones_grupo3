@@ -25,13 +25,13 @@ public class Execute {
             //Import.importarPersonesAndCandidats();
 
             // 6. Inserim dades a la taula VOTS_CANDIDATURES_MUN
-            Import.importVotsMunicipals();
+            //Import.importVotsMunicipals();
 
             // 7. Inserim dades a la taula VOTS_CANDIDATURES_PROV
             //Import.importVotsProvincials();
 
             // 8. Inserim dades a la taula VOTS_CANDIDATURES_CA
-             //Import.importVotsAutonomiques();
+             Import.importVotsAutonomiques();
 
             // Tanquem connexió
             DBMySQLManager.closeConnection();
