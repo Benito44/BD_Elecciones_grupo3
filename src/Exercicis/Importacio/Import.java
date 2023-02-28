@@ -110,7 +110,7 @@ public class Import {
 
                 //Inserim dades
                 InsertQuery.insertIntoMunicipis(nom, codi_ine, ine_provincia, districte);
-                InsertQuery.insertIntoEleccions_Municipis(ine_provincia, codi_ine, districte, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls);
+                InsertQuery.insertIntoEleccionsMunicipis(ine_provincia, codi_ine, districte, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls);
             }
             System.out.println("Municipis i eleccions-municipis importats correctament");
 
@@ -216,20 +216,17 @@ public class Import {
 
             // Dades que recollim de l'arxiu
             String codi_ine_prov, codi_ine_municipi, codi_candidatura, districte;
-            int vots, count = 1;
+            int vots;
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                if (count > 13700) {
-                    codi_ine_prov = strLinia.substring(9, 11);
-                    codi_ine_municipi = strLinia.substring(11, 14);
-                    districte = strLinia.substring(14, 16);
-                    codi_candidatura = strLinia.substring(16, 22);
-                    vots = Integer.parseInt(strLinia.substring(22, 30));
-                    //Inserim dades
-                    InsertQuery.insertIntoVotsMunicipals(codi_ine_prov, codi_ine_municipi, districte, codi_candidatura, vots);
-                }
-                count++;
+                codi_ine_prov = strLinia.substring(9, 11);
+                codi_ine_municipi = strLinia.substring(11, 14);
+                districte = strLinia.substring(14, 16);
+                codi_candidatura = strLinia.substring(16, 22);
+                vots = Integer.parseInt(strLinia.substring(22, 30));
+                //Inserim dades
+                InsertQuery.insertIntoVotsMunicipals(codi_ine_prov, codi_ine_municipi, districte, codi_candidatura, vots);
             }
             System.out.println("Vots municipis importats correctament");
 
@@ -297,7 +294,7 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                if (strLinia.substring(11, 13) == "99") {
+                if (strLinia.substring(11, 13).equals("99")) {
                     codi_ine = strLinia.substring(9, 11);
                     codi_candidatura = strLinia.substring(14, 20);
                     vots = Integer.parseInt(strLinia.substring(20, 28));

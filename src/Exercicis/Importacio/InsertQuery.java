@@ -93,7 +93,7 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoEleccions_Municipis(String ine_prov, String codi_ine, String districte, int num_meses, int cens, int vots_emesos, int vots_valids, int vots_candidatures, int vots_blanc, int vots_nuls) {
+    public static void insertIntoEleccionsMunicipis(String ine_prov, String codi_ine, String districte, int num_meses, int cens, int vots_emesos, int vots_valids, int vots_candidatures, int vots_blanc, int vots_nuls) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
