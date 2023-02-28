@@ -270,6 +270,7 @@ public class InsertQuery {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
 
+
             // the mysql insert statement
             String query =  "INSERT INTO vots_candidatures_ca (candidatura_id, comunitat_autonoma_id,vots)" +
                             "VALUES ((SELECT candidatura_id" +
