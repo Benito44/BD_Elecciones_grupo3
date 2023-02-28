@@ -60,9 +60,12 @@ filtrar 99
 **-- PROBLEMES --**
 
 Per la taula vots_candidats_municipis necessitàvem importar el seu municipi_id des de la taula eleccions_municipis 
+i dintre de la informació de la base de dades no teniem cap indici d'aquesta taula.
+Al final vam arribar amb dues opcions diferents:
 
-MUNICIPIS I CANDIDATURES
-RELLENAR ELECCIONS
-   foreign i primary
+1. Fer que la foreign key apunti a la taula de municipis amb el municipi_id i la taula candidatures amb l'eleccio_id.
+2. Omplir la taula eleccions_municipis amb el mateix fitxer de la taula municipis
 
-- Hem hagut de inventarnos un DNI generat a partir de Numero de volta + codigo INE de provincia + districte electoral + codi de la candidatura + numero de ordre de candidat (Hem filtrat uns quants numeros que es repetien per fer-lo més net).
+Vam escollir la segona opció i vam inserir les dades seguidament amb les de municipi
+
+- Hem hagut de inventar-nos un DNI generat a partir de **Numero de volta** + **código INE de província** + **districte electoral** + **codi de la candidatura** + **numero de ordre de candidat** (Hem filtrat uns quants números que es repetien per fer-lo més net).
