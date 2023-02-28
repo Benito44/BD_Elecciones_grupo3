@@ -68,4 +68,6 @@ Al final vam arribar amb dues opcions diferents:
 
 Vam escollir la segona opció i vam inserir les dades seguidament amb les de municipi
 
-- Hem hagut de inventar-nos un DNI generat a partir de **Numero de volta** + **código INE de província** + **districte electoral** + **codi de la candidatura** + **numero de ordre de candidat** (Hem filtrat uns quants números que es repetien per fer-lo més net).
+- Hem hagut de inventar-nos un DNI generat a partir de **numero de volta** + **código INE de província** + **districte electoral** + **codi de la candidatura** + **numero de ordre de candidat** (Hem filtrat uns quants números que es repetien per fer-lo més net).
+
+count de vots_municipis
