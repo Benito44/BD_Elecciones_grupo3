@@ -68,7 +68,7 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoMunicipis(String nom, String codi_ine, String ine_provincia, int districte) {
+    public static void insertIntoMunicipis(String nom, String codi_ine, String ine_provincia, String districte) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
@@ -83,8 +83,42 @@ public class InsertQuery {
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, nom);
             preparedStmt.setString(2, codi_ine);
-            preparedStmt.setString(3, String.valueOf(districte));
-            preparedStmt.setInt(4, Integer.parseInt(ine_provincia));
+            preparedStmt.setString(3, districte);
+            preparedStmt.setString(4, ine_provincia);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void insertIntoEleccions_Municipis(String ine_prov, String codi_ine, String districte, int num_meses, int cens, int vots_emesos, int vots_valids, int vots_candidatures, int vots_blanc, int vots_nuls) {
+        try {
+            //Establim connexió si no s'ha establert
+            Connection con = DBMySQLManager.getConnection();
+
+            // the mysql insert statement
+            String query =  "INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls) " +
+                            "VALUES (1," +
+                            "       (SELECT m.municipi_id" +
+                            "           FROM municipis m" +
+                            "           INNER JOIN provincies p USING (provincia_id)" +
+                            "         WHERE p.codi_ine = ? AND m.codi_ine = ? AND m.districte = ?)," +
+                            "       ?, ?, ?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, ine_prov);
+            preparedStmt.setString(2, codi_ine);
+            preparedStmt.setString(3, districte);
+            preparedStmt.setInt(4, num_meses);
+            preparedStmt.setInt(5, cens);
+            preparedStmt.setInt(6, vots_emesos);
+            preparedStmt.setInt(7, vots_valids);
+            preparedStmt.setInt(8, vots_candidatures);
+            preparedStmt.setInt(9, vots_blanc);
+            preparedStmt.setInt(10, vots_nuls);
 
             // execute the preparedstatement
             preparedStmt.execute();
@@ -171,7 +205,7 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoVotsMunicipals(String codi_ine_municipi, String codi_ine_prov, String codi_candidatura, int vots) {
+    public static void insertIntoVotsMunicipals(String codi_ine_prov, String codi_ine_municipi, String districte, String codi_candidatura, int vots) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
@@ -179,11 +213,10 @@ public class InsertQuery {
             // the mysql insert statement
             String query =  "INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots)" +
                             "VALUES (1," +
-                            "       (SELECT e.municipi_id" +
-                            "           FROM eleccions_municipis e" +
-                            "           INNER JOIN municipis m USING (municipi_id)" +
+                            "       (SELECT m.municipi_id" +
+                            "           FROM municipis m" +
                             "           INNER JOIN provincies p USING (provincia_id)" +
-                            "        WHERE m.codi_ine = ? AND p.codi_ine = ?)," +
+                            "        WHERE p.codi_ine = ? AND m.codi_ine = ? AND m.districte = ?)," +
                             "       (SELECT candidatura_id" +
                             "           FROM candidatures" +
                             "        WHERE codi_candidatura = ? AND eleccio_id = 1)," +
@@ -191,10 +224,11 @@ public class InsertQuery {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString(1, codi_ine_municipi);
-            preparedStmt.setString(2, codi_ine_prov);
-            preparedStmt.setString(3, codi_candidatura);
-            preparedStmt.setInt(4, vots);
+            preparedStmt.setString(1, codi_ine_prov);
+            preparedStmt.setString(2, codi_ine_municipi);
+            preparedStmt.setString(3, districte);
+            preparedStmt.setString(4, codi_candidatura);
+            preparedStmt.setInt(5, vots);
 
             // execute the preparedstatement
             preparedStmt.execute();
@@ -231,7 +265,7 @@ public class InsertQuery {
             System.out.println(e);
         }
     }
-    public static void insertIntoVotsAutonomiques(String comunitat_autonoma_id, String candidatura_id, int vots) {
+    public static void insertIntoVotsAutonomiques(String codi_ine, String codi_candidatura, int vots) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
@@ -240,7 +274,7 @@ public class InsertQuery {
             String query =  "INSERT INTO vots_candidatures_ca (candidatura_id, comunitat_autonoma_id,vots)" +
                             "VALUES ((SELECT candidatura_id" +
                             "           FROM candidatures" +
-                            "         WHERE candidatura_id = ? and eleccio_id = 1)," +
+                            "         WHERE codi_candidatura = ? and eleccio_id = 1)," +
                             "        (SELECT comunitat_aut_id" +
                             "           FROM comunitats_autonomes" +
                             "         WHERE codi_ine = ?)," +
@@ -248,8 +282,8 @@ public class InsertQuery {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString(2, comunitat_autonoma_id);
-            preparedStmt.setString(1, candidatura_id);
+            preparedStmt.setString(1, codi_candidatura);
+            preparedStmt.setString(2, codi_ine);
             preparedStmt.setInt(3, vots);
 
             // execute the preparedstatement
