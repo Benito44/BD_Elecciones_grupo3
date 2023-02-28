@@ -21,4 +21,21 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
 	FROM municipis m;
 
--- TODO: 3
+
+-- 3. Quin partit es el guanyador de les eleccions de 2016?
+
+SELECT nom_curt
+FROM candidatures
+WHERE candidatura_id = (
+    SELECT candidatura_id
+    FROM vots_candidatures_mun vcm
+    INNER JOIN eleccions e ON e.eleccio_id = vcm.eleccio_id
+    WHERE e.nom = "Eleccions 2016"
+    ORDER BY vots DESC
+    LIMIT 1
+);
+
+//digam en quina comunitat autonoma te més vots el partit de 'VOX'
+
+
+-- TODO: 2
