@@ -64,6 +64,15 @@ SELECT COUNT(*)
 	INNER JOIN persones p USING (persona_id))
 GROUP BY p.sexe;
 
+4. Quantes num_meses té cada municipi i ordenar-la per quantes quantitats té.
+
+SELECT e.num_meses, m.nom
+	FROM eleccions_municipis e
+	LEFT JOIN municipis m ON e.municipi_id = m.municipi_id
+GROUP BY e.num_meses, m.nom
+ORDER BY num_meses DESC;
+
+
 
 CATEGORIA 3:
 
