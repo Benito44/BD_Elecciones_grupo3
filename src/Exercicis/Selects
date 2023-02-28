@@ -67,14 +67,8 @@ SELECT CONCAT(ca.codi_ine,p.codi_ine,m.codi_ine) AS codi_ine_uk, m.nom AS munici
     INNER JOIN provincies p USING (provincia_id)
     INNER JOIN comunitats_autonomes  ca USING (comunitat_aut_id);
 
-3.  Quina diferència hi ha entre la quantitat de candidats masculins i femenins?
 
-SELECT COUNT(*)
-	FROM candidats
-	INNER JOIN persones p USING (persona_id))
-GROUP BY p.sexe;
-
-4. Quins candidats es presenten a Madrid?
+3. Quins candidats es presenten a Madrid?
 
 SELECT p.nom, p.cog1, p.cog2
     FROM persones p
