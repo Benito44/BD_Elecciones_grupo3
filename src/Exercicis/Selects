@@ -1,17 +1,6 @@
 CATEGORIA 1
 
-1.  Una select que mostri de la taula municipis si és un municipi o un districte
-    i en cas de ser un districte: quants districtes hi ha del municipi al qual pertany el districte;
-    i si és un municipi: quants municipis hi ha a la província on pertany el municipi.
 
-SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
-		nom,
-        IF(districte = 99, (SELECT COUNT(*)
-								FROM municipis WHERE m1.provincia_id = m.provincia_id AND districte = 99),
-						   (SELECT COUNT(*)
-								FROM municipis m2
-							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
-	FROM municipis m;
 
 2.  Digues quants candidats titulars (‘T') I quants candidats suplents (‘S’) existeixen per a cada candidatura.
     Agrupa la resposta per candidatura.
@@ -88,6 +77,19 @@ WHERE vots = (SELECT MAX(vots)
 					FROM vots_candidatures_mun)
 GROUP BY m.municipi_id;
 
+
+1.  Una select que mostri de la taula municipis si és un municipi o un districte
+    i en cas de ser un districte: quants districtes hi ha del municipi al qual pertany el districte;
+    i si és un municipi: quants municipis hi ha a la província on pertany el municipi.
+
+SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
+		nom,
+        IF(districte = 99, (SELECT COUNT(*)
+								FROM municipis WHERE m1.provincia_id = m.provincia_id AND districte = 99),
+						   (SELECT COUNT(*)
+								FROM municipis m2
+							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
+	FROM municipis m;
 
 
 CATEGORIA 4:
