@@ -13,7 +13,7 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
 	FROM municipis m;
 
-2.  Digues quants candidats titulars (‘T`) I quants candidats suplents (‘S’) existeixen per a cada candidatura.
+2.  Digues quants candidats titulars (‘T') I quants candidats suplents (‘S’) existeixen per a cada candidatura.
     Agrupa la resposta per candidatura.
 
 SELECT candidatura_id, SUM(IF(tipus = 'T', 1, 0)) AS titulars,  SUM(IF(tipus = 'S', 1, 0)) AS suplents
@@ -67,7 +67,6 @@ SELECT CONCAT(ca.codi_ine,p.codi_ine,m.codi_ine) AS codi_ine_uk, m.nom AS munici
     INNER JOIN provincies p USING (provincia_id)
     INNER JOIN comunitats_autonomes  ca USING (comunitat_aut_id);
 
-3.  Quina diferència hi ha entre la quantitat de candidats masculins i femenins?
 
 SELECT COUNT(*)
 	FROM candidats
@@ -84,6 +83,7 @@ ORDER BY num_meses DESC;
 
 
 5. Quins candidats es presenten a Madrid?
+3. Quins candidats es presenten a Madrid?
 
 SELECT p.nom, p.cog1, p.cog2
     FROM persones p
