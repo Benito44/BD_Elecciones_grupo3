@@ -16,7 +16,15 @@ FROM municipis m
 INNER JOIN provincies pr ON pr.provincia_id = m.provincia_id
 WHERE pr.nom LIKE '%Girona%'
 
---TODO: 1
+
+--3. Diga'm el número total de candidats que tenim a Catalunya.
+
+SELECT count(*) AS num_candidats
+    FROM candidats c
+    INNER JOIN provincies p ON c.provincia_id = p.provincia_id
+    INNER JOIN comunitats_autonomes ca ON ca.comunitat_aut_id = p.comunitat_aut_id
+WHERE ca.nom LIKE '%Catalunya%'
+GROUP BY ca.comunitat_aut_id;
 
 -- 4. Quantes num_meses té cada municipi i ordenar-la per quantes quantitats té.
 
