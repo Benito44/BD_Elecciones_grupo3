@@ -57,7 +57,21 @@ SELECT CONCAT(ca.codi_ine,p.codi_ine,m.codi_ine) AS codi_ine_uk, m.nom AS munici
     INNER JOIN comunitats_autonomes  ca USING (comunitat_aut_id);
 
 
-3. Quins candidats es presenten a Madrid?
+SELECT COUNT(*)
+	FROM candidats
+	INNER JOIN persones p USING (persona_id))
+GROUP BY p.sexe;
+
+4. Quantes num_meses té cada municipi i ordenar-la per quantes quantitats té.
+
+SELECT e.num_meses, m.nom
+	FROM eleccions_municipis e
+	LEFT JOIN municipis m ON e.municipi_id = m.municipi_id
+GROUP BY e.num_meses, m.nom
+ORDER BY num_meses DESC;
+
+
+5. Quins candidats es presenten a Madrid?
 
 SELECT p.nom, p.cog1, p.cog2
     FROM persones p

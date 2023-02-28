@@ -47,12 +47,11 @@ extret.
 La provincia_id de la taula provincies on el seu codi sigui igual al valor
 extret.
 
-
 **-- VOTS MUNICIPALS --**
 
 Afegim els vots municipals on 
 
-**-- VOTS PROVINCIONALS  --**
+**-- VOTS PROVINCIONALS --**
 
 Afegim els vots provincionals on la ID de la provincia la saquem on el codi_ine de la taula de la provincies.
 I on la ID de la candidatura la saquem de la taula candidatures.
