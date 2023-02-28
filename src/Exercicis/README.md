@@ -66,3 +66,6 @@ filtrar 99
 
 **-- PROBLEMES --**
 
+- Hem hagut de inventarnos un DNI generat a partir de Numero de volta + codigo INE de provincia + districte electoral + codi de la candidatura + numero de ordre de candidat (Hem filtrat uns quants numeros que es repetien per fer-lo més net).
+- Hem hagut d'eliminar la uk de municipis codi_ine i canviarla per codi_ine + districte + provincia_id perque hi havia municipis amb el mateix codi_ine però diferents districs i províncies.
+
