@@ -76,7 +76,7 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 - Hem hagut d'inventar-nos un DNI generat a partir de **número de volta** + **codi INE de província** + **districte electoral** + **codi de la candidatura** + **número d'ordre de candidat** (hem filtrat uns quants números que es repetien per fer-lo més net).
 
 
--
+- 
 
 # FALTA:
 3. count de vots_municipis

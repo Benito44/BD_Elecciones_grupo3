@@ -26,16 +26,28 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 
 SELECT nom_curt
 FROM candidatures
-WHERE candidatura_id = (
-    SELECT candidatura_id
-    FROM vots_candidatures_mun vcm
-    INNER JOIN eleccions e ON e.eleccio_id = vcm.eleccio_id
-    WHERE e.nom = "Eleccions 2016"
-    ORDER BY vots DESC
-    LIMIT 1
-);
+WHERE candidatura_id = (SELECT candidatura_id
+                            FROM vots_candidatures_mun vcm
+                            INNER JOIN eleccions e ON e.eleccio_id = vcm.eleccio_id
+                        WHERE e.nom = "Eleccions 2016"
+                        ORDER BY vots DESC
+                        LIMIT 1);
 
-//digam en quina comunitat autonoma te més vots el partit de 'VOX'
+-- 4. Diguem en quina comunitat autònoma te més vots el partit de 'VOX'
+SELECT ca.nom
+FROM comunitats_autonomes ca
+WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
+                                        FROM municipis m
+                                        INNER JOIN vots_candidatures_mun vcm ON vcm.municipi_id = m.municipi_id
+                                        INNER JOIN candidatures c ON c.candidatura_id = vcm.candidatura_id
+                                  WHERE c.nom_curt = "VOX"
+                                  GROUP BY m.comunitat_autonoma_id
+                                  ORDER BY SUM(vcm.vots) DESC
+                                  LIMIT 1);
 
 
--- TODO: 2
+
+
+
+
+//TODO: 1
