@@ -69,8 +69,10 @@ Al final vam arribar amb dues opcions diferents:
 1. Fer que la foreign key apunti a la taula de municipis amb el municipi_id i a la taula de candidatures amb l'eleccio_id.
 2. Omplir la taula eleccions_municipis amb el mateix fitxer de la taula municipis 
 
-- A l'hora de fer els "_commit and push_" ens vam adonar que les llibreries desapareixien pel fet que no tots els companys les havíem importat correctament. Vam decidir penjar aquestes al repositori perquè així fossin comuns.
 Vam escollir la segona opció i vam inserir les dades seguidament amb les de municipi
+
+- A l'hora de fer els "_commit and push_" ens vam adonar que les llibreries desapareixien pel fet que no tots els companys les havíem importat correctament. Vam decidir penjar aquestes al repositori perquè així fossin comuns.
+
 
 
 - Hem hagut d'inventar-nos un DNI generat a partir de **número de volta** + **codi INE de província** + **districte electoral** + **codi de la candidatura** + **número d'ordre de candidat** (hem filtrat uns quants números que es repetien per fer-lo més net).
