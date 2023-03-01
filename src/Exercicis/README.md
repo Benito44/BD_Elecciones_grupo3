@@ -3,6 +3,9 @@
 La importació de dades d'un fitxer DAT a la base de dades s'ha dut a terme amb funcions cridant a cadascuna de les taules.
 Dintre de cada funció, primer s'ubica el fitxer DAT en una carpeta comuna per cada un dels membres de l'equip, aleshores es busca amb un substring la posició exacta de la informació i es guarda en la seva variable corresponent.
 Aquestes variables es guarden com paràmetres per la següent funció d'inserir, on es col·loquen per inserir-les en la base de dades.
+
+Per facilitar la importació de les dades a hem externalitzat la connexió a través de la classe _DBMySQLManager_, on tenim totes les nostres respectives _IP_, i la _IP_ que es connecta directament a la màquina principal del grup per agilitzar el procés. També disposem de totes les dades que 
+es requereixen per connectar-se a la màquina (usuari, contrasenya...), i tres funcions. La primera es connecta a la base de dades, i les altres dues estableixen la connexió (cridant a la primera funció) o la tanquen.
 # FALTA:
 2. [ ] Explicar que hemos externalizado la gestión de la conexión. Lo hacemos a través de la clase DBMySQLManager
 
