@@ -43,7 +43,8 @@ SELECT p.nom, p.cog1, p.cog2
     INNER JOIN provincies pr ON pr.provincia_id = c.provincia_id
 WHERE pr.nom LIKE '%Madrid%';
 
--- 6. Digam la mitjana de vots per municipis.
+-- 6. Diguem la mitjana de vots per municipis.
+
 SELECT m.nom, AVG(v.vots) AS mitjana
     FROM municipis m
     INNER JOIN vots_candidatures_mun v ON v.municipi_id = m.municipi_id

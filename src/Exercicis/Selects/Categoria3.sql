@@ -34,6 +34,7 @@ WHERE candidatura_id = (SELECT candidatura_id
                         LIMIT 1);
 
 -- 4. Diguem en quina comunitat autònoma te més vots el partit de 'VOX'
+
 SELECT ca.nom
 FROM comunitats_autonomes ca
 WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
@@ -47,6 +48,7 @@ WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
 
 
 -- 5. Quina es la candidatura amb el nom més llarg?
+
 SELECT nom
 FROM candidatures
 WHERE LENGTH(nom_llarg) = (SELECT MAX(LENGTH(nom_llarg))
