@@ -55,9 +55,9 @@ I on la ID de la candidatura la saquem de la taula candidatures.
 Afegim els vots autonomics on hem de treure la candidatura_id de la taula candidatures on el seu codi sigui igual al valor
 extret i que la seva elecció sigui 1 i on hem de treure la comunitat_autonoma_id de la taula comunitats_autonomes on el seu codi sigui igual al valor
 extret.
-# FALTA:
 
-1. filtrar 99
+Com els vots provincials i els autonòmics s'extreuen del mateix document, hem de posar un filtre perquè només agafi les dades de les autonomies. El filtre es un _substring_ que iguali a 99 el codi de la comunitat autònoma. Si no és així, seria una província.
+
 
 **-- PROBLEMES --**
 
@@ -74,6 +74,7 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 - Hem hagut d'inventar-nos un DNI generat a partir de **número de volta** + **codi INE de província** + **districte electoral** + **codi de la candidatura** + **número d'ordre de candidat** (hem filtrat uns quants números que es repetien per fer-lo més net).
 
 
+-
 
 # FALTA:
 3. count de vots_municipis
