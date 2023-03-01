@@ -44,8 +44,7 @@ La provincia_id de la taula províncies on el seu codi sigui igual al valor
 extret.
 
 **-- VOTS MUNICIPALS --**
-# FALTA:
-Afegim els vots municipals on 
+Afegim els vots municipals on el municipi_id de la taula municipis i provincies siguin iguals al codi_ine extret del fitxer d'informació
 
 **-- VOTS PROVINCIALS  --**
 
@@ -72,13 +71,6 @@ Al final vam arribar amb dues opcions diferents:
 Vam escollir la segona opció i vam inserir les dades seguidament amb les de municipi
 
 - A l'hora de fer els "_commit and push_" ens vam adonar que les llibreries desapareixien pel fet que no tots els companys les havíem importat correctament. Vam decidir penjar aquestes al repositori perquè així fossin comuns.
-
-
-
 - Hem hagut d'inventar-nos un DNI generat a partir de **número de volta** + **codi INE de província** + **districte electoral** + **codi de la candidatura** + **número d'ordre de candidat** (hem filtrat uns quants números que es repetien per fer-lo més net).
-
-
 - Fer les consultes ha sigut lleugerament entremaliat, ja que no comptàvem amb tots els imports fets i no podíem veure el resultat.
-
-# FALTA:
--count de vots_municipis
+- A l'hora d'importar la taula de vots_municipis, com haviem d'importar més de 86.000 files vam fer un contador on contava tots els imports fets, i si necessitàvem parar la importació després féiem que només importés després de l'últim import. 
