@@ -1,4 +1,9 @@
---TODO: 1
+-- 1. Digues el percentatge de vots vàlids, blancs i nuls de les eleccions municipals.
+SELECT SUM(vots_emesos) / SUM(cens)* 100 AS percentatge_vots_valids,
+       SUM(vots_blanc) / SUM(cens) * 100 AS percentatge_vots_blancs,
+       SUM(vots_nuls) / SUM(cens) * 100 AS percentatge_vots_nuls
+    FROM eleccions_municipis;
+
 -- 2. Digues quants candidats titulars (‘T') I quants candidats suplents (‘S’) existeixen per a cada candidatura.
 --    Agrupa la resposta per candidatura.
 

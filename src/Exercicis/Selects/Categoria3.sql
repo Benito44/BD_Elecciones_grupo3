@@ -46,8 +46,8 @@ WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
                                   LIMIT 1);
 
 
-
-
-
-
-//TODO: 1
+-- 5. Quina es la candidatura amb el nom més llarg?
+SELECT nom
+FROM candidatures
+WHERE LENGTH(nom_llarg) = (SELECT MAX(LENGTH(nom_llarg))
+                                FROM candidatures);
