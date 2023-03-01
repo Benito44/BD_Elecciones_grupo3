@@ -58,7 +58,7 @@ Afegim els vots autonomics on hem de treure la candidatura_id de la taula candid
 extret i que la seva elecció sigui 1 i on hem de treure la comunitat_autonoma_id de la taula comunitats_autonomes on el seu codi sigui igual al valor
 extret.
 
-Com els vots provincials i els autonòmics s'extreuen del mateix document, hem de posar un filtre perquè només agafi les dades de les autonomies. El filtre es un _substring_ que iguali a 99 el codi de la comunitat autònoma. Si no és així, seria una província.
+Com els vots provincials i els autonòmics s'extreuen del mateix document, hem de posar un filtre perquè només agafi les dades de les autonomies. El filtre és un _substring_ que iguali a 99 el codi de la comunitat autònoma. Si no és així, seria una província.
 
 
 **-- PROBLEMES --**
@@ -79,4 +79,4 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 - Fer les consultes ha sigut lleugerament entremaliat, ja que no comptàvem amb tots els imports fets i no podíem veure el resultat.
 
 # FALTA:
-3. count de vots_municipis
+-count de vots_municipis
