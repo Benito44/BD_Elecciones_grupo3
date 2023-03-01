@@ -3,8 +3,9 @@
 L' importació de dades d'un fitxer DAT a la base de dades s'ha dut a terme amb funcions cridant a cadascuna de les taules.
 Dintre de cada funció, primer s'ubica el fitxer DAT en una carpeta comuna per cada un dels membres de l'equip, aleshores es busca amb un substring la posició exacta de l'informació i es guarda en la seva variable corresponent.
 Aquestes variables es guarden com parametres per la seguent funció d'Insertar, on es col·loquen per inserir-les en la base de dades.
+# FALTA:
+2. [ ] Explicar que hemos externalizado la gestión de la conexión. Lo hacemos a través de la clase DBMySQLManager
 
-Quan executem la classe principal Export
 
  **-- ELECCIONS --**
 
@@ -41,7 +42,7 @@ La provincia_id de la taula provincies on el seu codi sigui igual al valor
 extret.
 
 **-- VOTS MUNICIPALS --**
-
+# FALTA:
 Afegim els vots municipals on 
 
 **-- VOTS PROVICIONALS  --**
@@ -54,8 +55,9 @@ I on la ID de la candidatura la saquem de la taula candidatures.
 Afegim els vots autonomics on hem de treure la candidatura_id de la taula candidatures on el seu codi sigui igual al valor
 extret i que la seva elecció sigui 1 i on hem de treure la comunitat_autonoma_id de la taula comunitats_autonomes on el seu codi sigui igual al valor
 extret.
+# FALTA:
 
-filtrar 99
+1. filtrar 99
 
 **-- PROBLEMES --**
 
@@ -70,8 +72,8 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 
 - Hem hagut de inventar-nos un DNI generat a partir de **numero de volta** + **código INE de província** + **districte electoral** + **codi de la candidatura** + **numero de ordre de candidat** (Hem filtrat uns quants números que es repetien per fer-lo més net).
 
-count de vots_municipis
+
 
 # FALTA:
-1. [ ] Explicar que hemos externalizado la gestión de la conexión. Lo hacemos a través de la clase DBMySQLManager
 2. [ ] Explicar el problema que tuvimos con las librerías, que al final solucionamos colgando las librerias al repositorio para que fueran comunes a todos. 
+3. count de vots_municipis
