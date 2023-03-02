@@ -59,7 +59,7 @@ public class Import {
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
                 // Excloent els totals
-                if (!(strLinia.startsWith("99", 9) || strLinia.startsWith("99", 11))) {
+                if (!strLinia.startsWith("99", 11)) {
                     codi_ine_ca = strLinia.substring(9, 11).trim();
                     nom_provincia = strLinia.substring(14, 64).trim();
                     codi_ine_prov = strLinia.substring(11, 13).trim();
@@ -298,7 +298,7 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                if (strLinia.startsWith("99", 11)) {
+                if (strLinia.startsWith("99", 11) && !strLinia.startsWith("99", 9)) {
                     codi_ine = strLinia.substring(9, 11).trim();
                     codi_candidatura = strLinia.substring(14, 20).trim();
                     vots = Integer.parseInt(strLinia.substring(20, 28));
