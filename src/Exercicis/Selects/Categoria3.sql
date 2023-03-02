@@ -49,7 +49,7 @@ WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
 
 -- 5. Quina es la candidatura amb el nom més llarg?
 
-SELECT nom
+SELECT nom_llarg
 FROM candidatures
 WHERE LENGTH(nom_llarg) = (SELECT MAX(LENGTH(nom_llarg))
                                 FROM candidatures);
@@ -63,3 +63,15 @@ WHERE nom = (SELECT nom
 			 GROUP BY nom
 			 ORDER BY COUNT(nom) DESC
 			 LIMIT 1);
+
+-- 7. Quina és la provincia amb el major nombre de municipis?
+
+SELECT nom
+FROM provincies
+WHERE provincia_id = (SELECT provincia_id
+                            FROM municipis
+                        GROUP BY provincia_id
+                        ORDER BY COUNT(provincia_id) DESC
+                        LIMIT 1);
+
+
