@@ -7,7 +7,7 @@ Aquestes variables es guarden com paràmetres per la següent funció d'inserir,
 Per facilitar la importació de les dades hem externalitzat la connexió a través de la classe _DBMySQLManager_, on tenim totes les nostres respectives _IP_, i la _IP_ que es connecta directament a la màquina principal del grup per agilitzar el procés. També disposem de totes les dades que 
 es requereixen per connectar-se a la màquina (usuari, contrasenya...), i tres funcions. La primera es connecta a la base de dades, i les altres dues estableixen la connexió (cridant a la primera funció) o la tanquen.
 
-Al principi i final de cada importació a la base de dades hi han missatges per indicar-nos quina taula s'està important i si ha sigut importada correctament.
+Al principi i final de cada importació a la base de dades hi ha missatges per indicar-nos quina taula s'està important i si ha sigut importada correctament.
 
  **-- ELECCIONS --**
 
@@ -65,7 +65,7 @@ Com els vots provincials i els autonòmics s'extreuen del mateix document, hem d
 - Per la taula vots_candidats_municipis necessitàvem importar el seu municipi_id des de la taula eleccions_municipis 
 i dintre de la informació de la base de dades no teníem cap indici d'aquesta taula.
 Al final vam arribar amb dues opcions diferents:
-1. Fer que la foreign key apunti a la taula de municipis amb el municipi_id i a la taula de candidatures amb l'eleccio_id.
+1. Fer que la foreign key apunti a la taula de municipis amb el municipi_id i a la taula de candidatures amb l'elecció_id.
 2. Omplir la taula eleccions_municipis amb el mateix fitxer de la taula municipis
 Vam escollir la segona opció i vam inserir les dades seguidament amb les de municipi.
 
@@ -73,5 +73,5 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 - Hem hagut d'inventar-nos un DNI generat a partir de **número de volta** + **codi INE de província** + **districte electoral** + **codi de la candidatura** + **número d'ordre de candidat** (hem filtrat uns quants números que es repetien per fer-lo més net).
 - Fer les consultes ha sigut lleugerament entremaliat, ja que no comptàvem amb tots els imports fets i no podíem veure el resultat.
 - A l'hora d'importar la taula de vots_municipis, com havíem d'importar més de 86.000 files vam fer un comptador on contava tots els imports fets, i si necessitàvem parar la importació després fèiem que només importés després de l'últim import.
-- Hem decidit esborrar sexe i data de naixement de persones ja que aquesta informació no existia dintre del fitxer.dat.
+- Hem decidit esborrar sexe i data de naixement de persones, ja que aquesta informació no existia dintre del fitxer .DAT.
 - A l'hora de fer les sentències sql ens vam donar adonar que les files tenien un espai al principi de cada valor i per solucionar-ho hem fet un trim per eliminar els espais restants. 
