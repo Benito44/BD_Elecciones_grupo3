@@ -33,16 +33,16 @@ SELECT ca.nom AS comunitat_autonoma, SUM(e.num_meses) AS quantitat_meses
 GROUP BY ca.nom
 ORDER BY quantitat_meses DESC;
 
---TODO: és subselect tambien
--- 4. Quin o quins són els partits (nom_llarg, nom_curt) que es presenten amb la llista
---    més llarga d'entre totes les candidatures?
 
-SELECT nom_llarg, nom_curt
-	FROM candidatures
-    INNER JOIN candidats USING (candidatura_id)
-WHERE num_ordre = (SELECT MAX(num_ordre)
-					FROM candidats)
-ORDER BY nom_llarg;
+-- 4. Volem saber de les ciutats que tenen districtes, la quantitat de districtes que tenen.
+--    Ho volem ordenar alfabéticament pel nom de la ciutat
+
+SELECT p.nom AS ciutat, COUNT(m.districte) AS q_districtes
+	FROM municipis m
+    INNER JOIN provincies p USING (provincia_id)
+WHERE districte != '99'
+GROUP BY m.codi_ine, provincia_id
+ORDER BY 1;
 
 
 -- 5. Volem saber el total de vots de la candidatura de PODEMOS per la província de Madrid
