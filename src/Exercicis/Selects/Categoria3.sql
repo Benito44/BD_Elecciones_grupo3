@@ -25,7 +25,7 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 -- 3. Quin partit es el guanyador de les eleccions de 2016?
 
 SELECT nom_curt
-FROM candidatures
+    FROM candidatures
 WHERE candidatura_id = (SELECT candidatura_id
                             FROM vots_candidatures_mun vcm
                             INNER JOIN eleccions e ON e.eleccio_id = vcm.eleccio_id
@@ -36,7 +36,7 @@ WHERE candidatura_id = (SELECT candidatura_id
 -- 4. Diguem en quina comunitat autònoma te més vots el partit de 'VOX'
 
 SELECT ca.nom
-FROM comunitats_autonomes ca
+    FROM comunitats_autonomes ca
 WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
                                         FROM municipis m
                                         INNER JOIN vots_candidatures_mun vcm ON vcm.municipi_id = m.municipi_id
@@ -49,8 +49,8 @@ WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
 
 -- 5. Quina es la candidatura amb el nom més llarg?
 
-SELECT nom
-FROM candidatures
+SELECT nom_llarg
+    FROM candidatures
 WHERE LENGTH(nom_llarg) = (SELECT MAX(LENGTH(nom_llarg))
                                 FROM candidatures);
 
@@ -63,3 +63,45 @@ WHERE nom = (SELECT nom
 			 GROUP BY nom
 			 ORDER BY COUNT(nom) DESC
 			 LIMIT 1);
+
+--TODO: triar com és
+-- 7. Quina és la mitjana de vots per comunitat autònoma?
+-- Si partim dels vots emesos:
+WITH vots_comunitat AS (SELECT SUM(vots_emesos) AS vots_comunitat
+							FROM eleccions_municipis
+							INNER JOIN municipis USING (municipi_id)
+							INNER JOIN provincies USING (provincia_id)
+							INNER JOIN comunitats_autonomes ca USING (comunitat_aut_id)
+						GROUP BY ca.comunitat_aut_id)
+
+SELECT ROUND(AVG(vots_comunitat)) AS mitjana_vots_per_comunitat
+	FROM vots_comunitat;
+
+-- Si partim dels vots per candidatura:
+WITH vots_comunitat AS (SELECT SUM(vots) AS vots_comunitat
+							FROM vots_candidatures_ca
+						GROUP BY comunitat_autonoma_id)
+
+SELECT ROUND(AVG(vots_comunitat)) AS mitjana_vots_per_comunitat
+	FROM vots_comunitat;
+
+-- 7. Quina és la provincia amb el major nombre de municipis?
+
+SELECT nom
+FROM provincies
+WHERE provincia_id = (SELECT provincia_id
+                            FROM municipis
+                        GROUP BY provincia_id
+                        ORDER BY COUNT(provincia_id) DESC
+                        LIMIT 1);
+
+
+-- 8. Quin és el partit amb més candidats?
+
+SELECT nom_curt
+    FROM candidatures
+WHERE candidatura_id = (SELECT candidatura_id
+                            FROM candidats
+                         GROUP BY candidatura_id
+                         ORDER BY COUNT(candidatura_id) DESC
+                         LIMIT 1);

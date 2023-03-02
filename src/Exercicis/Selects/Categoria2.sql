@@ -1,52 +1,54 @@
--- 1.  Mostra'm els parells de municipis que tinguin el mateix ratio de participació
+-- 1.  Volem veure els municipis de Barcelona que tenen el mateix ratio de participació
+--     que un altre municipi de Barcelona (municipi, ratio)
 
-WITH participacio (ratio) AS (SELECT nom, vots_emesos / cens AS ratio
-								FROM eleccions_municipis e1
-							  WHERE districte = 99)
-SELECT p.nom, p1.nom
+WITH participacio AS (SELECT m1.nom, e1.vots_emesos / e1.cens AS ratio
+                        FROM eleccions_municipis e1
+                        INNER JOIN municipis m1 USING (municipi_id)
+                        INNER JOIN provincies prov USING (provincia_id)
+                      WHERE districte = 99 AND prov.nom = 'Barcelona')
+SELECT p.nom, p.ratio
 	FROM participacio p
-    INNER JOIN participacio p1 USING (ratio)
-WHERE p.nom != p1.nom;
+    LEFT JOIN participacio p1 USING (ratio)
+WHERE p.nom != p1.nom
+ORDER BY p.ratio;
 
 
--- 2. Diguem el nom dels municipis que pertanyen a la província de Girona.
+--2. Quants candidats tenim a Catalunya?
 
-SELECT m.nom
-FROM municipis m
-INNER JOIN provincies pr ON pr.provincia_id = m.provincia_id
-WHERE pr.nom LIKE '%Girona%'
-
-
---3. Diga'm el número total de candidats que tenim a Catalunya.
-
-SELECT count(*) AS num_candidats
+SELECT COUNT(*) AS num_candidats
     FROM candidats c
     INNER JOIN provincies p ON c.provincia_id = p.provincia_id
     INNER JOIN comunitats_autonomes ca ON ca.comunitat_aut_id = p.comunitat_aut_id
-WHERE ca.nom LIKE '%Catalunya%'
-GROUP BY ca.comunitat_aut_id;
+WHERE ca.nom = 'Catalunya';
 
--- 4. Quantes num_meses té cada municipi i ordenar-la per quantes quantitats té.
 
-SELECT e.num_meses, m.nom
+-- 3. Quantes meses té cada comunitat autònoma? Volem veure el resultat ordenat de CAs amb més
+--    meses a CAs amb menys meses
+
+SELECT ca.nom AS comunitat_autonoma, SUM(e.num_meses) AS quantitat_meses
 	FROM eleccions_municipis e
-	LEFT JOIN municipis m ON e.municipi_id = m.municipi_id
-GROUP BY e.num_meses, m.nom
-ORDER BY num_meses DESC;
+	INNER JOIN municipis m USING (municipi_id)
+    INNER JOIN provincies p USING (provincia_id)
+    INNER JOIN comunitats_autonomes ca USING (comunitat_aut_id)
+GROUP BY ca.nom
+ORDER BY quantitat_meses DESC;
+
+--TODO: és subselect tambien
+-- 4. Quin o quins són els partits (nom_llarg, nom_curt) que es presenten amb la llista
+--    més llarga d'entre totes les candidatures?
+
+SELECT nom_llarg, nom_curt
+	FROM candidatures
+    INNER JOIN candidats USING (candidatura_id)
+WHERE num_ordre = (SELECT MAX(num_ordre)
+					FROM candidats)
+ORDER BY nom_llarg;
 
 
--- 5. Quins candidats es presenten a Madrid?
+-- 5. Volem saber el total de vots de la candidatura de PODEMOS per la província de Madrid
 
-SELECT p.nom, p.cog1, p.cog2
-    FROM persones p
-    INNER JOIN candidats c ON c.persona_id = p.persona_id
-    INNER JOIN provincies pr ON pr.provincia_id = c.provincia_id
-WHERE pr.nom LIKE '%Madrid%';
-
--- 6. Diguem la mitjana de vots per municipis.
-
-SELECT m.nom, AVG(v.vots) AS mitjana
-    FROM municipis m
-    INNER JOIN vots_candidatures_mun v ON v.municipi_id = m.municipi_id
-GROUP BY m.nom
-ORDER BY mitjana DESC;
+SELECT vots, c.nom_llarg, c.nom_curt
+	FROM vots_candidatures_prov
+	INNER JOIN candidatures c USING (candidatura_id)
+    INNER JOIN provincies p USING (provincia_id)
+WHERE p.nom = 'Madrid' AND (c.nom_curt LIKE '%PODEMOS%' OR nom_llarg LIKE '%PODEMOS%');
