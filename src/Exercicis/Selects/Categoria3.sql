@@ -25,7 +25,7 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 -- 3. Quin partit es el guanyador de les eleccions de 2016?
 
 SELECT nom_curt
-FROM candidatures
+    FROM candidatures
 WHERE candidatura_id = (SELECT candidatura_id
                             FROM vots_candidatures_mun vcm
                             INNER JOIN eleccions e ON e.eleccio_id = vcm.eleccio_id
@@ -36,7 +36,7 @@ WHERE candidatura_id = (SELECT candidatura_id
 -- 4. Diguem en quina comunitat autònoma te més vots el partit de 'VOX'
 
 SELECT ca.nom
-FROM comunitats_autonomes ca
+    FROM comunitats_autonomes ca
 WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
                                         FROM municipis m
                                         INNER JOIN vots_candidatures_mun vcm ON vcm.municipi_id = m.municipi_id
@@ -50,7 +50,7 @@ WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
 -- 5. Quina es la candidatura amb el nom més llarg?
 
 SELECT nom_llarg
-FROM candidatures
+    FROM candidatures
 WHERE LENGTH(nom_llarg) = (SELECT MAX(LENGTH(nom_llarg))
                                 FROM candidatures);
 
@@ -75,3 +75,12 @@ WHERE provincia_id = (SELECT provincia_id
                         LIMIT 1);
 
 
+-- 8. Quin és el partit amb més candidats?
+
+SELECT nom_curt
+    FROM candidatures
+WHERE candidatura_id = (SELECT candidatura_id
+                            FROM candidats
+                         GROUP BY candidatura_id
+                         ORDER BY COUNT(candidatura_id) DESC
+                         LIMIT 1);
