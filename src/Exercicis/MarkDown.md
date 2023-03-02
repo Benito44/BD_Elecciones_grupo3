@@ -73,4 +73,4 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 - Hem hagut d'inventar-nos un DNI generat a partir de **número de volta** + **codi INE de província** + **districte electoral** + **codi de la candidatura** + **número d'ordre de candidat** (hem filtrat uns quants números que es repetien per fer-lo més net).
 - Fer les consultes ha sigut lleugerament entremaliat, ja que no comptàvem amb tots els imports fets i no podíem veure el resultat.
 - A l'hora d'importar la taula de vots_municipis, com havíem d'importar més de 86.000 files vam fer un comptador on contava tots els imports fets, i si necessitàvem parar la importació després fèiem que només importés després de l'últim import.
-- 
+- Hem decidit esborrar sexe i data de naixement de persones ja que aquesta informació no existia dintre del fitxer.dat.
