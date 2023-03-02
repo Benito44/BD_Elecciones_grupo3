@@ -1,17 +1,26 @@
--- 1. Digues el percentatge de vots vàlids, blancs i nuls de les eleccions municipals.
+-- 1. Quin és el  percentatge de participació, de vots blancs i de nuls de les eleccions municipals?
 
-SELECT SUM(vots_emesos) / SUM(cens)* 100 AS percentatge_vots_valids,
-       SUM(vots_blanc) / SUM(cens) * 100 AS percentatge_vots_blancs,
-       SUM(vots_nuls) / SUM(cens) * 100 AS percentatge_vots_nuls
+SELECT CONCAT(ROUND((SUM(vots_emesos) / SUM(cens) * 100),2), ' %') AS participacio,
+       CONCAT(ROUND((SUM(vots_blanc) / SUM(vots_emesos) * 100), 2), ' %') AS percentatge_vots_blancs,
+       CONCAT(ROUND((SUM(vots_nuls) / SUM(vots_emesos) * 100),2), ' %') AS percentatge_vots_nuls
     FROM eleccions_municipis;
 
--- 2. Digues quants candidats titulars (‘T') I quants candidats suplents (‘S’) existeixen per a cada candidatura.
---    Agrupa la resposta per candidatura.
 
-SELECT candidatura_id, SUM(IF(tipus = 'T', 1, 0)) AS titulars,  SUM(IF(tipus = 'S', 1, 0)) AS suplents
+-- 2. Quants candidats titulars (‘T') i quants candidats suplents (‘S’) té cada candidatura?
+
+SELECT  candidatura_id,
+        SUM(IF(tipus = 'T', 1, 0)) AS titulars,
+        SUM(IF(tipus = 'S', 1, 0)) AS suplents
     FROM candidats
 GROUP BY candidatura_id;
 
+-- 3. A la taula eleccions_municipis hem d'introduïr 86899 registres.
+--    Com al ser una quantitat tant gran la importació triga una estona, volem saber, durant aquesta,
+--    el percentatge d'importació i la quantitat de registres que portem.
+
+SELECT 	ROUND(COUNT(*) / 86899 * 100, 2) AS '%',
+		CONCAT(COUNT(*), '/ 86899') AS quantitat_registres
+	FROM vots_candidatures_mun;
 
 -- 3. Volem saber el nom i cognom de totes les persones el nom de les quals comenci per ‘J’. Mostra-ho per ordre alfabètic.
 
@@ -28,10 +37,10 @@ SELECT comunitat_id, AVG(vots)
 GROUP BY comunitat_id;
 
 
--- 5. Quin o quins són el nom més repetit entre totes les persones?
+-- 5. Volem saber un dels noms més repetit entre totes les persones
 
-SELECT nom, COUNT(*) as vegades_repetit
+SELECT nom
 	FROM persones
 GROUP BY nom
-ORDER BY vegades_repetit DESC
+ORDER BY COUNT(nom) DESC
 LIMIT 1;

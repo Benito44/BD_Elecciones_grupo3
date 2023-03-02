@@ -93,19 +93,19 @@ public class InsertQuery {
         }
     }
 
-    public static void insertIntoEleccionsMunicipis(String ine_prov, String codi_ine, String districte, int num_meses, int cens, int vots_emesos, int vots_valids, int vots_candidatures, int vots_blanc, int vots_nuls) {
+    public static void insertIntoEleccionsMunicipis(String ine_prov, String codi_ine, String districte, int num_meses, int cens, int vots_candidatures, int vots_blanc, int vots_nuls) {
         try {
             //Establim connexió si no s'ha establert
             Connection con = DBMySQLManager.getConnection();
 
             // the mysql insert statement
-            String query =  "INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls) " +
+            String query =  "INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_candidatures, vots_blanc, vots_nuls) " +
                             "VALUES (1," +
                             "       (SELECT m.municipi_id" +
                             "           FROM municipis m" +
                             "           INNER JOIN provincies p USING (provincia_id)" +
                             "         WHERE p.codi_ine = ? AND m.codi_ine = ? AND m.districte = ?)," +
-                            "       ?, ?, ?, ?, ?, ?, ?)";
+                            "       ?, ?, ?, ?, ?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -114,11 +114,9 @@ public class InsertQuery {
             preparedStmt.setString(3, districte);
             preparedStmt.setInt(4, num_meses);
             preparedStmt.setInt(5, cens);
-            preparedStmt.setInt(6, vots_emesos);
-            preparedStmt.setInt(7, vots_valids);
-            preparedStmt.setInt(8, vots_candidatures);
-            preparedStmt.setInt(9, vots_blanc);
-            preparedStmt.setInt(10, vots_nuls);
+            preparedStmt.setInt(6, vots_candidatures);
+            preparedStmt.setInt(7, vots_blanc);
+            preparedStmt.setInt(8, vots_nuls);
 
             // execute the preparedstatement
             preparedStmt.execute();

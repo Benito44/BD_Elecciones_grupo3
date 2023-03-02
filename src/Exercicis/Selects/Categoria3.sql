@@ -53,3 +53,13 @@ SELECT nom
 FROM candidatures
 WHERE LENGTH(nom_llarg) = (SELECT MAX(LENGTH(nom_llarg))
                                 FROM candidatures);
+
+-- 6. Quin o quins són el nom més repetit entre totes les persones?
+
+SELECT DISTINCT nom
+	FROM persones
+WHERE nom = (SELECT nom
+				FROM persones
+			 GROUP BY nom
+			 ORDER BY COUNT(nom) DESC
+			 LIMIT 1);

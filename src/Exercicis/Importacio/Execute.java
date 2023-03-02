@@ -15,8 +15,8 @@ public class Execute {
             // 2. Inserim dades a la taula PROVINCIES
             Import.importarProvincies();
 
-            // 3. Inserim dades a la taula MUNICIPIS
-            Import.importarMunicipis();
+            // 3. Inserim dades a la taula MUNICIPIS i ELECCIONS_MUNICIPIS
+            Import.importarMunicipisAndEleccionsMunicipis();
 
             // 4. Inserim dades a la taula CANDIDATURES
             Import.importarCandidatures();
