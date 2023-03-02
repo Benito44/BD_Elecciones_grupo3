@@ -22,7 +22,7 @@ public class Import {
 
             // Recorregut de cada línia de l'arxiu
             while ((strLinia = bfLector.readLine()) != null) {
-                if (strLinia.startsWith("99", 11)) { // dels totals
+                if (strLinia.startsWith("99", 11) && !strLinia.startsWith("99", 9)) { // dels totals
                     codi_ine = strLinia.substring(9, 11).trim();
                     nom = strLinia.substring(14, 64).trim();
 
