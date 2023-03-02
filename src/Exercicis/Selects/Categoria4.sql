@@ -9,7 +9,7 @@ AS (
     UNION ALL
     SELECT n_ordre + 1
 		FROM count_candidats_llista
-    WHERE n_ordre < (SELECT MAX(num_ordre)
+    WHERE n_ordre < (SELECT MAX(num_ordre)--TODO:més petit, o més petit o igual?
 						FROM candidats)
 )
 SELECT n.n_ordre AS candidats_per_llista, COUNT(c.candidatura_id) AS quantitat_candidatures
