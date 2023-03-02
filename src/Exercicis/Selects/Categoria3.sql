@@ -64,6 +64,27 @@ WHERE nom = (SELECT nom
 			 ORDER BY COUNT(nom) DESC
 			 LIMIT 1);
 
+--TODO: triar com és
+-- 7. Quina és la mitjana de vots per comunitat autònoma?
+-- Si partim dels vots emesos:
+WITH vots_comunitat AS (SELECT SUM(vots_emesos) AS vots_comunitat
+							FROM eleccions_municipis
+							INNER JOIN municipis USING (municipi_id)
+							INNER JOIN provincies USING (provincia_id)
+							INNER JOIN comunitats_autonomes ca USING (comunitat_aut_id)
+						GROUP BY ca.comunitat_aut_id)
+
+SELECT ROUND(AVG(vots_comunitat)) AS mitjana_vots_per_comunitat
+	FROM vots_comunitat;
+
+-- Si partim dels vots per candidatura:
+WITH vots_comunitat AS (SELECT SUM(vots) AS vots_comunitat
+							FROM vots_candidatures_ca
+						GROUP BY comunitat_autonoma_id)
+
+SELECT ROUND(AVG(vots_comunitat)) AS mitjana_vots_per_comunitat
+	FROM vots_comunitat;
+
 -- 7. Quina és la provincia amb el major nombre de municipis?
 
 SELECT nom

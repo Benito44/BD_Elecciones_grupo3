@@ -45,10 +45,10 @@ WHERE num_ordre = (SELECT MAX(num_ordre)
 ORDER BY nom_llarg;
 
 
--- 5. Volem saber el total de vots de la candidatura de VOX per la província de Murcia
+-- 5. Volem saber el total de vots de la candidatura de PODEMOS per la província de Madrid
 
-SELECT vots
+SELECT vots, c.nom_llarg, c.nom_curt
 	FROM vots_candidatures_prov
 	INNER JOIN candidatures c USING (candidatura_id)
     INNER JOIN provincies p USING (provincia_id)
-WHERE p.nom = 'Murcia' AND c.nom_curt = 'VOX';
+WHERE p.nom = 'Madrid' AND (c.nom_curt LIKE '%PODEMOS%' OR nom_llarg LIKE '%PODEMOS%');
