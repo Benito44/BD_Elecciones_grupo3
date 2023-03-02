@@ -105,3 +105,13 @@ WHERE candidatura_id = (SELECT candidatura_id
                          GROUP BY candidatura_id
                          ORDER BY COUNT(candidatura_id) DESC
                          LIMIT 1);
+
+-- 9. Quin o quins són els partits (nom_llarg, nom_curt) que es presenten amb la llista
+--    més llarga d'entre totes les candidatures? Ho volem ordenar per alfabéticament per les sigles del partit
+
+SELECT nom_llarg, nom_curt
+	FROM candidatures
+    INNER JOIN candidats USING (candidatura_id)
+WHERE num_ordre = (SELECT MAX(num_ordre)
+					FROM candidats)
+ORDER BY 2;
