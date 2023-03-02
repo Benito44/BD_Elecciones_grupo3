@@ -14,6 +14,7 @@ SELECT  candidatura_id,
     FROM candidats
 GROUP BY candidatura_id;
 
+
 -- 3. A la taula eleccions_municipis hem d'introduïr 86899 registres.
 --    Com al ser una quantitat tant gran la importació triga una estona, volem saber, durant aquesta,
 --    el percentatge d'importació i la quantitat de registres que portem.
@@ -21,13 +22,6 @@ GROUP BY candidatura_id;
 SELECT 	ROUND(COUNT(*) / 86899 * 100, 2) AS '%',
 		CONCAT(COUNT(*), '/ 86899') AS quantitat_registres
 	FROM vots_candidatures_mun;
-
--- 3. Volem saber el nom i cognom de totes les persones el nom de les quals comenci per ‘J’. Mostra-ho per ordre alfabètic.
-
-SELECT nom, cog1
-    FROM persones
-WHERE nom LIKE 'J%'
-ORDER BY nom ASC;
 
 
 -- 4. Quina és la mitjana de vots per província a cada comunitat autònoma?
