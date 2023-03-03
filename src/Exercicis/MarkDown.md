@@ -16,20 +16,21 @@ S'importa manualment, ja que només tenim un tipus d'eleccions i aquesta és la 
 
 **-- COMUNITATS_AUTONOMES --**
 
-Trobarem el codi_ine i el nom dels quals siguin 99 per treure el nivell total.
+Trobarem el codi_ine i el nom de les comunitats autonòmes.
+Hem hagut d'excloure el total nacional (_codi_ine CA_ = 99).
 
 
 **-- PROVÍNCIES --**
 
-Importarem les províncies excloent el total nacional i la comunitat. On la ID de la comunitat autònoma 
-l'extraiem on el codi_ine de la taula de la comunitat autònoma.
+Importarem les províncies excloent el total de comunitat. La ID de la comunitat autònoma 
+l'extraiem amb el codi_ine de la taula de la comunitat autònoma.
 
 
 **-- MUNICIPIS --**
 
 A la de municipis extraurem el nom del municipi si el número del districte municipal és 99 o el nom de la província si aquest no és 99. També hem canviat la clau única del codi_ine perquè 
 aquesta faci referència al districte i a la província també.
-On la ID de la província l'extraiem amb el codi_ine de la taula de províncies.
+La ID de la província l'extraiem amb el codi_ine de la taula de províncies.
 
 
 **-- CANDIDATURES --**
@@ -57,7 +58,7 @@ Afegim els vots municipals on el municipi_id de la taula municipis i províncies
 **-- VOTS PROVINCIALS  --**
 
 Afegim els vots provincials on la ID de la província l'extraiem on el codi_ine de la taula de províncies.
-I on la ID de la candidatura la saquem de la taula candidatures.
+La ID de la candidatura la saquem de la taula candidatures.
 
 
 **-- VOTS AUTONOMICS --**
