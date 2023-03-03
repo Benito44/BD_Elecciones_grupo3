@@ -1,4 +1,4 @@
--- Volem saber la quantitat de candidats que hi ha per cada número de llista del partit PACMA
+-- Volem saber la quantitat de candidats que hi ha per cada posició de llista del partit PACMA
 -- Ho volem ordenar per posició de la llista.
 
 WITH RECURSIVE count_candidats_llista(n_ordre)
