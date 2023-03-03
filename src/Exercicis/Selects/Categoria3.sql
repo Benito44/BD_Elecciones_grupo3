@@ -1,4 +1,4 @@
--- 1. Quin o quins són els municipis amb el major número de votants?
+-- 1. Quin o quins són els municipis amb la candidatura municipal que té més vots?
 
 SELECT m.municipi_id, m.nom
 	FROM municipis m
@@ -15,7 +15,8 @@ GROUP BY m.municipi_id;
 SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 		nom,
         IF(districte = 99, (SELECT COUNT(*)
-								FROM municipis WHERE m1.provincia_id = m.provincia_id AND districte = 99),
+								FROM municipis m1
+							WHERE m1.provincia_id = m.provincia_id AND districte = 99),
 						   (SELECT COUNT(*)
 								FROM municipis m2
 							WHERE m2.codi_ine = m.codi_ine AND districte != 99)) AS Quantitat
@@ -24,7 +25,7 @@ SELECT 	IF(districte = 99, 'Municipi', 'Districte') AS 'Muncipi o districte',
 
 -- 3. Quin partit es el guanyador de les eleccions de 2016?
 
-SELECT nom_curt
+SELECT nom_curt, nom_llarg
     FROM candidatures
 WHERE candidatura_id = (SELECT candidatura_id
                             FROM vots_candidatures_mun vcm
@@ -33,40 +34,17 @@ WHERE candidatura_id = (SELECT candidatura_id
                         ORDER BY vots DESC
                         LIMIT 1);
 
--- 4. Diguem en quina comunitat autònoma te més vots el partit de 'VOX'
 
-SELECT ca.nom
-    FROM comunitats_autonomes ca
-WHERE ca.comunitat_autonoma_id = (SELECT m.comunitat_autonoma_id
-                                        FROM municipis m
-                                        INNER JOIN vots_candidatures_mun vcm ON vcm.municipi_id = m.municipi_id
-                                        INNER JOIN candidatures c ON c.candidatura_id = vcm.candidatura_id
-                                  WHERE c.nom_curt = "VOX"
-                                  GROUP BY m.comunitat_autonoma_id
-                                  ORDER BY SUM(vcm.vots) DESC
-                                  LIMIT 1);
-
-
--- 5. Quina es la candidatura amb el nom més llarg?
+-- 4. Quina es la candidatura amb el nom més llarg?
 
 SELECT nom_llarg
     FROM candidatures
 WHERE LENGTH(nom_llarg) = (SELECT MAX(LENGTH(nom_llarg))
                                 FROM candidatures);
 
--- 6. Quin o quins són el nom més repetit entre totes les persones?
 
-SELECT DISTINCT nom
-	FROM persones
-WHERE nom = (SELECT nom
-				FROM persones
-			 GROUP BY nom
-			 ORDER BY COUNT(nom) DESC
-			 LIMIT 1);
+-- 5. Quina és la mitjana de vots per comunitat autònoma?
 
---TODO: triar com és
--- 7. Quina és la mitjana de vots per comunitat autònoma?
--- Si partim dels vots emesos:
 WITH vots_comunitat AS (SELECT SUM(vots_emesos) AS vots_comunitat
 							FROM eleccions_municipis
 							INNER JOIN municipis USING (municipi_id)
@@ -77,18 +55,11 @@ WITH vots_comunitat AS (SELECT SUM(vots_emesos) AS vots_comunitat
 SELECT ROUND(AVG(vots_comunitat)) AS mitjana_vots_per_comunitat
 	FROM vots_comunitat;
 
--- Si partim dels vots per candidatura:
-WITH vots_comunitat AS (SELECT SUM(vots) AS vots_comunitat
-							FROM vots_candidatures_ca
-						GROUP BY comunitat_autonoma_id)
 
-SELECT ROUND(AVG(vots_comunitat)) AS mitjana_vots_per_comunitat
-	FROM vots_comunitat;
-
--- 7. Quina és la provincia amb el major nombre de municipis?
+-- 6. Quina és la provincia amb el major nombre de municipis?
 
 SELECT nom
-FROM provincies
+    FROM provincies
 WHERE provincia_id = (SELECT provincia_id
                             FROM municipis
                         GROUP BY provincia_id
@@ -96,17 +67,7 @@ WHERE provincia_id = (SELECT provincia_id
                         LIMIT 1);
 
 
--- 8. Quin és el partit amb més candidats?
-
-SELECT nom_curt
-    FROM candidatures
-WHERE candidatura_id = (SELECT candidatura_id
-                            FROM candidats
-                         GROUP BY candidatura_id
-                         ORDER BY COUNT(candidatura_id) DESC
-                         LIMIT 1);
-
--- 9. Quin o quins són els partits (nom_llarg, nom_curt) que es presenten amb la llista
+-- 7. Quin o quins són els partits (nom_llarg, nom_curt) que es presenten amb la llista
 --    més llarga d'entre totes les candidatures? Ho volem ordenar per alfabéticament per les sigles del partit
 
 SELECT nom_llarg, nom_curt
