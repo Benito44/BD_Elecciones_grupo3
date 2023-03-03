@@ -84,4 +84,5 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 - A l'hora d'importar la taula de vots_municipis, com havíem d'importar més de 86.000 files vam fer un comptador on contava tots els imports fets, i si necessitàvem parar la importació després fèiem que només importés després de l'últim import.
 - Hem decidit esborrar sexe i data de naixement de persones, ja que aquesta informació no existia dintre del fitxer .DAT.
 - A l'hora de fer les sentències sql ens vam adonar que les files tenien un espai al principi de cada valor i per solucionar-ho hem fet un trim per eliminar els espais restants. 
+- Vam tenir bastants problemes per inserir el projecte de l'InteliJ al nostre repositori de github, ja que no teniem cap experiencia en el github i també a l'hora de que tothom tingues el projecte actualitzat.
 - Hem tingut problemes de conexió conectant-nos al servidor a través del pont individual de cadascú. Així que al final, per volcar tota la informació a la base de dades, ho hem fet conectant-nos directament al servidor a través de la configuració de VPN disponible a l'isard.
