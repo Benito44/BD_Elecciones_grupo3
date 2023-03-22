@@ -72,6 +72,7 @@ Com els vots provincials i els autonòmics s'extreuen del mateix document, hem d
 
 **-- PROBLEMES --**
 
+
 - Per la taula vots_candidats_municipis necessitàvem importar el seu municipi_id des de la taula eleccions_municipis 
 i dintre de la informació de la base de dades no teníem cap indici d'aquesta taula.
 Al final vam arribar amb dues opcions diferents:
